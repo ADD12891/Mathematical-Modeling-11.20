@@ -14,12 +14,13 @@ BUILDINGS = [(22, 34, 16, 26, 20), (63, 79, 59, 71, 28),
 TX, TY = 50 + 20 * sqrt(3), 70
 R_MIN = 43 / np.tan(np.deg2rad(80))
 
-def region(step):
-    # 单元格中心作为采样点。乘以单元面积只用于近似面积。
-    ticks = np.arange(step / 2, 100, step)
-    x, y = np.meshgrid(ticks, ticks)
+T1_DISTANCE_TOL = 1e-9  # 水平距离比较的米制舍入容差，仅用于 T1 仰角等限。
+
+def observable_t1(x, y):
+    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)
     r = np.hypot(TX - x, TY - y)
-    visible = (x >= 1.5) & (y >= 1.5) & (x <= 98.5) & (y <= 98.5) & (r >= R_MIN)
+    visible = ((x >= 1.5) & (y >= 1.5) & (x <= 98.5) & (y <= 98.5)
+               & (r >= R_MIN - T1_DISTANCE_TOL))
     for left, right, bottom, top, height in BUILDINGS:
         dx = np.maximum(0, np.maximum(left - x, x - right))
         dy = np.maximum(0, np.maximum(bottom - y, y - top))
@@ -37,7 +38,21 @@ def region(step):
             enter = np.maximum(enter, np.where(parallel, -np.inf, np.minimum(a, b)))
             leave = np.minimum(leave, np.where(parallel, np.inf, np.maximum(a, b)))
         visible &= ~(overlaps & (enter <= leave))
-    return visible, r[visible].min()
+    return visible
+
+def region(step):
+    ticks = np.arange(step / 2, 100, step)
+    x, y = np.meshgrid(ticks, ticks)
+    visible = observable_t1(x, y)
+    return visible, np.hypot(TX - x[visible], TY - y[visible]).min()
+
+def t1_representative():
+    # 仅在题内的全精度正东代表点确实可行且达到仰角下界时才报告。
+    east = (TX + R_MIN, TY)
+    distance = np.hypot(east[0] - TX, east[1] - TY)
+    if not observable_t1(*east) or abs(distance - R_MIN) > T1_DISTANCE_TOL:
+        raise ValueError("T1 正东代表点未通过点级校验")
+    return east
 
 def plot_region(mask):
     fig, ax = plt.subplots(figsize=(7.2, 6.5), layout="constrained")
@@ -48,7 +63,7 @@ def plot_region(mask):
         ax.add_patch(Rectangle((left, bottom), right-left, top-bottom, color="#414e5f"))
         ax.text((left+right)/2, (bottom+top)/2, f"B{i}", color="white", ha="center", va="center")
     t, = ax.plot(TX, TY, '^', color="#a63528", ms=8, label="T1 projection")
-    p, = ax.plot(TX+R_MIN, TY, '*', color="#172143", ms=13, label="Optimal station")
+    p, = ax.plot(*t1_representative(), '*', color="#172143", ms=13, label="Optimal station")
     ax.set(title="T1 observable region", xlabel="East (m)", ylabel="North (m)", aspect="equal")
     ax.legend(handles=[Patch(color=colors[1], label="Observable"),
                        Patch(color=colors[0], label="Excluded"), t, p],
@@ -71,6 +86,31 @@ def probability_function(order):
         return float((weights * cond).sum())
     return probability
 
+def command_angle_probability(order):
+    """几何指令角减真实方位，仅含位置误差；条件于纵向位置误差。"""
+    x, weights = hermgauss(order)
+    z = sqrt(2) * x
+    slope = np.tan(np.deg2rad(5))
+    tail = np.vectorize(erfc, otypes=[float])
+    def probability(sigma):
+        if sigma == 0:
+            return 1.0
+        forward = 40 - sigma*z
+        lateral_limit = np.maximum(forward, 0) * slope
+        success = 1 - tail(lateral_limit / (sqrt(2)*sigma))
+        return float(weights @ success / sqrt(np.pi))
+    return probability
+
+def critical_interval(probability, lo, hi):
+    assert probability(lo) > .95 > probability(hi)
+    while hi - lo > 1e-11:
+        mid = (lo + hi) / 2
+        if probability(mid) >= .95:
+            lo = mid
+        else:
+            hi = mid
+    return lo, hi
+
 if __name__ == "__main__":
     for h in (0.5, 0.25, 0.125):
         mask, r_grid = region(h)
@@ -78,14 +118,11 @@ if __name__ == "__main__":
     plot_region(mask)
     for n in (24, 48, 80):
         prob = probability_function(n)
-        lo, hi = 1.5, 1.65
-        assert prob(lo) > .95 > prob(hi)
-        while hi-lo > 1e-11:
-            mid = (lo + hi) / 2
-            if prob(mid) >= .95:
-                lo = mid
-            else:
-                hi = mid
+        lo, hi = critical_interval(prob, 1.5, 1.65)
         print("order", n, "sigma bracket", (lo, hi), "s", (lo-.3)/.02)
         for distance in (66.83, 66.84, 66.92):
             print(distance, prob(.3+.02*distance))
+
+    for n in (48, 80):
+        lo, hi = critical_interval(command_angle_probability(n), 1.7, 1.9)
+        print("geometric command only", n, (lo, hi), "s", (lo-.3)/.02)
