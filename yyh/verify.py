@@ -14,6 +14,7 @@ BUILDINGS = [(22, 34, 16, 26, 20), (63, 79, 59, 71, 28),
 TX, TY = 50 + 20 * sqrt(3), 70
 R_MIN = 43 / np.tan(np.deg2rad(80))
 
+VEHICLE_CLEARANCE_TOL = 1e-12  # 车体与建筑净空的舍入容差，单位 m。
 T1_DISTANCE_TOL = 1e-9  # 水平距离比较的米制舍入容差，仅用于 T1 仰角等限。
 
 # 线段参数 t 属于 [0,1]。用双精度的绝对容差保留闭区间擦边语义。
@@ -27,7 +28,7 @@ def observable_t1(x, y):
     for left, right, bottom, top, height in BUILDINGS:
         dx = np.maximum(0, np.maximum(left - x, x - right))
         dy = np.maximum(0, np.maximum(bottom - y, y - top))
-        visible &= np.hypot(dx, dy) >= 1.5
+        visible &= np.hypot(dx, dy) >= 1.5 - VEHICLE_CLEARANCE_TOL
         # 只检查视线从相机升到建筑顶部这一段的水平投影。
         enter = np.zeros_like(x)
         leave = np.full_like(y, (height - 2) / 43)
@@ -115,6 +116,10 @@ def critical_interval(probability, lo, hi):
     return lo, hi
 
 if __name__ == "__main__":
+    scale = 1 + np.array([-1e-6, 0, 1e-6])
+    np.testing.assert_array_equal(
+        observable_t1(34 + 0.9 * scale, 16 - 1.2 * scale), [False, True, True]
+    )
     # 中点视线解析地接触 B2 的北侧屋顶棱，左右两点分处边界两侧。
     edge_y = 1233 / 17 + np.array([-1e-6, 0, 1e-6])
     np.testing.assert_array_equal(observable_t1(50, edge_y), [False, False, True])

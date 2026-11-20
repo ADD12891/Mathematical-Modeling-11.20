@@ -1,5 +1,7 @@
 # B 题最终实现路线复审 · 车体外切 · 几何审查
 
+> **已处理｜车体圆角外切**　审稿版本 [1461cb4](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/1461cb4)。采纳净空比较修正，三点回归见实现路线 §10。 [处理索引](README.md)
+
 复审基准为远端 main 的 `29584c7`。上轮的 T1 视线擦顶问题已修复。T2 的定位误差下界与可行站对已补入主路线 §5.2，并通过独立复算。本轮新发现一处车体圆角外切的数值误判，建议补齐后通过几何和定位复审。
 
 ## 新问题 · 恰好外切的车心被排除
@@ -28,3 +30,5 @@
 [geometry]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/29584c77045029722c23a5b0a137efdadf2ae599/%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF/B%E9%A2%98%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF.md#L110-L136
 [verify]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/29584c77045029722c23a5b0a137efdadf2ae599/yyh/verify.py#L22-L31
 [t2]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/29584c77045029722c23a5b0a137efdadf2ae599/%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF/B%E9%A2%98%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF.md#L265-L289
+
+<!-- 已处理正文截止：审稿 1461cb4；车体外切复审 -->
