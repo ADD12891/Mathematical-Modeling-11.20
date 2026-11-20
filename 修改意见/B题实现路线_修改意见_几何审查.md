@@ -1,5 +1,9 @@
 # B 题实现路线修改意见 · 几何审查
 
+> **已处理｜G1–G3、E1–E2 及 30 s 路线核验**　审稿版本 [0c0b99a](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/0c0b99a)，处理结论截至 [34f834f](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/34f834f)。
+>
+> 几何与精度用例已收录。文中“T2 双站最优结果仍待求解”已由 A 后续复审的解析证明更新。 [处理索引](README.md)
+
 审查版本为远端 `main` 的 `3ec6557`（2026 年 11 月 20 日）。依据英文题面第 2–4 页，对照《B题最终实现路线》《B题解题总稿_修订稿》和 C 模块的 G1–G3、E1–E2 验收条目。本轮建议优先落实 T1 仰角边界、T2 点级可见性和双站误差三项验收。 [英文 B 题][problem] [主实现路线][route] [修订稿][draft] [C 模块验收条目][cases]
 
 ## 1. 几何模型与可观测区域
@@ -48,3 +52,5 @@
 [draftT2]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/3ec6557cd0629c7fb07795d6269cff35c68bab89/yyh/B%E9%A2%98%E8%A7%A3%E9%A2%98%E6%80%BB%E7%A8%BF_%E4%BF%AE%E8%AE%A2%E7%A8%BF.md#L53-L71
 [probability]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/3ec6557cd0629c7fb07795d6269cff35c68bab89/yyh/verify.py#L59-L71
 [draftE2]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/3ec6557cd0629c7fb07795d6269cff35c68bab89/yyh/B%E9%A2%98%E8%A7%A3%E9%A2%98%E6%80%BB%E7%A8%BF_%E4%BF%AE%E8%AE%A2%E7%A8%BF.md#L129-L139
+
+<!-- 已处理正文截止：审稿 0c0b99a；方案 34f834f -->

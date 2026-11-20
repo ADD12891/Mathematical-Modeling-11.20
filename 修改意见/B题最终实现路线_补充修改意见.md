@@ -1,5 +1,9 @@
 # B 题最终实现路线补充修改意见
 
+> **已处理｜§一至六**　审稿版本 [dd2ce1e](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/dd2ce1e)，处理结论截至 [34f834f](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/34f834f)。
+>
+> 六项意见均有裁定。§二历史处理表中的“优先车体净空”已由正东代表点规则取代；§五同刻顺序以主路线 §8 为准。 [处理索引](README.md)
+
 审查对象是远端 `main` 在 `21f40a7` 的《B题最终实现路线》和同目录的 README。对照仓库根目录总稿和英文原题，建议在联调前优先统一云台时间、T1 并列站点和第 4 问事件顺序。 [实现路线](https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/21f40a703edbd487298157988163fc33e92ac283/%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF/B%E9%A2%98%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF.md) · [解题总稿](https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/21f40a703edbd487298157988163fc33e92ac283/B%E9%A2%98%E8%A7%A3%E9%A2%98%E6%80%BB%E7%A8%BF.md) · [上一份修改意见](B题最终实现路线_修改意见.md)
 
 ## 一、统一角度单位并核对转向耗时
@@ -53,3 +57,5 @@
 | 90 m 路线阈值附近加密复查 | 已采纳。主文档新增直线预筛、密集路线搜索和最终路线点列记录。 |
 | 问题四恢复时刻、同刻事件和重调度触发 | 已采纳。主文档补充状态回放、恢复后下令、$t=5$ 边界和物理状态延续规则。 |
 | 统一 README 阅读入口 | 已采纳并作分层处理。总稿作为叙事参考，主实现路线作为代码规范。 |
+
+<!-- 已处理正文截止：审稿 dd2ce1e；方案 34f834f -->

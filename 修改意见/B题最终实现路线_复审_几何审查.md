@@ -1,5 +1,9 @@
 # B 题最终实现路线复审 · 几何审查
 
+> **已处理｜§1、§2**　审稿版本 [7e1b40f](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/7e1b40f)，处理结论截至 [34f834f](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/34f834f)。
+>
+> §1 擦顶误判已修复并复测；§2 的 T2 站对已复算，连续空间下界及可行性证明已收入主路线 §5.2。 [处理索引](README.md)
+
 **复审基准为远端 main 的 `3887906`。** 车辆圆盘约束、T1 正东解析代表站和双站一阶 RMS 公式均通过复核。用独立的三维线段与长方体相交判定逐格核对 T1，0.5、0.25、0.125 m 三档网格均无差异。建议修正下述擦边误判，并把可证明最优的 T2 站对补入第 2 问（1）。
 
 ## 1. T1 视线擦顶的浮点误判
@@ -35,3 +39,5 @@ E_{\mathrm{rms}}=\frac{\sigma_\theta\sqrt{r_1^2+r_2^2}}{|\sin\gamma|}
 [problem4]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/388790629cbf51289c17ca140a5c6e50412cc9c3/2026_%E2%80%9CShuWei%20Cup%E2%80%9DB_Problem.pdf#page=4
 [verify]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/388790629cbf51289c17ca140a5c6e50412cc9c3/yyh/verify.py#L27-L41
 [route]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/388790629cbf51289c17ca140a5c6e50412cc9c3/%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF/B%E9%A2%98%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF.md#L202-L274
+
+<!-- 已处理正文截止：审稿 7e1b40f；方案 34f834f -->
