@@ -1,5 +1,7 @@
 # B 题最终实现路线原题对照 · 可观测域边界 · 几何审查
 
+> **已处理｜可观测域边界与重选**　审稿版本 [4570293](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/4570293)。采纳。主路线 §5.2 已补重选步骤和留余量算例。 [处理索引](README.md)
+
 复审基准为远端 main 的 `f3ed264`。对照英文原题第 1–5 页，核对了场地和建筑参数、车体外切、三维视线接触、T1 的水平距离目标、T2 的交会角与 30 s 行驶限制。主路线的几何模型和 T2 解析最优结果成立。建议补完第 2 问（1）要求的可观测域边界处理策略。 [英文原题][problem] [主路线 §5.1–5.2][route]
 
 ## 原题要求与现稿缺项
@@ -26,3 +28,5 @@
 [problem4]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/f3ed2646522389e096afa4f7b6283c972e07b7b4/2026_%E2%80%9CShuWei%20Cup%E2%80%9DB_Problem.pdf#page=4
 [route]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/f3ed2646522389e096afa4f7b6283c972e07b7b4/%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF/B%E9%A2%98%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF.md#L210-L297
 [draft]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/f3ed2646522389e096afa4f7b6283c972e07b7b4/yyh/B%E9%A2%98%E8%A7%A3%E9%A2%98%E6%80%BB%E7%A8%BF_%E4%BF%AE%E8%AE%A2%E7%A8%BF.md#L53-L71
+
+<!-- 已处理正文截止：审稿 4570293 -->
