@@ -16,8 +16,11 @@ R_MIN = 43 / np.tan(np.deg2rad(80))
 
 T1_DISTANCE_TOL = 1e-9  # 水平距离比较的米制舍入容差，仅用于 T1 仰角等限。
 
+# 线段参数 t 属于 [0,1]。用双精度的绝对容差保留闭区间擦边语义。
+SEGMENT_T_TOL = 16 * np.finfo(float).eps
+
 def observable_t1(x, y):
-    x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)
+    x, y = np.broadcast_arrays(np.asarray(x, dtype=float), np.asarray(y, dtype=float))
     r = np.hypot(TX - x, TY - y)
     visible = ((x >= 1.5) & (y >= 1.5) & (x <= 98.5) & (y <= 98.5)
                & (r >= R_MIN - T1_DISTANCE_TOL))
@@ -37,7 +40,7 @@ def observable_t1(x, y):
             a, b = (low - pos) / for_division, (high - pos) / for_division
             enter = np.maximum(enter, np.where(parallel, -np.inf, np.minimum(a, b)))
             leave = np.minimum(leave, np.where(parallel, np.inf, np.maximum(a, b)))
-        visible &= ~(overlaps & (enter <= leave))
+        visible &= ~(overlaps & (enter <= leave + SEGMENT_T_TOL))
     return visible
 
 def region(step):
@@ -112,6 +115,9 @@ def critical_interval(probability, lo, hi):
     return lo, hi
 
 if __name__ == "__main__":
+    # 中点视线解析地接触 B2 的北侧屋顶棱，左右两点分处边界两侧。
+    edge_y = 1233 / 17 + np.array([-1e-6, 0, 1e-6])
+    np.testing.assert_array_equal(observable_t1(50, edge_y), [False, False, True])
     for h in (0.5, 0.25, 0.125):
         mask, r_grid = region(h)
         print("grid", h, "area", mask.sum()*h*h, "min distance", r_grid)
