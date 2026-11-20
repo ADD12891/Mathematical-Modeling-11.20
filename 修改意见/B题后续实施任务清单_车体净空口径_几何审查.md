@@ -1,5 +1,7 @@
 # B 题最终实现路线复审 · 车体净空口径 · 几何审查
 
+> **已处理｜车心距离与车体净空**　审稿版本 [5271108](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/5271108)。已采纳并修正清单 §3.1，复算记录见[处理索引](README.md)。
+
 复审基准为远端 main 的 `ef7f08d`。主路线及现有复算结果通过几何和定位核验。新增的《后续实施任务清单》§3.1 有一处变量定义冲突，建议在通用几何函数编码前修正。
 
 ## 1. 统一车心距离与车体净空的定义
@@ -30,3 +32,5 @@
 [checklist]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/ef7f08dbebfc2afe5e47545d5f5db9f3bb3b9590/%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF/%E5%90%8E%E7%BB%AD%E5%AE%9E%E6%96%BD%E4%BB%BB%E5%8A%A1%E6%B8%85%E5%8D%95.md#L25-L44
 [verify]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/ef7f08dbebfc2afe5e47545d5f5db9f3bb3b9590/yyh/verify.py#L17-L32
 [t2]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/ef7f08dbebfc2afe5e47545d5f5db9f3bb3b9590/%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF/B%E9%A2%98%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF.md#L267-L287
+
+<!-- 已处理正文截止：审稿 5271108；净空口径 -->
