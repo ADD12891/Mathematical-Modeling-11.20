@@ -122,13 +122,19 @@ def _event_for(events, task, vehicle, name):
 def _locked_tasks(plan, scenario):
     lock_before = scenario.recovery_time_s if scenario.has_outage else DISTURBANCE_TIME_S
     crews = _task_crews(plan)
-    return {task for task, start in plan["start_times"].items()
-            if start < lock_before and not (scenario.failed_vehicle in crews[task]
-                                            and start >= DISTURBANCE_TIME_S)}
+    candidates = {task for task, start in plan["start_times"].items()
+                  if start < lock_before and not (scenario.failed_vehicle in crews[task]
+                                                  and start >= DISTURBANCE_TIME_S)}
+    if scenario.failed_vehicle is None:
+        return candidates
+    started_before_failure = {task for task, start in plan["start_times"].items()
+                              if start < DISTURBANCE_TIME_S}
+    blocked = _failure_blocked_tasks(plan, scenario, started_before_failure)
+    return candidates - blocked
 
 
 def _failure_blocked_tasks(plan, scenario, locked):
-    """Propagate failure to tasks queued behind the healthy partner waiting on it."""
+    """Propagate failure only to later tasks in each affected vehicle queue."""
     if scenario.failed_vehicle is None:
         return set()
     crews = _task_crews(plan)
@@ -137,13 +143,15 @@ def _failure_blocked_tasks(plan, scenario, locked):
     changed = True
     while changed:
         changed = False
-        unavailable = {scenario.failed_vehicle}
-        for task in blocked:
-            unavailable.update(car for car in crews[task] if car != scenario.failed_vehicle)
-        for task, crew in crews.items():
-            if task not in locked and task not in blocked and unavailable.intersection(crew):
-                blocked.add(task)
-                changed = True
+        for car, sequence in plan["orders"].items():
+            blocked_positions = [index for index, task in enumerate(sequence)
+                                 if task in blocked]
+            if not blocked_positions:
+                continue
+            for task in sequence[min(blocked_positions) + 1:]:
+                if task not in locked and task not in blocked:
+                    blocked.add(task)
+                    changed = True
     return blocked
 
 

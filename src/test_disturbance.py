@@ -9,6 +9,8 @@ from pathlib import Path
 from .disturbance import (
     Scenario, _base_policy, _locked_tasks, _score, build_scenarios, run_question4,
 )
+from .routing import Router
+from .timeline import evaluate_schedule
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,6 +45,33 @@ class DisturbanceTests(unittest.TestCase):
                            "V4": ["T2"], "V5": ["T3"]}}
         locked = _locked_tasks(plan, Scenario("boundary"))
         self.assertEqual(locked, {"T1"})
+
+    def test_failure_blocking_respects_vehicle_queue_order(self):
+        orders = {car: list(tasks) for car, tasks in self.plan["orders"].items()}
+        stations = {task: dict(crew) for task, crew in self.plan["stations"].items()}
+        orders["V3"].remove("T3")
+        orders["V1"].append("T3")
+        stations["T3"].pop("V3")
+        stations["T3"]["V1"] = (15.0, 14.0)
+        plan = evaluate_schedule(orders, stations, Router())
+        self.assertTrue(plan["feasible"], plan["reason"])
+        self.assertAlmostEqual(plan["start_times"]["T2"], 6.949461242856117)
+        self.assertAlmostEqual(plan["start_times"]["T3"], 16.737812470817566)
+
+        later_failure, _ = _base_policy(
+            plan, Scenario("later-failure", failed_vehicle="V2"), "retain_original")
+        self.assertEqual(later_failure["task_start_times_s"]["T2"],
+                         plan["start_times"]["T2"])
+        self.assertIsNone(later_failure["task_start_times_s"]["T3"])
+        self.assertEqual(later_failure["successful_alerts"], 2)
+
+        outage_failure, _ = _base_policy(
+            plan, Scenario("earlier-failure", failed_vehicle="V4",
+                           recovery_time_s=30.0), "retain_original")
+        self.assertIsNotNone(outage_failure["task_start_times_s"]["T1"])
+        self.assertIsNone(outage_failure["task_start_times_s"]["T2"])
+        self.assertIsNone(outage_failure["task_start_times_s"]["T3"])
+        self.assertEqual(outage_failure["successful_alerts"], 1)
 
     def test_window_score_uses_closed_endpoint_and_missing_alert_sentinel(self):
         bounded = _score({"T1": -1e-6, "T2": 0.0, "T3": 60.0,

@@ -60,3 +60,14 @@ assert outage["successful_alerts"] == 1
 [blocking]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/34d4dd397a8c4555975bf0b5e8aa218b2d44e55e/src/disturbance.py#L130-L148
 [locking]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/34d4dd397a8c4555975bf0b5e8aa218b2d44e55e/src/disturbance.py#L122-L128
 [retain]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/34d4dd397a8c4555975bf0b5e8aa218b2d44e55e/src/disturbance.py#L239-L258
+
+## 处理记录
+
+**处理结论：两项均已采纳并修复。** 故障阻塞现在依车辆任务队列顺序向后传播。断联场景先锁定故障前已经启动的任务，再排除被更早阻塞任务所依赖的后续名义启动项。
+
+| 复验意见 | 处理状态 | 修复与验证 |
+|---|---|---|
+| 阻塞传播取消了健康车辆队列中位于故障任务之前的前置任务 | 已采纳并修复 | 阻塞仅沿受阻任务在各车辆队列中的后续任务传播。补充用例确认 V2 故障时 T2 仍在 6.949461 s 启动，T3 阻塞，成功数为 2。 |
+| 断联场景按原定启动时刻锁定了故障阻塞后的任务 | 已采纳并修复 | 先锁定故障发生前已启动的任务，再从名义锁定集合中移除故障任务之后的受阻任务。补充用例确认 V4 故障、恢复时刻 30 s 时仅 T1 保持成功，T2、T3 均未启动，成功数为 1。 |
+
+复验命令为 `python -m unittest discover -v -s src -t .` 和 `python -m src.disturbance`。全套 37 项测试通过，209 个场景和 593 条策略结果已重生成。
