@@ -1,5 +1,7 @@
 # B 题最终实现路线原题复核 · 云台半圈与误差符号 · 几何审查
 
+> **已处理｜云台半圈与角差下标**　审稿版本 [42c4303](https://github.com/ADD12891/Mathematical-Modeling-11.20/commit/42c4303)。两项均采纳，半圈方向作为队内约定，概率事件按题面指令角及实际指向分别标注。 [处理索引](README.md)
+
 复审基准为 `053111a`。对照英文原题第 3–5 页，T1 的三档可观测网格、T2 的标称最优站对与 0.5° 仰角余量的备选站对、第 3 问两项概率临界值均复算一致。上轮的边界站重选意见已落实于主路线 §5.2。下面两处可在实现和论文定稿前澄清。 [原题][problem] [主路线的边界处理][boundary]
 
 ## 1. 为恰好 180° 的水平转向指定方向
@@ -23,3 +25,5 @@
 [events]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/053111af49a639ee300e47ea283cac03881cb696/%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF/B%E9%A2%98%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF.md#L469-L481
 [angles]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/053111af49a639ee300e47ea283cac03881cb696/%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF/B%E9%A2%98%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%BA%BF.md#L402-L416
 [draft]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/053111af49a639ee300e47ea283cac03881cb696/yyh/B%E9%A2%98%E8%A7%A3%E9%A2%98%E6%80%BB%E7%A8%BF_%E4%BF%AE%E8%AE%A2%E7%A8%BF.md#L94-L105
+
+<!-- 已处理正文截止：审稿 42c4303 -->
