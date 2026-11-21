@@ -1,4 +1,6 @@
 """Question 4: paired disturbance scenarios, replay, and reactive rescheduling."""
+# OpenAI Codex（GPT-6，OpenAI）于 2026-11-21 辅助复查事件回放与文件校验。
+# 模型发布日期未在本次运行环境中列出。使用范围见 yyh/B题代码复核.md。
 from __future__ import annotations
 
 import argparse
@@ -15,10 +17,13 @@ import numpy as np
 
 from . import config
 from .assignment import candidate_stations
+from .disturbance_reporting import FAULT_GROUP_FIELDS, SNAPSHOT_FIELDS, fault_groups, snapshots
 from .geometry import is_station_observable
 from .localization import is_nondegenerate_pair
+from .question2 import text_hash
 from .routing import Router, route_length
 from .timeline import slew_times, vehicle_state_at
+from .timeline import _event, _pointing, _signed_turn
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results" / "question4"
@@ -32,7 +37,7 @@ NEW_ALERTS = (
 )
 RECOVERY_TIMES_S = (10.0, 20.0, 30.0)
 OUTAGE_DURATIONS_S = (5.0, 17.5, 30.0)
-SOURCE_FILES = ("disturbance.py", "config.py", "geometry.py", "routing.py", "timeline.py",
+SOURCE_FILES = ("disturbance.py", "disturbance_reporting.py", "config.py", "geometry.py", "routing.py", "timeline.py",
                 "assignment.py", "question2.py", "localization.py")
 
 
@@ -156,8 +161,8 @@ def _failure_blocked_tasks(plan, scenario, locked):
 
 
 def _score(starts, denominator, task_ids):
-    successful = {task: start for task, start in starts.items()
-                  if start is not None and 0.0 <= start <= WINDOW_END_S}
+    successful = {task: starts[task] for task in task_ids
+                  if starts.get(task) is not None and 0.0 <= starts[task] <= WINDOW_END_S}
     count = len(successful)
     latest = max(successful.values(), default=0.0) if count == denominator else WINDOW_END_S
     return {"successful_alerts": count, "alert_count": denominator,
@@ -192,6 +197,9 @@ def _policy_plan_events(plan, scenario, strategy, locked, blocked, replay_remain
         time_s = float(event["time_s"])
         if car == scenario.failed_vehicle and time_s >= DISTURBANCE_TIME_S:
             continue
+        if (not replay_remaining and time_s >= decision_time
+                and event["event"] == "next_departure"):
+            continue  # Only the actual next assignment can announce a departure.
         if task in blocked:
             if car == scenario.failed_vehicle and time_s < decision_time:
                 events.append({**event, "strategy": strategy,
@@ -213,7 +221,7 @@ def _policy_plan_events(plan, scenario, strategy, locked, blocked, replay_remain
         if float(event["time_s"]) >= decision_time and not replay_remaining:
             continue
         events.append({**event, "event": "blocked_wait", "stage": "WAIT_PARTNER",
-                       "reason": "failed_partner", "strategy": strategy,
+                       "reason": "partner_unavailable", "strategy": strategy,
                        "scenario_id": scenario.scenario_id})
     return events
 
@@ -228,9 +236,9 @@ def _failure_event(plan, scenario, strategy, information_time):
             "information_time_s": information_time}
 
 
-def _write_csv(path, rows):
+def _write_csv(path, rows, fields=None):
     with path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=rows[0], lineterminator="\n")
+        writer = csv.DictWriter(stream, fieldnames=fields or rows[0], lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({key: json.dumps(value, separators=(",", ":"),
@@ -266,12 +274,8 @@ def _base_policy(plan, scenario, strategy):
     return _score(starts, scenario.denominator, tuple(starts)), events
 
 
-def _current_vehicle_state(plan, events, car, time_s, locked, scenario):
+def _decision_pose(plan, events, car, time_s, locked, scenario):
     state = vehicle_state_at(plan, car, time_s)
-    if state["stage"] == "FAILED":
-        return {"available_s": math.inf, "position": (state["x_m"], state["y_m"]),
-                "pan_deg": state["pan_deg"], "tilt_deg": state["tilt_deg"]}
-    active_task = state["task_id"]
     if scenario.failed_vehicle and car != scenario.failed_vehicle:
         blocked = _failure_blocked_tasks(plan, scenario, locked)
         waiting_task = min((task for task in blocked
@@ -284,17 +288,68 @@ def _current_vehicle_state(plan, events, car, time_s, locked, scenario):
             state = {**state, "stage": "WAIT_PARTNER", "task_id": waiting_task,
                      "x_m": arrival["x_m"], "y_m": arrival["y_m"],
                      "pan_deg": pointing["pan_deg"], "tilt_deg": pointing["tilt_deg"]}
-            active_task = waiting_task
+    return state
+
+
+def _available_after_cancel(events, state, locked, scenario, strategy):
+    """Return the next east-level departure state and record any interrupted motion."""
+    time_s = state["time_s"]
+    car = state["vehicle_id"]
+    point = (state["x_m"], state["y_m"])
+    active_task = state["task_id"]
+    available = {"available_s": time_s, "position": point}
+    if car == scenario.failed_vehicle:
+        return {**available, "available_s": math.inf}, []
     if active_task in locked:
         reset = _event_for(events, active_task, car, "reset_end")
-        arrival = _event_for(events, active_task, car, "arrival")
-        return {"available_s": max(time_s, reset["time_s"]),
-                "position": (arrival["x_m"], arrival["y_m"]), "pan_deg": 0.0,
-                "tilt_deg": 0.0}
+        return {**available, "available_s": max(time_s, reset["time_s"])}, []
+    if not active_task:
+        return available, []
     pan, tilt = state["pan_deg"], state["tilt_deg"]
-    reset_s = max(abs(pan), abs(tilt)) / config.SLEW_RATE_DEG_S
-    return {"available_s": time_s + reset_s, "position": (state["x_m"], state["y_m"]),
-            "pan_deg": 0.0, "tilt_deg": 0.0}
+    turn = (math.degrees(_signed_turn(-math.radians(pan))), -tilt)
+    reset_s = max(abs(v) for v in turn) / config.SLEW_RATE_DEG_S
+    common = {"scenario_id": scenario.scenario_id, "strategy": strategy}
+    history = [{**_event(car, active_task, "", "command_cancelled", "IDLE", time_s,
+                         point, (pan, tilt)), **common}]
+    if reset_s:
+        history.extend((
+            {**_event(car, active_task, "", "interrupt_reset_start", "RESET", time_s,
+                      point, (pan, tilt), turn), **common},
+            {**_event(car, active_task, "", "interrupt_reset_end", "IDLE",
+                      time_s + reset_s, point), **common}))
+    return {**available, "available_s": time_s + reset_s}, history
+
+
+def _approach_events(car, task, partner, target, path, depart):
+    site = path[-1]
+    length = route_length(path)
+    arrive = depart + length / config.SPEED
+    turn_s, _ = slew_times(target, site)
+    pose = tuple(map(math.degrees, _pointing(target, site)))
+    ready = arrive + turn_s
+    return ready, [
+        _event(car, task, partner, "departure", "TRAVEL", depart, path[0],
+               path=path, length=length),
+        _event(car, task, partner, "arrival", "IDLE", arrive, site),
+        _event(car, task, partner, "slew_start", "SLEW", arrive, site, turn=pose),
+        _event(car, task, partner, "slew_end", "WAIT_PARTNER", ready, site, pose)]
+
+
+def _observation_events(car, task, partner, target, site, ready, start):
+    pose = tuple(map(math.degrees, _pointing(target, site)))
+    reset_turn = (math.degrees(_signed_turn(-math.radians(pose[0]))), -pose[1])
+    end = start + config.OBSERVATION_S
+    _, reset_s = slew_times(target, site)
+    events = []
+    if ready < start:
+        events.append(_event(car, task, partner, "wait_partner", "WAIT_PARTNER",
+                             ready, site, pose))
+    events.extend((
+        _event(car, task, partner, "observation_start", "OBSERVE", start, site, pose),
+        _event(car, task, partner, "observation_end", "RESET", end, site, pose),
+        _event(car, task, partner, "reset_start", "RESET", end, site, pose, reset_turn),
+        _event(car, task, partner, "reset_end", "IDLE", end + reset_s, site)))
+    return end + reset_s, events
 
 
 def _candidate_sites(task, alert, positions, pools):
@@ -335,8 +390,7 @@ def _mission_options(task, alert, state, available_cars, router, pools):
                           + slew_times(target, site)[0]
                           for car, length, site in zip((first, second), lengths, (a, b)))
             start = max(ready)
-            reset = tuple(slew_times(target, site)[1] for site in (a, b))
-            options.append((start, sum(lengths), first, second, a, b, paths, reset))
+            options.append((start, sum(lengths), first, second, a, b, paths))
     return sorted(options, key=lambda option: (option[0], option[1], option[2:6]))[:2]
 
 
@@ -352,10 +406,14 @@ def _reschedule(plan, scenario, strategy, router, pools):
         task, alert = scenario.new_alert
         task_alerts[task] = alert
         starts[task] = None
-    state = {car: _current_vehicle_state(plan, plan_events, car, decision_time, locked, scenario)
-             for car in config.VEHICLES}
-    if scenario.failed_vehicle:
-        state[scenario.failed_vehicle]["available_s"] = math.inf
+    handover = _policy_plan_events(plan, scenario, strategy, locked, blocked,
+                                   replay_remaining=False)
+    state = {}
+    for car in config.VEHICLES:
+        pose = _decision_pose(plan, plan_events, car, decision_time, locked, scenario)
+        state[car], interrupted = _available_after_cancel(plan_events, pose, locked,
+                                                          scenario, strategy)
+        handover.extend(interrupted)
     pending = tuple(task for task in task_alerts if task not in locked)
     available_cars = tuple(car for car in config.VEHICLES
                            if math.isfinite(state[car]["available_s"]))
@@ -363,56 +421,36 @@ def _reschedule(plan, scenario, strategy, router, pools):
 
     def search(remaining, current, task_starts, task_events, total_distance):
         nonlocal best
-        if not remaining:
-            score = _score(task_starts, scenario.denominator, tuple(task_alerts))
-            key = (-score["successful_alerts"], score["t_last_s"], total_distance)
-            if best is None or key < best[0]:
-                best = (key, score, task_events)
-            return
+        # A failed route or an exhausted station pool can leave an alert unstarted.
+        score = _score(task_starts, scenario.denominator, tuple(task_alerts))
+        key = (-score["successful_alerts"], score["t_last_s"], total_distance)
+        if best is None or key < best[0]:
+            best = (key, score, task_events)
         for task in remaining:
             for option in _mission_options(task, task_alerts[task], current, available_cars,
                                            router, pools):
-                start, length, first, second, a, b, paths, reset = option
-                end = start + config.OBSERVATION_S
+                start, length, first, second, a, b, paths = option
+                if start > WINDOW_END_S:
+                    continue
                 next_state = {car: dict(value) for car, value in current.items()}
                 next_starts = dict(task_starts)
                 next_events = list(task_events)
                 next_starts[task] = start
-                for car, site, path, reset_s, partner in (
-                        (first, a, paths[0], reset[0], second),
-                        (second, b, paths[1], reset[1], first)):
+                for car, site, path, partner in ((first, a, paths[0], second),
+                                                 (second, b, paths[1], first)):
                     target = config.target_position(task_alerts[task])
-                    slew, _ = slew_times(target, site)
                     depart = current[car]["available_s"]
-                    arrive = depart + route_length(path) / config.SPEED
-                    ready = arrive + slew
-                    leg = route_length(path)
-                    next_state[car] = {"available_s": end + reset_s, "position": site,
-                                       "pan_deg": 0.0, "tilt_deg": 0.0}
-                    event_specs = (
-                        ("departure", "TRAVEL", depart, current[car]["position"]),
-                        ("arrival", "IDLE", arrive, site),
-                        ("slew_start", "SLEW", arrive, site),
-                        ("slew_end", "WAIT_PARTNER", ready, site),
-                        ("observation_start", "OBSERVE", start, site),
-                        ("observation_end", "RESET", end, site),
-                        ("reset_start", "RESET", end, site),
-                        ("reset_end", "IDLE", end + reset_s, site))
-                    for event_name, stage, time_s, position in event_specs:
-                        next_events.append({
-                            "scenario_id": scenario.scenario_id, "strategy": strategy,
-                            "vehicle_id": car, "partner_id": partner, "task_id": task,
-                            "event": event_name, "stage": stage, "time_s": time_s,
-                            "x_m": position[0], "y_m": position[1], "route_xy_m": path,
-                            "leg_distance_m": leg})
+                    ready, approach = _approach_events(car, task, partner, target,
+                                                       path, depart)
+                    released, observation = _observation_events(car, task, partner, target,
+                                                                 site, ready, start)
+                    next_state[car] = {"available_s": released, "position": site}
+                    next_events.extend({**event, "scenario_id": scenario.scenario_id,
+                                        "strategy": strategy} for event in approach + observation)
                 search(tuple(item for item in remaining if item != task), next_state,
                        next_starts, next_events, total_distance + length)
 
-    locked_events = _policy_plan_events(plan, scenario, strategy, locked, blocked,
-                                         replay_remaining=False)
-    search(pending, state, starts, locked_events, 0.0)
-    if best is None:
-        raise RuntimeError(f"重调度未生成候选结果：{scenario.scenario_id}")
+    search(pending, state, starts, handover, 0.0)
     events = best[2]
     if scenario.failed_vehicle:
         events.append(_failure_event(plan, scenario, strategy, decision_time))
@@ -439,91 +477,68 @@ def _skip_failed_task(plan, scenario, router):
                        if scenario.failed_vehicle in crew and task not in locked}
     queues = {car: [task for task in tasks if task not in locked and task not in directly_failed]
               for car, tasks in plan["orders"].items()}
-    state = {car: _current_vehicle_state(plan, plan_events, car, decision_time, locked, scenario)
-             for car in config.VEHICLES}
-    if scenario.failed_vehicle:
-        state[scenario.failed_vehicle]["available_s"] = math.inf
+    strategy = "skip_failed_task"
     blocked = _failure_blocked_tasks(plan, scenario, locked)
-    events = _policy_plan_events(plan, scenario, "skip_failed_task", locked, blocked,
+    events = _policy_plan_events(plan, scenario, strategy, locked, blocked,
                                  replay_remaining=False)
+    state, continuing = {}, {}
+    approach_names = {"departure", "arrival", "slew_start", "slew_end"}
+    for car in config.VEHICLES:
+        pose = _decision_pose(plan, plan_events, car, decision_time, locked, scenario)
+        task = pose["task_id"]
+        if queues[car] and task == queues[car][0]:
+            # This vehicle keeps its original leg, including any travel or slew
+            # already performed before confirmation of the failure.
+            continuing[car] = task
+            state[car] = {"position": (pose["x_m"], pose["y_m"]),
+                          "available_s": decision_time}
+        else:
+            state[car], interrupted = _available_after_cancel(plan_events, pose, locked,
+                                                              scenario, strategy)
+            events.extend(interrupted)
     pending = {task for queue in queues.values() for task in queue}
+    crews = _task_crews(plan)
     while pending:
-        eligible = [task for task in pending
-                    if all(queues[car] and queues[car][0] == task
-                           for car in _task_crews(plan)[task])]
+        # Each next task must be at the front of both original crews' queues.
+        eligible = sorted(task for task in pending if all(
+            queues[car] and queues[car][0] == task for car in crews[task]))
         if not eligible:
             break
-        choices = []
+        progress = False
         for task in eligible:
-            crew = _task_crews(plan)[task]
             target = config.target_position(config.ALERTS[task])
-            sites = plan["stations"][task]
-            option = []
-            for car in crew:
-                path = router.route(state[car]["position"], sites[car])
-                if path is None or not math.isfinite(state[car]["available_s"]):
-                    option = []
-                    break
-                turn, reset = slew_times(target, sites[car])
-                arrival = state[car]["available_s"] + route_length(path) / config.SPEED
-                option.append((car, path, arrival, turn, reset))
-            if len(option) != 2:
+            legs = []
+            for car in crews[task]:
+                partner = next(other for other in crews[task] if other != car)
+                site = plan["stations"][task][car]
+                if continuing.get(car) == task:
+                    ready = max(decision_time, _event_for(plan_events, task, car,
+                                                          "slew_end")["time_s"])
+                    approach = [e for e in plan_events[task, car]
+                                if e["event"] in approach_names and e["time_s"] >= decision_time]
+                else:
+                    path = router.route(state[car]["position"], site)
+                    if path is None:
+                        break
+                    ready, approach = _approach_events(car, task, partner, target, path,
+                                                       state[car]["available_s"])
+                legs.append((car, partner, site, ready, approach))
+            if len(legs) != 2:
                 continue
-            start = max(item[2] + item[3] for item in option)
-            choices.append((start, task, option))
-        if not choices:
+            start = max(leg[3] for leg in legs)
+            starts[task] = start
+            for car, partner, site, ready, approach in legs:
+                released, observation = _observation_events(car, task, partner, target,
+                                                             site, ready, start)
+                events.extend({**event, "scenario_id": scenario.scenario_id, "strategy": strategy}
+                              for event in approach + observation)
+                state[car] = {"available_s": released, "position": site}
+                continuing.pop(car, None)
+                queues[car].pop(0)
+            pending.remove(task)
+            progress = True
+        if not progress:
             break
-        start, task, option = min(choices, key=lambda item: (item[0], item[1]))
-        end = start + config.OBSERVATION_S
-        starts[task] = start
-        for car, path, arrival, turn, reset in option:
-            site = plan["stations"][task][car]
-            partner = next(other for other in _task_crews(plan)[task] if other != car)
-            leg = route_length(path)
-            reference = _event_for(plan_events, task, car, "slew_end")
-            reset_reference = _event_for(plan_events, task, car, "reset_start")
-            common = {"scenario_id": scenario.scenario_id,
-                      "strategy": "skip_failed_task", "vehicle_id": car,
-                      "partner_id": partner, "task_id": task,
-                      "x_m": site[0], "y_m": site[1]}
-            events.extend((
-                {**common, "event": "departure", "stage": "TRAVEL",
-                 "time_s": state[car]["available_s"],
-                 "x_m": state[car]["position"][0],
-                 "y_m": state[car]["position"][1], "route_xy_m": path,
-                 "leg_distance_m": leg, "pan_deg": state[car]["pan_deg"],
-                 "tilt_deg": state[car]["tilt_deg"]},
-                {**common, "event": "arrival", "stage": "IDLE", "time_s": arrival,
-                 "pan_deg": state[car]["pan_deg"], "tilt_deg": state[car]["tilt_deg"]},
-                {**common, "event": "slew_start", "stage": "SLEW", "time_s": arrival,
-                 "pan_deg": state[car]["pan_deg"], "tilt_deg": state[car]["tilt_deg"],
-                 "signed_pan_delta_deg": reference["signed_pan_delta_deg"],
-                 "tilt_delta_deg": reference["tilt_delta_deg"]},
-                {**common, "event": "slew_end", "stage": "WAIT_PARTNER",
-                 "time_s": arrival + turn, "pan_deg": reference["pan_deg"],
-                 "tilt_deg": reference["tilt_deg"]},
-                *([{"scenario_id": scenario.scenario_id,
-                    "strategy": "skip_failed_task", "vehicle_id": car,
-                    "partner_id": partner, "task_id": task, "event": "wait_partner",
-                    "stage": "WAIT_PARTNER", "time_s": arrival + turn,
-                    "x_m": site[0], "y_m": site[1], "pan_deg": reference["pan_deg"],
-                    "tilt_deg": reference["tilt_deg"]}]
-                  if arrival + turn < start else []),
-                {**common, "event": "observation_start", "stage": "OBSERVE",
-                 "time_s": start, "pan_deg": reference["pan_deg"],
-                 "tilt_deg": reference["tilt_deg"]},
-                {**common, "event": "observation_end", "stage": "RESET", "time_s": end,
-                 "pan_deg": reference["pan_deg"], "tilt_deg": reference["tilt_deg"]},
-                {**common, "event": "reset_start", "stage": "RESET", "time_s": end,
-                 "pan_deg": reference["pan_deg"], "tilt_deg": reference["tilt_deg"],
-                 "signed_pan_delta_deg": reset_reference["signed_pan_delta_deg"],
-                 "tilt_delta_deg": reset_reference["tilt_delta_deg"]},
-                {**common, "event": "reset_end", "stage": "IDLE", "time_s": end + reset,
-                 "pan_deg": 0.0, "tilt_deg": 0.0}))
-            state[car] = {"available_s": end + reset, "position": site,
-                          "pan_deg": 0.0, "tilt_deg": 0.0}
-            queues[car].pop(0)
-        pending.remove(task)
     if scenario.failed_vehicle:
         events.append(_failure_event(plan, scenario, "skip_failed_task", decision_time))
     if scenario.has_outage:
@@ -605,9 +620,14 @@ def _new_alert_station_pools():
 
 
 def _revision():
+    paths = ["src/" + name for name in SOURCE_FILES]
     try:
-        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT,
-                                       text=True).strip()
+        dirty = subprocess.check_output(["git", "status", "--porcelain", "--", *paths],
+                                       cwd=ROOT, text=True, stderr=subprocess.DEVNULL)
+        if dirty:
+            return None
+        return subprocess.check_output(["git", "log", "-1", "--format=%H", "--", *paths],
+                                       cwd=ROOT, text=True, stderr=subprocess.DEVNULL).strip() or None
     except (OSError, subprocess.CalledProcessError):
         return None
 
@@ -620,40 +640,66 @@ def _aggregate(scores):
     rows = []
     for (disturbance, interpretation, strategy), group in sorted(grouped.items()):
         n = len(group)
+        # 两个极值各来自同一条场景记录，先比较完成率，再比较最晚启动时刻。
+        ranked = sorted(group, key=lambda r: (-r["completion_rate"], r["t_last_s"]))
+        best, worst = ranked[0], ranked[-1]
         rows.append({"disturbance_set": disturbance, "strategy": strategy,
                      "outage_interpretation": interpretation,
                      "scenario_count": n,
                      "mean_completion_rate": sum(float(x["completion_rate"]) for x in group) / n,
                      "mean_t_last_s": sum(float(x["t_last_s"]) for x in group) / n,
-                     "best_completion_rate": max(float(x["completion_rate"]) for x in group),
-                     "worst_completion_rate": min(float(x["completion_rate"]) for x in group),
+                     "best_completion_rate": best["completion_rate"],
+                     "best_t_last_s": best["t_last_s"], "best_scenario_id": best["scenario_id"],
+                     "worst_completion_rate": worst["completion_rate"],
+                     "worst_t_last_s": worst["t_last_s"], "worst_scenario_id": worst["scenario_id"],
                      "mean_successful_alerts": sum(int(x["successful_alerts"]) for x in group) / n})
     return rows
 
 
-def run_question4(output_dir=OUT):
-    output_dir.mkdir(parents=True, exist_ok=True)
-    plan_path = ROOT / "results" / "question2" / "original_plan.json"
+def _load_frozen_plan(directory):
+    manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
+    name = manifest["original_plan"]
+    plan_path = directory / name
+    if text_hash(plan_path) != manifest["output_sha256"][name]:
+        raise ValueError("第二问原计划与其冻结清单不一致，请核对 original_plan.json 与 manifest.json 的版本")
     plan = json.loads(plan_path.read_text(encoding="utf-8"))
     if not plan.get("feasible"):
         raise ValueError("第二问冻结原计划不可行")
+    return plan, manifest["output_sha256"][name]
+
+
+def _output_directory(output_dir, scenario_id):
+    if scenario_id and output_dir.resolve() == OUT.resolve():
+        return OUT / "debug" / scenario_id
+    return output_dir
+
+
+def run_question4(output_dir=OUT, scenario_id=None):
+    scenarios = build_scenarios()
+    if scenario_id is not None:
+        scenarios = [scenario for scenario in scenarios if scenario.scenario_id == scenario_id]
+        if not scenarios:
+            raise ValueError(f"未知场景 {scenario_id}，请用 --list 查看场景编号")
+    output_dir = _output_directory(output_dir, scenario_id)
+    plan, plan_hash = _load_frozen_plan(ROOT / "results" / "question2")
     router = Router()
     pools = candidate_stations()
     pools.update(_new_alert_station_pools())
-    scenarios = build_scenarios()
-    scores, all_events = [], []
+    scores, all_events, states = [], [], []
     for scenario in scenarios:
         rows, events = _scenario_rows(scenario, plan, router, pools)
         scores.extend(rows)
-        all_events.extend(events)
+        # Stable sort retains the within-vehicle order of zero-duration stages.
+        all_events.extend(sorted(events, key=lambda e: (e["strategy"], e["vehicle_id"], e["time_s"])))
+        states.extend(snapshots(plan, scenario, events, disturbance_time_s=DISTURBANCE_TIME_S))
+    output_dir.mkdir(parents=True, exist_ok=True)
     _write_csv(output_dir / "scenario_scores.csv", scores)
     fields = sorted({key for event in all_events for key in event})
-    with (output_dir / "event_log.csv").open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(all_events)
+    _write_csv(output_dir / "event_log.csv", all_events, fields)
     aggregate = _aggregate(scores)
     _write_csv(output_dir / "aggregate_scores.csv", aggregate)
+    _write_csv(output_dir / "snapshots.csv", states, SNAPSHOT_FIELDS)
+    _write_csv(output_dir / "fault_groups.csv", fault_groups(scores), FAULT_GROUP_FIELDS)
     scenario_rows = [
         {"scenario_id": scenario.scenario_id, "disturbance_set": _disturbance_label(scenario),
          "new_alert": scenario.new_alert, "failed_vehicle": scenario.failed_vehicle,
@@ -665,13 +711,14 @@ def run_question4(output_dir=OUT):
          "denominator": scenario.denominator}
         for scenario in scenarios]
     _write_json_lf(output_dir / "scenarios.json", scenario_rows)
-    outputs = ("scenario_scores.csv", "event_log.csv", "aggregate_scores.csv", "scenarios.json")
+    outputs = ("scenario_scores.csv", "event_log.csv", "aggregate_scores.csv", "scenarios.json",
+               "snapshots.csv", "fault_groups.csv")
     manifest = {
         "source_revision": _revision(),
-        "source_sha256": {name: _source_hash(ROOT / "src" / name) for name in SOURCE_FILES},
-        "source_plan_sha256": _source_hash(plan_path),
+        "source_sha256": {name: text_hash(ROOT / "src" / name) for name in SOURCE_FILES},
+        "source_plan_sha256": plan_hash,
         "output_sha256": {name: _source_hash(output_dir / name) for name in outputs},
-        "hash_convention": "SHA-256 of file bytes.",
+        "hash_convention": "Sources and Q2 plan: UTF-8 text normalized to LF. Q4 outputs: exact file bytes.",
         "scenario_count": len(scenarios), "strategy_rows": len(scores),
         "policy_notes": {
             "initial_plan_fully_dispatched_at_t0": True,
@@ -679,7 +726,7 @@ def run_question4(output_dir=OUT):
             "outage_main_interpretation": "recovery time t_rec in (5,30], duration t_rec-5",
             "outage_sensitivity_interpretation": "duration d in [5,30] s, recovery t_rec=5+d; reported separately",
             "new_alert_sampling": "four fixed cardinal bearings with ranges spanning 30 to 50 m, H=50 m",
-            "rescheduler_scope": "task-order enumeration with nearest-two feasible stations per vehicle; heuristic optimum is limited to this finite pool",
+            "rescheduler_scope": "enumerate task orders; try up to two nearby sites per vehicle and retain up to two joint options per task at each search node",
             "score": "maximize successful starts within [0,60], then minimize t_last; missing task sets t_last=60",
         },
         "strategies": ["retain_original", "realtime_reschedule", "skip_failed_task"],
@@ -692,11 +739,20 @@ def run_question4(output_dir=OUT):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=OUT)
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--scenario", metavar="ID", help="仅运行指定场景")
+    modes.add_argument("--list", action="store_true", help="列出场景编号并退出")
     args = parser.parse_args()
-    result = run_question4(args.output_dir)
+    if args.list:
+        print("\n".join(s.scenario_id for s in build_scenarios()))
+        return
+    try:
+        result = run_question4(args.output_dir, args.scenario)
+    except ValueError as exc:
+        parser.error(str(exc))
     print(f"Question 4: {result['scenario_count']} scenarios, "
           f"{result['strategy_rows']} strategy rows")
-    print(f"Results: {args.output_dir.resolve()}")
+    print(f"Results: {_output_directory(args.output_dir, args.scenario).resolve()}")
 
 
 if __name__ == "__main__":

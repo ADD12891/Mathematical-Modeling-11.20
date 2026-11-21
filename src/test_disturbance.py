@@ -1,16 +1,20 @@
 """Question 4 scenario, event-boundary, and score regression tests."""
+# OpenAI Codex（GPT-6，OpenAI）于 2026-11-21 辅助补充回归用例，详见 yyh/B题代码复核.md。
 import hashlib
 import csv
 import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
+from .assignment import candidate_stations
 from .disturbance import (
-    Scenario, _base_policy, _locked_tasks, _score, build_scenarios, run_question4,
+    Scenario, _base_policy, _locked_tasks, _reschedule, _score, _skip_failed_task,
+    build_scenarios, run_question4,
 )
 from .routing import Router
-from .timeline import evaluate_schedule
+from .timeline import evaluate_schedule, vehicle_state_at
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -92,6 +96,65 @@ class DisturbanceTests(unittest.TestCase):
         self.assertEqual(score["successful_alerts"], 3)
         self.assertEqual(score["completion_rate"], 0.75)
         self.assertIsNone(score["task_start_times_s"]["N1"])
+
+    def test_skip_keeps_in_progress_healthy_assignments(self):
+        # V5's only assignment, T1, already started. T2 and T3 need no new commands.
+        scenario = Scenario("failure-V5", failed_vehicle="V5")
+        score, events = _skip_failed_task(self.plan, scenario, Router())
+        self.assertEqual(score["task_start_times_s"], self.plan["start_times"])
+        for car, task in (("V1", "T2"), ("V2", "T3"), ("V4", "T2")):
+            departures = [e["time_s"] for e in events if e["vehicle_id"] == car
+                          and e["task_id"] == task and e["event"] == "departure"]
+            self.assertEqual(departures, [0.0])
+
+    def test_skip_releases_blocked_successor_at_recovery(self):
+        orders = {car: list(tasks) for car, tasks in self.plan["orders"].items()}
+        stations = {task: dict(crew) for task, crew in self.plan["stations"].items()}
+        orders["V3"].remove("T3")
+        orders["V1"].append("T3")
+        stations["T3"].pop("V3")
+        stations["T3"]["V1"] = (15.0, 14.0)
+        plan = evaluate_schedule(orders, stations, Router())
+        scenario = Scenario("failure+outage", failed_vehicle="V4", recovery_time_s=30.0)
+        score, events = _skip_failed_task(plan, scenario, Router())
+        self.assertEqual(score["successful_alerts"], 2)
+        self.assertIsNone(score["task_start_times_s"]["T2"])
+        self.assertGreater(score["task_start_times_s"]["T3"], 30.0)
+        for car in ("V1", "V2"):
+            departures = [e["time_s"] for e in events if e["vehicle_id"] == car
+                          and e["task_id"] == "T3" and e["event"] == "departure"]
+            if car == "V2":
+                self.assertEqual(departures, [0.0])
+            else:
+                self.assertGreater(min(departures), 30.0)
+
+    def test_interrupted_slew_and_replanned_poses_are_logged(self):
+        scenario = Scenario("new", new_alert=("N1", (0.0, 30.0, 50.0)))
+        score, events = _reschedule(self.plan, scenario, "realtime_reschedule",
+                                    Router(), candidate_stations())
+        pose = vehicle_state_at(self.plan, "V2", 5.0)
+        begin, end = [e for e in events if e["vehicle_id"] == "V2"
+                      and e["event"] in ("interrupt_reset_start", "interrupt_reset_end")]
+        self.assertEqual((begin["time_s"], begin["pan_deg"], begin["tilt_deg"]),
+                         (5.0, pose["pan_deg"], pose["tilt_deg"]))
+        self.assertAlmostEqual(end["time_s"], 5.0 + max(abs(pose["pan_deg"]),
+                                                        abs(pose["tilt_deg"])) / 30.0)
+        self.assertEqual((end["pan_deg"], end["tilt_deg"]), (0.0, 0.0))
+        for event in events:
+            if event["event"] == "departure" and event["vehicle_id"] == "V2" and event["time_s"] >= 5:
+                self.assertGreaterEqual(event["time_s"], end["time_s"])
+        for start in (e for e in events if e["event"] == "observation_start"):
+            self.assertAlmostEqual(start["time_s"], score["task_start_times_s"][start["task_id"]])
+            self.assertGreater(start["tilt_deg"], 0.0)
+
+    def test_unavailable_candidates_score_the_executable_prefix(self):
+        scenario = Scenario("no-options", new_alert=("N1", (0.0, 30.0, 50.0)))
+        with patch("src.disturbance._mission_options", return_value=[]):
+            score, _ = _reschedule(self.plan, scenario, "realtime_reschedule", Router(), {})
+        self.assertEqual(score["successful_alerts"], 1)
+        self.assertEqual(score["completion_rate"], 0.25)
+        self.assertEqual(score["t_last_s"], 60.0)
+        self.assertEqual(score["task_start_times_s"]["T1"], self.plan["start_times"]["T1"])
 
     def test_output_bundle_counts_rows_and_verifies_hashes(self):
         with tempfile.TemporaryDirectory() as directory:
