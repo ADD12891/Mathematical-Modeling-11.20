@@ -17,7 +17,6 @@ from . import config
 from .assignment import candidate_stations
 from .geometry import is_station_observable
 from .localization import is_nondegenerate_pair
-from .question2 import write_csv, write_json
 from .routing import Router, route_length
 from .timeline import slew_times, vehicle_state_at
 
@@ -150,12 +149,91 @@ def _failure_blocked_tasks(plan, scenario, locked):
 
 def _score(starts, denominator, task_ids):
     successful = {task: start for task, start in starts.items()
-                  if start is not None and start <= WINDOW_END_S}
+                  if start is not None and 0.0 <= start <= WINDOW_END_S}
     count = len(successful)
     latest = max(successful.values(), default=0.0) if count == denominator else WINDOW_END_S
     return {"successful_alerts": count, "alert_count": denominator,
             "completion_rate": count / denominator, "t_last_s": latest,
             "task_start_times_s": {task: starts.get(task) for task in task_ids}}
+
+
+def _decision_time(scenario):
+    return scenario.recovery_time_s if scenario.has_outage else DISTURBANCE_TIME_S
+
+
+def _first_blocked_task_by_vehicle(plan, blocked, failed_vehicle):
+    first = {}
+    for task in blocked:
+        for car in _task_crews(plan)[task]:
+            if car == failed_vehicle:
+                continue
+            start = plan["start_times"][task]
+            if car not in first or start < first[car][0]:
+                first[car] = (start, task)
+    return {car: task for car, (_, task) in first.items()}
+
+
+def _policy_plan_events(plan, scenario, strategy, locked, blocked, replay_remaining):
+    decision_time = _decision_time(scenario)
+    first_blocked = _first_blocked_task_by_vehicle(
+        plan, blocked, scenario.failed_vehicle)
+    events = []
+    for event in plan["vehicle_events"]:
+        task = event["task_id"]
+        car = event["vehicle_id"]
+        time_s = float(event["time_s"])
+        if car == scenario.failed_vehicle and time_s >= DISTURBANCE_TIME_S:
+            continue
+        if task in blocked:
+            if car == scenario.failed_vehicle and time_s < decision_time:
+                events.append({**event, "strategy": strategy,
+                               "scenario_id": scenario.scenario_id})
+                continue
+            if (car != scenario.failed_vehicle and first_blocked.get(car) == task
+                    and event["event"] not in ("observation_start", "observation_end",
+                                                "reset_start", "reset_end", "next_departure")
+                    and (replay_remaining or time_s < decision_time)):
+                events.append({**event, "strategy": strategy,
+                               "scenario_id": scenario.scenario_id})
+            continue
+        if replay_remaining or time_s < decision_time or task in locked:
+            events.append({**event, "strategy": strategy,
+                           "scenario_id": scenario.scenario_id})
+
+    for car, task in first_blocked.items():
+        event = _event_for(_events_by_task(plan), task, car, "observation_start")
+        if float(event["time_s"]) >= decision_time and not replay_remaining:
+            continue
+        events.append({**event, "event": "blocked_wait", "stage": "WAIT_PARTNER",
+                       "reason": "failed_partner", "strategy": strategy,
+                       "scenario_id": scenario.scenario_id})
+    return events
+
+
+def _failure_event(plan, scenario, strategy, information_time):
+    state = vehicle_state_at(plan, scenario.failed_vehicle, DISTURBANCE_TIME_S)
+    return {"scenario_id": scenario.scenario_id, "strategy": strategy,
+            "vehicle_id": scenario.failed_vehicle, "task_id": "", "event": "failure",
+            "stage": "FAILED", "time_s": DISTURBANCE_TIME_S,
+            "x_m": state["x_m"], "y_m": state["y_m"],
+            "pan_deg": state["pan_deg"], "tilt_deg": state["tilt_deg"],
+            "information_time_s": information_time}
+
+
+def _write_csv(path, rows):
+    with path.open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=rows[0], lineterminator="\n")
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({key: json.dumps(value, separators=(",", ":"),
+                                                  ensure_ascii=False, allow_nan=False)
+                             if isinstance(value, (dict, list, tuple)) else value
+                             for key, value in row.items()})
+
+
+def _write_json_lf(path, data):
+    payload = json.dumps(data, indent=2, ensure_ascii=False, allow_nan=False) + "\n"
+    path.write_bytes(payload.encode("utf-8"))
 
 
 def _base_policy(plan, scenario, strategy):
@@ -166,18 +244,12 @@ def _base_policy(plan, scenario, strategy):
               for task in config.ALERTS}
     if scenario.has_new_alert:
         starts[scenario.new_alert[0]] = None
-    events = []
-    for event in plan["vehicle_events"]:
-        task = event["task_id"]
-        if not task or task not in blocked:
-            events.append({**event, "strategy": strategy, "scenario_id": scenario.scenario_id})
+    events = _policy_plan_events(plan, scenario, strategy, locked, blocked,
+                                 replay_remaining=True)
     if scenario.failed_vehicle:
-        events.append({"scenario_id": scenario.scenario_id, "strategy": strategy,
-                       "vehicle_id": scenario.failed_vehicle, "task_id": "",
-                       "event": "failure", "stage": "FAILED",
-                       "time_s": DISTURBANCE_TIME_S, "x_m": None, "y_m": None,
-                       "information_time_s": (scenario.recovery_time_s
-                                               if scenario.has_outage else DISTURBANCE_TIME_S)})
+        events.append(_failure_event(plan, scenario, strategy,
+                                     scenario.recovery_time_s if scenario.has_outage
+                                     else DISTURBANCE_TIME_S))
     if scenario.has_outage:
         events.append({"scenario_id": scenario.scenario_id, "strategy": strategy,
                        "vehicle_id": "ALL", "task_id": "", "event": "communication_restored",
@@ -261,9 +333,10 @@ def _mission_options(task, alert, state, available_cars, router, pools):
 
 
 def _reschedule(plan, scenario, strategy, router, pools):
-    decision_time = scenario.recovery_time_s if scenario.has_outage else DISTURBANCE_TIME_S
+    decision_time = _decision_time(scenario)
     locked = _locked_tasks(plan, scenario)
     plan_events = _events_by_task(plan)
+    blocked = _failure_blocked_tasks(plan, scenario, locked)
     starts = {task: (plan["start_times"][task] if task in locked else None)
               for task in config.ALERTS}
     task_alerts = dict(config.ALERTS)
@@ -327,21 +400,14 @@ def _reschedule(plan, scenario, strategy, router, pools):
                 search(tuple(item for item in remaining if item != task), next_state,
                        next_starts, next_events, total_distance + length)
 
-    locked_events = []
-    for task in locked:
-        for car in _task_crews(plan)[task]:
-            locked_events.extend({**event, "scenario_id": scenario.scenario_id,
-                                  "strategy": strategy}
-                                 for event in plan_events[(task, car)])
+    locked_events = _policy_plan_events(plan, scenario, strategy, locked, blocked,
+                                         replay_remaining=False)
     search(pending, state, starts, locked_events, 0.0)
     if best is None:
         raise RuntimeError(f"重调度未生成候选结果：{scenario.scenario_id}")
     events = best[2]
     if scenario.failed_vehicle:
-        events.append({"scenario_id": scenario.scenario_id, "strategy": strategy,
-                       "vehicle_id": scenario.failed_vehicle, "task_id": "",
-                       "event": "failure", "stage": "FAILED", "time_s": 5.0,
-                       "information_time_s": decision_time})
+        events.append(_failure_event(plan, scenario, strategy, decision_time))
     if scenario.has_outage:
         events.append({"scenario_id": scenario.scenario_id, "strategy": strategy,
                        "vehicle_id": "ALL", "task_id": "", "event": "communication_restored",
@@ -354,11 +420,13 @@ def _reschedule(plan, scenario, strategy, router, pools):
 
 def _skip_failed_task(plan, scenario, router):
     """Keep original assignments and stations while removing only failed missions."""
-    decision_time = scenario.recovery_time_s if scenario.has_outage else DISTURBANCE_TIME_S
+    decision_time = _decision_time(scenario)
     locked = _locked_tasks(plan, scenario)
     plan_events = _events_by_task(plan)
     starts = {task: (plan["start_times"][task] if task in locked else None)
               for task in config.ALERTS}
+    if scenario.has_new_alert:
+        starts[scenario.new_alert[0]] = None
     directly_failed = {task for task, crew in _task_crews(plan).items()
                        if scenario.failed_vehicle in crew and task not in locked}
     queues = {car: [task for task in tasks if task not in locked and task not in directly_failed]
@@ -367,12 +435,9 @@ def _skip_failed_task(plan, scenario, router):
              for car in config.VEHICLES}
     if scenario.failed_vehicle:
         state[scenario.failed_vehicle]["available_s"] = math.inf
-    events = []
-    for task in locked:
-        for car in _task_crews(plan)[task]:
-            events.extend({**event, "scenario_id": scenario.scenario_id,
-                           "strategy": "skip_failed_task"}
-                          for event in plan_events[(task, car)])
+    blocked = _failure_blocked_tasks(plan, scenario, locked)
+    events = _policy_plan_events(plan, scenario, "skip_failed_task", locked, blocked,
+                                 replay_remaining=False)
     pending = {task for queue in queues.values() for task in queue}
     while pending:
         eligible = [task for task in pending
@@ -407,34 +472,52 @@ def _skip_failed_task(plan, scenario, router):
             site = plan["stations"][task][car]
             partner = next(other for other in _task_crews(plan)[task] if other != car)
             leg = route_length(path)
+            reference = _event_for(plan_events, task, car, "slew_end")
+            reset_reference = _event_for(plan_events, task, car, "reset_start")
+            common = {"scenario_id": scenario.scenario_id,
+                      "strategy": "skip_failed_task", "vehicle_id": car,
+                      "partner_id": partner, "task_id": task,
+                      "x_m": site[0], "y_m": site[1]}
             events.extend((
-                {"scenario_id": scenario.scenario_id, "strategy": "skip_failed_task",
-                 "vehicle_id": car, "partner_id": partner, "task_id": task,
-                 "event": "departure", "stage": "TRAVEL",
-                 "time_s": state[car]["available_s"], "x_m": state[car]["position"][0],
+                {**common, "event": "departure", "stage": "TRAVEL",
+                 "time_s": state[car]["available_s"],
+                 "x_m": state[car]["position"][0],
                  "y_m": state[car]["position"][1], "route_xy_m": path,
-                 "leg_distance_m": leg},
-                {"scenario_id": scenario.scenario_id, "strategy": "skip_failed_task",
-                 "vehicle_id": car, "partner_id": partner, "task_id": task,
-                 "event": "observation_start", "stage": "OBSERVE", "time_s": start,
-                 "x_m": site[0], "y_m": site[1]},
-                {"scenario_id": scenario.scenario_id, "strategy": "skip_failed_task",
-                 "vehicle_id": car, "partner_id": partner, "task_id": task,
-                 "event": "observation_end", "stage": "RESET", "time_s": end,
-                 "x_m": site[0], "y_m": site[1]},
-                {"scenario_id": scenario.scenario_id, "strategy": "skip_failed_task",
-                 "vehicle_id": car, "partner_id": partner, "task_id": task,
-                 "event": "reset_end", "stage": "IDLE", "time_s": end + reset,
-                 "x_m": site[0], "y_m": site[1]}))
+                 "leg_distance_m": leg, "pan_deg": state[car]["pan_deg"],
+                 "tilt_deg": state[car]["tilt_deg"]},
+                {**common, "event": "arrival", "stage": "IDLE", "time_s": arrival,
+                 "pan_deg": state[car]["pan_deg"], "tilt_deg": state[car]["tilt_deg"]},
+                {**common, "event": "slew_start", "stage": "SLEW", "time_s": arrival,
+                 "pan_deg": state[car]["pan_deg"], "tilt_deg": state[car]["tilt_deg"],
+                 "signed_pan_delta_deg": reference["signed_pan_delta_deg"],
+                 "tilt_delta_deg": reference["tilt_delta_deg"]},
+                {**common, "event": "slew_end", "stage": "WAIT_PARTNER",
+                 "time_s": arrival + turn, "pan_deg": reference["pan_deg"],
+                 "tilt_deg": reference["tilt_deg"]},
+                *([{"scenario_id": scenario.scenario_id,
+                    "strategy": "skip_failed_task", "vehicle_id": car,
+                    "partner_id": partner, "task_id": task, "event": "wait_partner",
+                    "stage": "WAIT_PARTNER", "time_s": arrival + turn,
+                    "x_m": site[0], "y_m": site[1], "pan_deg": reference["pan_deg"],
+                    "tilt_deg": reference["tilt_deg"]}]
+                  if arrival + turn < start else []),
+                {**common, "event": "observation_start", "stage": "OBSERVE",
+                 "time_s": start, "pan_deg": reference["pan_deg"],
+                 "tilt_deg": reference["tilt_deg"]},
+                {**common, "event": "observation_end", "stage": "RESET", "time_s": end,
+                 "pan_deg": reference["pan_deg"], "tilt_deg": reference["tilt_deg"]},
+                {**common, "event": "reset_start", "stage": "RESET", "time_s": end,
+                 "pan_deg": reference["pan_deg"], "tilt_deg": reference["tilt_deg"],
+                 "signed_pan_delta_deg": reset_reference["signed_pan_delta_deg"],
+                 "tilt_delta_deg": reset_reference["tilt_delta_deg"]},
+                {**common, "event": "reset_end", "stage": "IDLE", "time_s": end + reset,
+                 "pan_deg": 0.0, "tilt_deg": 0.0}))
             state[car] = {"available_s": end + reset, "position": site,
                           "pan_deg": 0.0, "tilt_deg": 0.0}
             queues[car].pop(0)
         pending.remove(task)
     if scenario.failed_vehicle:
-        events.append({"scenario_id": scenario.scenario_id, "strategy": "skip_failed_task",
-                       "vehicle_id": scenario.failed_vehicle, "task_id": "",
-                       "event": "failure", "stage": "FAILED", "time_s": 5.0,
-                       "information_time_s": decision_time})
+        events.append(_failure_event(plan, scenario, "skip_failed_task", decision_time))
     if scenario.has_outage:
         events.append({"scenario_id": scenario.scenario_id, "strategy": "skip_failed_task",
                        "vehicle_id": "ALL", "task_id": "", "event": "communication_restored",
@@ -555,14 +638,14 @@ def run_question4(output_dir=OUT):
         rows, events = _scenario_rows(scenario, plan, router, pools)
         scores.extend(rows)
         all_events.extend(events)
-    write_csv(output_dir / "scenario_scores.csv", scores)
+    _write_csv(output_dir / "scenario_scores.csv", scores)
     fields = sorted({key for event in all_events for key in event})
     with (output_dir / "event_log.csv").open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(all_events)
     aggregate = _aggregate(scores)
-    write_csv(output_dir / "aggregate_scores.csv", aggregate)
+    _write_csv(output_dir / "aggregate_scores.csv", aggregate)
     scenario_rows = [
         {"scenario_id": scenario.scenario_id, "disturbance_set": _disturbance_label(scenario),
          "new_alert": scenario.new_alert, "failed_vehicle": scenario.failed_vehicle,
@@ -573,7 +656,7 @@ def run_question4(output_dir=OUT):
          "outage_interpretation": _experiment_interpretation(scenario),
          "denominator": scenario.denominator}
         for scenario in scenarios]
-    write_json(output_dir / "scenarios.json", scenario_rows)
+    _write_json_lf(output_dir / "scenarios.json", scenario_rows)
     outputs = ("scenario_scores.csv", "event_log.csv", "aggregate_scores.csv", "scenarios.json")
     manifest = {
         "source_revision": _revision(),
@@ -594,7 +677,7 @@ def run_question4(output_dir=OUT):
         "strategies": ["retain_original", "realtime_reschedule", "skip_failed_task"],
         "summary": aggregate,
     }
-    write_json(output_dir / "manifest.json", manifest)
+    _write_json_lf(output_dir / "manifest.json", manifest)
     return manifest
 
 

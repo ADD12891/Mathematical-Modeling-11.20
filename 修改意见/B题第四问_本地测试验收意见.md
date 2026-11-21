@@ -39,3 +39,18 @@ python -B -m unittest -v src.test_disturbance
 [skip]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/e3cc885a0b116283ce8878f314d9d9a33f76c61c/src/disturbance.py#L403-L442
 [scoring]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/e3cc885a0b116283ce8878f314d9d9a33f76c61c/src/disturbance.py#L151-L158
 [splice]: https://github.com/ADD12891/Mathematical-Modeling-11.20/blob/e3cc885a0b116283ce8878f314d9d9a33f76c61c/src/disturbance.py#L330-L352
+
+## 处理记录
+
+**处理结论：六项均已采纳并修复。** 修复版本增加了对事件轨迹、告警清单、计分边界和输出字节的回归检查。
+
+| 原意见 | 处理状态 | 实现与复验 |
+|---|---|---|
+| 故障车在 5 s 后仍有动作 | 已采纳并修复 | 三种策略均在 5 s 记录物理退出，之后不再记录故障车动作；已开始的联合任务仍保留成功启动记录，车辆状态与任务分数分开处理。 |
+| 重调度日志缺少扰动前和断联期间已执行事件 | 已采纳并修复 | 重调度日志先写入决策时刻前的冻结计划事件，再接续重调度结果；故障场景还按 5 s 截断故障车事件。 |
+| 跳过对照缺少到站和转向阶段 | 已采纳并修复 | 已补齐出发、到站、开始转向、完成指向、等待、观测和复位事件。验收场景核对两车均有到站及指向记录。 |
+| 跳过对照未显式列出新增告警 | 已采纳并修复 | 所有策略的 `task_start_times_s` 使用完整告警清单，未启动项显式为 `null`；CSV 单元格以 JSON 编码。 |
+| 评分接受负启动时刻 | 已采纳并修复 | 成功条件改为 `0 <= t_start <= 60`，边界回归覆盖负值、0、60 和超出窗口值。 |
+| 发布文件与清单哈希的换行差异 | 已采纳并修复 | 第四问 JSON 输出按 UTF-8 LF 写入后计算字节 SHA-256；结果目录由 `.gitattributes` 固定 LF。对重新生成的全部输出逐文件校验哈希一致。 |
+
+复验命令为 `python -m unittest discover -v -s src -t .` 和 `python -m src.disturbance`。全套 36 项测试通过，程序重新生成 209 个场景和 593 条策略结果。事件、评分和输出文件哈希回归均通过。重调度搜索范围仍为每辆车最近两个可行站点，意见中的修正不改变这一实验范围。

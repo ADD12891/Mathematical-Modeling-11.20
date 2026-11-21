@@ -1,5 +1,6 @@
 """Question 4 scenario, event-boundary, and score regression tests."""
 import hashlib
+import csv
 import json
 import tempfile
 import unittest
@@ -44,9 +45,11 @@ class DisturbanceTests(unittest.TestCase):
         self.assertEqual(locked, {"T1"})
 
     def test_window_score_uses_closed_endpoint_and_missing_alert_sentinel(self):
-        complete = _score({"T1": 60.0}, 1, ("T1",))
-        self.assertEqual(complete["completion_rate"], 1.0)
-        self.assertEqual(complete["t_last_s"], 60.0)
+        bounded = _score({"T1": -1e-6, "T2": 0.0, "T3": 60.0,
+                          "T4": 60.000001}, 4, ("T1", "T2", "T3", "T4"))
+        self.assertEqual(bounded["successful_alerts"], 2)
+        self.assertEqual(bounded["completion_rate"], 0.5)
+        self.assertEqual(bounded["t_last_s"], 60.0)
         incomplete = _score({"T1": None}, 1, ("T1",))
         self.assertEqual(incomplete["completion_rate"], 0.0)
         self.assertEqual(incomplete["t_last_s"], 60.0)
@@ -70,6 +73,57 @@ class DisturbanceTests(unittest.TestCase):
             for name, expected_hash in manifest["output_sha256"].items():
                 actual_hash = hashlib.sha256((output_dir / name).read_bytes()).hexdigest()
                 self.assertEqual(actual_hash, expected_hash)
+            self.assertNotIn(b"\r\n", (output_dir / "scenarios.json").read_bytes())
+
+            with (output_dir / "event_log.csv").open(encoding="utf-8", newline="") as stream:
+                events = list(csv.DictReader(stream))
+            with (output_dir / "scenario_scores.csv").open(encoding="utf-8", newline="") as stream:
+                scores = list(csv.DictReader(stream))
+
+            for strategy in ("retain_original", "realtime_reschedule", "skip_failed_task"):
+                failed_vehicle_events = [event for event in events
+                                         if event["scenario_id"] == "failure-V3"
+                                         and event["strategy"] == strategy
+                                         and event["vehicle_id"] == "V3"]
+                self.assertTrue(any(event["event"] == "failure"
+                                    and event["time_s"] == "5.0"
+                                    for event in failed_vehicle_events))
+                self.assertFalse(any(float(event["time_s"]) > 5.0
+                                     for event in failed_vehicle_events))
+                score = next(row for row in scores
+                             if row["scenario_id"] == "failure-V3"
+                             and row["strategy"] == strategy)
+                self.assertIsNotNone(json.loads(score["task_start_times_s"])["T1"])
+
+            self.assertTrue(any(event["scenario_id"] == "new-N1"
+                                and event["strategy"] == "realtime_reschedule"
+                                and event["vehicle_id"] == "V1"
+                                and event["task_id"] == "T2"
+                                and event["event"] == "departure"
+                                and event["time_s"] == "0.0" for event in events))
+
+            for car in ("V2", "V3"):
+                task_events = [event for event in events
+                               if event["scenario_id"] == "failure-V1"
+                               and event["strategy"] == "skip_failed_task"
+                               and event["task_id"] == "T3"
+                               and event["vehicle_id"] == car]
+                event_names = {event["event"] for event in task_events}
+                self.assertTrue({"arrival", "slew_start", "slew_end", "observation_start"}
+                                <= event_names)
+                slew_start = next(event for event in task_events
+                                  if event["event"] == "slew_start")
+                reset_end = next(event for event in task_events
+                                 if event["event"] == "reset_end")
+                self.assertEqual(float(slew_start["pan_deg"]), 0.0)
+                self.assertEqual(float(reset_end["tilt_deg"]), 0.0)
+
+            skipped_new_alert = next(row for row in scores
+                                     if row["scenario_id"] == "new-N1-failure-V1"
+                                     and row["strategy"] == "skip_failed_task")
+            starts = json.loads(skipped_new_alert["task_start_times_s"])
+            self.assertIn("N1", starts)
+            self.assertIsNone(starts["N1"])
 
 
 if __name__ == "__main__":
