@@ -674,14 +674,14 @@ def _output_directory(output_dir, scenario_id):
     return output_dir
 
 
-def run_question4(output_dir=OUT, scenario_id=None):
+def run_question4(output_dir=OUT, scenario_id=None, *, plan_dir=ROOT / "results" / "question2"):
     scenarios = build_scenarios()
     if scenario_id is not None:
         scenarios = [scenario for scenario in scenarios if scenario.scenario_id == scenario_id]
         if not scenarios:
             raise ValueError(f"未知场景 {scenario_id}，请用 --list 查看场景编号")
     output_dir = _output_directory(output_dir, scenario_id)
-    plan, plan_hash = _load_frozen_plan(ROOT / "results" / "question2")
+    plan, plan_hash = _load_frozen_plan(Path(plan_dir))
     router = Router()
     pools = candidate_stations()
     pools.update(_new_alert_station_pools())
@@ -739,6 +739,8 @@ def run_question4(output_dir=OUT, scenario_id=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=OUT)
+    parser.add_argument("--plan-dir", type=Path, default=ROOT / "results" / "question2",
+                        help="第二问生成的目录，须含原计划及对应冻结清单")
     modes = parser.add_mutually_exclusive_group()
     modes.add_argument("--scenario", metavar="ID", help="仅运行指定场景")
     modes.add_argument("--list", action="store_true", help="列出场景编号并退出")
@@ -747,7 +749,7 @@ def main():
         print("\n".join(s.scenario_id for s in build_scenarios()))
         return
     try:
-        result = run_question4(args.output_dir, args.scenario)
+        result = run_question4(args.output_dir, args.scenario, plan_dir=args.plan_dir)
     except ValueError as exc:
         parser.error(str(exc))
     print(f"Question 4: {result['scenario_count']} scenarios, "

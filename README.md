@@ -1,14 +1,22 @@
 # 数维杯 B 题 · 移动观测车辆协同定位
 
-在仓库根目录执行以下命令。第四问直接读取第二问已提交的冻结计划。每个求解入口均支持 `--output-dir`，手动调试时可另存结果。
+在仓库根目录执行以下命令。联算入口顺次生成四问结果，第四问从本次第二问的输出目录读取冻结计划。可用 `python -m src.study --output-dir 复现实验` 把一次完整实验另存。
 
 ```powershell
 python -m pip install -r src/requirements.txt
-python -m src.question1
-python -m src.question2
-python -m src.question3
-python -m src.disturbance
+python -m src.study
 python -m unittest discover -v -s src -t .
 ```
+
+## 四问怎样连起来
+
+| 论文要回答的问题 | 代码如何产生证据 |
+|---|---|
+| 单目标最优站位到了三告警调度中还能保留多少观测质量？ | 用第一问的可观测条件逐站检查，再把两种排程的 T1 站位质量分别除以第一问最优值。 |
+| 优先缩短调度时间时，各告警的定位精度怎样变化？ | 对两份三告警排程重算站对的交会角和一阶水平 RMS。把各任务的 RMS 比值分解为距离和交会角两个乘法因子，并用协方差结果核验。T2 还与第二问（1）的精度最优站对同表列示。 |
+| 路线里程如何进入第三问的误差模型？ | 从第二问读取每车到每一席位的累计行程，另在第三问题设的 40 m 距离下计算两种角度达标率和里程余量。此控制变量对照仅用于解释误差，对原排程按题给标称参数计分。 |
+| 扰动后究竟是多启动了告警，还是同样多的告警启动得更早？ | 从同一份第二问原计划出发，按场景编号配对两种策略。先比较启动数，再比较最晚启动时刻，并把主实验与时长敏感性实验分别计数。 |
+
+联算入口会生成[论文对照表](results/integration/研究结果.md)、[逐席明细](results/integration/observations.csv)和[逐场景配对表](results/integration/paired_scenarios.csv)。分问调试时可以继续使用 `src.question1`、`src.question2`、`src.question3`、`src.disturbance`。第四问单独运行时默认读取仓库中的冻结计划，也可用 `--plan-dir` 指定另一轮第二问输出。
 
 [四问对照英文原题的复核记录](yyh/B题代码复核.md) · [实现路线](赛前准备/实现路线/B题最终实现路线.md) · [逐问调试说明](src/README.md) · [结果文件](results/)
