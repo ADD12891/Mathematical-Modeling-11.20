@@ -46,7 +46,7 @@ class DisturbanceTests(unittest.TestCase):
                     self.assertFalse(any(e["event"] == "command_cancelled" and e["time_s"] < t for e in log))
                     pending = {task for task in self.plan["orders"][car]
                                if self.plan["start_times"][task] >= 5}
-                    self.assertEqual(set(decision["trigger_tasks"]), pending)
+                    self.assertEqual(set(decision["reason"]), pending)
                     self.assertEqual(decision["decision"], "repair" if pending else "continue")
                     self.assertEqual(score["successful_alerts"], 3)
                     if not pending:

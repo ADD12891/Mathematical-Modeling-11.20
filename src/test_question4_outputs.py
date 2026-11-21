@@ -50,7 +50,7 @@ class PublishedTimelines(unittest.TestCase):
                             if plan["start_times"][t] >= 5}
                 if row["new_alert_id"]:
                     expected.add(row["new_alert_id"])
-                self.assertEqual(set(json.loads(decision["trigger_tasks"])), expected)
+                self.assertEqual(set(json.loads(decision["reason"])), expected)
                 self.assertEqual(decision["decision"], "repair" if expected else "continue")
                 reference = scores[scenario, "realtime_reschedule" if expected else "retain_original"]
                 self.assertEqual(json.loads(row["task_start_times_s"]), json.loads(reference["task_start_times_s"]))

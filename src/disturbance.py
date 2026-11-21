@@ -462,7 +462,7 @@ def _reschedule(plan, scenario, strategy, router, pools, *, trigger_tasks=None):
                 "vehicle_id": "CENTER", "task_id": "", "event": "reschedule_decision",
                 "stage": "DECISION", "time_s": decision_time}
     if trigger_tasks is not None:
-        decision.update(decision="repair", trigger_tasks=trigger_tasks)
+        decision.update(decision="repair", reason=trigger_tasks)
     events.append(decision)
     return best[1], events
 
@@ -490,7 +490,7 @@ def _triggered_reschedule(plan, scenario, router, pools):
     events.append({"scenario_id": scenario.scenario_id, "strategy": strategy,
                    "vehicle_id": "CENTER", "task_id": "", "event": "reschedule_decision",
                    "stage": "DECISION", "time_s": _decision_time(scenario),
-                   "decision": "continue", "trigger_tasks": []})
+                   "decision": "continue", "reason": []})
     return score, events
 
 
