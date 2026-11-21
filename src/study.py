@@ -129,25 +129,34 @@ def local_repair_rows(scores, event_log):
                          compare_scenarios(scores, candidate="local_repair")}
     cancellations = Counter()
     decisions = {}
+    retained = defaultdict(list)
     with event_log.open(encoding="utf-8", newline="") as stream:
         for event in csv.DictReader(stream):
             scenario_id = event["scenario_id"]
             if event["event"] == "command_cancelled":
                 cancellations[scenario_id, event["strategy"]] += 1
+            if event["strategy"] == "local_repair" and event["event"] == "pointing_retained":
+                retained[scenario_id].append([event["vehicle_id"], event["task_id"]])
             if event["strategy"] == "local_repair" and event["event"] == "reschedule_decision":
-                kept = json.loads(event["reason"])["preserved_tasks"] if event["decision"] == "repair" else []
-                decisions[scenario_id] = (event["decision"], kept)
+                reason = json.loads(event["reason"]) if event["decision"] == "repair" else {}
+                decisions[scenario_id] = (event["decision"], reason)
     local_results = []
     for r in local_rows:
         sid = r["scenario_id"]
-        action, kept = decisions[sid]
+        action, reason = decisions[sid]
+        # With no trigger both algorithms execute the frozen plan.
+        old = reason.get("without_ready_reuse", {}) if action == "repair" else {
+            "starts": r["rescheduled_starts"], "t_last_s": r["rescheduled_t_last_s"],
+            "cancellations": cancellations[sid, "local_repair"]}
         local_results.append({"scenario_id": sid, "group": r["group"], "alerts": r["alerts"],
                               "triggered_starts": r["retained_starts"], "local_starts": r["rescheduled_starts"],
                               "triggered_t_last_s": r["retained_t_last_s"], "local_t_last_s": r["rescheduled_t_last_s"],
                               "vs_triggered": r["outcome"], "vs_original": local_vs_original[sid],
                               "triggered_cancellations": cancellations[sid, "triggered_reschedule"],
                               "local_cancellations": cancellations[sid, "local_repair"],
-                              "decision": action, "preserved_by_search": kept})
+                              "decision": action, "preserved_by_search": reason.get("preserved_tasks", []),
+                              "retained_vehicle_tasks": retained[sid], "before_reuse_starts": old.get("starts"),
+                              "before_reuse_t_last_s": old.get("t_last_s"), "before_reuse_cancellations": old.get("cancellations")})
     return local_results
 
 
@@ -177,6 +186,8 @@ def write_study(root):
     comparison = {r["strategy"]: r for r in read_rows(q2 / "comparison.csv") if r["scenario"] == "main"}
     out = root / "integration"
     out.mkdir(parents=True, exist_ok=True)
+    from .plots import save_schedule_figure
+    save_schedule_figure(out / "q2_vehicle_timelines.png", read_rows(q2 / "vehicle_tasks.csv"))
     write_csv(out / "observations.csv", observations)
     write_csv(out / "accuracy_changes.csv", changes)
     write_csv(out / "paired_scenarios.csv", paired)
@@ -194,7 +205,9 @@ def write_study(root):
         quality = "、".join(f"{r['vehicle']} {r['fraction_of_q1_best_T1_quality']:.1%}" for r in crew if r["task"] == "T1")
         latest = f"{float(comparison[key]['latest_start_s']):.6f}" if key in comparison else "—"
         lines.append(f"|{label}|{quality or '—'}|{t2['pair_angle_deg']:.3f}|{t2['pair_rms_m']:.6f}|{latest}|")
-    lines += ["", "时间优化结果适用于保存的候选站集和路线。以下按告警配对，检查最晚启动提前时，哪些任务获得收益，哪些任务付出代价。RMS 用两车各自独立的 1° 方位测量误差计算，数值越小表示一阶定位精度越高。", "",
+    lines += ["", "![第二问两种方案的五车时间线](q2_vehicle_timelines.png)", "",
+              "两幅时间线共用横轴，观察条上的编号表示任务，虚线标出三个告警中最后一次共同启动。精确时刻见[逐车任务表](../question2/vehicle_tasks.csv)。", "",
+              "时间优化结果适用于保存的候选站集和路线。以下按告警配对，检查最晚启动提前时，哪些任务获得收益，哪些任务付出代价。RMS 用两车各自独立的 1° 方位测量误差计算，数值越小表示一阶定位精度越高。", "",
               "|告警|最近分配启动（s）|时间优化启动（s）|最近分配 RMS（m）|时间优化 RMS（m）|",
               "|---|---:|---:|---:|---:|"]
     rms = {(r["strategy"], r["task"]): r["pair_rms_m"] for r in observations}
@@ -260,10 +273,29 @@ def write_study(root):
         lines += ["", f"主实验中同完成率下提前最多的是 `{best['scenario_id']}`。在启动 {best['local_starts']}/{best['alerts']} 项的条件下，"
                   f"最晚启动由 {best['triggered_t_last_s']:.6f} s 提前到 {best['local_t_last_s']:.6f} s。"]
     lines += ["", "取消次数统计车辆日志中的显式撤销命令。它只在两项题定指标均相同时用于选解。候选站和站对搜索仍有限，因此该比较只给出相对于上一版的改进。[逐场景末次启动、保留任务及取消次数](local_repair_comparison.csv)", ""]
+    lines += ready_reuse_summary(local_results)
     lines += ["", "场景计数描述所选样本。新增告警和恢复时刻的概率分布需有额外依据，不能由胜负次数推出。",
               "[逐场景配对成绩](paired_scenarios.csv) · [车辆事件日志](../question4/event_log.csv)", ""]
     (out / "研究结果.md").write_text("\n".join(lines), encoding="utf-8")
     return out
+
+
+def ready_reuse_summary(local_results):
+    if any(r["before_reuse_starts"] is None for r in local_results):
+        return ["本次输入来自较早的事件日志。重新联跑四问可生成单车就绪指向的消融对照。", ""]
+    lines = ["### 已完成指向的单车席位", "",
+              "同一健康车辆在同一站点继续观测同一目标时，可以沿用已完成的指向。比较时关闭或开启这一选择，冻结计划、扰动和候选搜索均相同。", "",
+              "|实验组|启动数增加|同启动数提前|同启动数同刻|同启动数推迟|启动数减少|关闭时取消数|开启时取消数|",
+              "|---|---:|---:|---:|---:|---:|---:|---:|"]
+    for group, label in (("main", "主实验"), ("duration", "时长敏感性")):
+        cohort = [r for r in local_results if r["group"] == group]
+        equal = [r for r in cohort if r["local_starts"] == r["before_reuse_starts"]]
+        leads = [r["before_reuse_t_last_s"] - r["local_t_last_s"] for r in equal]
+        lines.append(f"|{label}|{sum(r['local_starts'] > r['before_reuse_starts'] for r in cohort)}|"
+                     f"{sum(t > 1e-9 for t in leads)}|{sum(abs(t) <= 1e-9 for t in leads)}|{sum(t < -1e-9 for t in leads)}|"
+                     f"{sum(r['local_starts'] < r['before_reuse_starts'] for r in cohort)}|"
+                     f"{sum(r['before_reuse_cancellations'] for r in cohort)}|{sum(r['local_cancellations'] for r in cohort)}|")
+    return lines
 
 
 def main():

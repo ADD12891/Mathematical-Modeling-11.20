@@ -372,6 +372,10 @@ def _candidate_sites(task, alert, positions, pools):
     return target, selected
 
 
+def _can_keep_pointing(state, task, site):
+    return state.get("ready_task") == task and state["position"] == tuple(site)
+
+
 def _mission_options(task, alert, state, available_cars, router, pools):
     positions = {car: state[car]["position"] for car in available_cars}
     target, sites = _candidate_sites(task, alert, positions, pools)
@@ -386,15 +390,16 @@ def _mission_options(task, alert, state, available_cars, router, pools):
             if any(path is None for path in paths):
                 continue
             lengths = tuple(route_length(path) for path in paths)
-            ready = tuple(state[car]["available_s"] + length / config.SPEED
-                          + slew_times(target, site)[0]
+            ready = tuple(state[car]["ready_since"] if _can_keep_pointing(state[car], task, site)
+                          else state[car]["available_s"] + length / config.SPEED + slew_times(target, site)[0]
                           for car, length, site in zip((first, second), lengths, (a, b)))
             start = max(ready)
             options.append((start, sum(lengths), first, second, a, b, paths))
     return sorted(options, key=lambda option: (option[0], option[1], option[2:6]))[:2]
 
 
-def _reschedule(plan, scenario, strategy, router, pools, *, trigger_tasks=None, preserved=frozenset()):
+def _reschedule(plan, scenario, strategy, router, pools, *, trigger_tasks=None, preserved=frozenset(),
+                waiting_seats=None):
     decision_time = _decision_time(scenario)
     locked = _locked_tasks(plan, scenario)
     plan_events = _events_by_task(plan)
@@ -422,6 +427,10 @@ def _reschedule(plan, scenario, strategy, router, pools, *, trigger_tasks=None, 
         pose = _decision_pose(plan, plan_events, car, decision_time, locked, scenario)
         state[car], interrupted = _available_after_cancel(plan_events, pose, locked,
                                                           scenario, strategy)
+        if waiting_seats and car in waiting_seats:
+            task, point = waiting_seats[car]
+            if pose["task_id"] == task and state[car]["position"] == point:
+                state[car].update(ready_task=task, ready_since=decision_time)
         handover.extend(interrupted)
     pending = tuple(task for task in task_alerts if task not in fixed)
     available_cars = tuple(car for car in config.VEHICLES
@@ -449,8 +458,18 @@ def _reschedule(plan, scenario, strategy, router, pools, *, trigger_tasks=None, 
                                                  (second, b, paths[1], first)):
                     target = config.target_position(task_alerts[task])
                     depart = current[car]["available_s"]
-                    ready, approach = _approach_events(car, task, partner, target,
-                                                       path, depart)
+                    if _can_keep_pointing(current[car], task, site):
+                        # The branch keeps this car's completed setup. Drop its
+                        # provisional cancellation and reset at this handover.
+                        next_events = [e for e in next_events if not (
+                            e["vehicle_id"] == car and e["event"] in
+                            ("command_cancelled", "interrupt_reset_start", "interrupt_reset_end"))]
+                        ready = current[car]["ready_since"]
+                        pose = tuple(map(math.degrees, _pointing(target, site)))
+                        approach = [_event(car, task, partner, "pointing_retained", "WAIT_PARTNER",
+                                           ready, site, pose)]
+                    else:
+                        ready, approach = _approach_events(car, task, partner, target, path, depart)
                     released, observation = _observation_events(car, task, partner, target,
                                                                  site, ready, start)
                     next_state[car] = {"available_s": released, "position": site}
@@ -519,6 +538,22 @@ def _preservable_prefixes(orders, eligible, locked):
                 yield kept
 
 
+def _waiting_seats(plan, scenario, locked, blocked):
+    """Find completed setup in the executed prefix, including waits during an outage."""
+    cutoff = _decision_time(scenario)
+    prefix = _policy_plan_events(plan, scenario, "local_repair", locked, blocked, replay_remaining=False)
+    waiting = {}
+    for event in sorted(prefix, key=lambda e: e["time_s"]):
+        task, car = event["task_id"], event["vehicle_id"]
+        if event["time_s"] >= cutoff or car == scenario.failed_vehicle:
+            continue
+        if event["event"] == "slew_end" and task not in locked:
+            waiting[car] = (task, (event["x_m"], event["y_m"]))
+        elif event["event"] in ("observation_start", "departure", "slew_start", "reset_start"):
+            waiting.pop(car, None)
+    return waiting
+
+
 def _local_repair(plan, scenario, router, pools):
     """Compare feasible continuations at handover under the nominal timing model."""
     strategy = "local_repair"
@@ -528,16 +563,26 @@ def _local_repair(plan, scenario, router, pools):
     locked = _locked_tasks(plan, scenario)
     blocked = _failure_blocked_tasks(plan, scenario, locked)
     eligible = set(plan["start_times"]) - locked - blocked
+    waiting = _waiting_seats(plan, scenario, locked, blocked)
     best_key = None
+    baseline_key = None
     for kept in _preservable_prefixes(plan["orders"], eligible, locked):
-        score, log = _reschedule(plan, scenario, strategy, router, pools,
-                                 trigger_tasks=triggers, preserved=kept)
-        cancelled = sum(event["event"] == "command_cancelled" for event in log)
-        key = (-score["successful_alerts"], score["t_last_s"], cancelled, -len(kept))
-        if best_key is None or key < best_key:
-            best_key, best_score, best_log, best_kept = key, score, log, kept
+        reusable = {car: seat for car, seat in waiting.items() if kept.isdisjoint(plan["orders"][car])}
+        # New readiness times can change the truncated shortlist. Include the
+        # original search too so previously feasible solutions remain candidates.
+        for seats in ([None, reusable] if reusable else [None]):
+            score, log = _reschedule(plan, scenario, strategy, router, pools, trigger_tasks=triggers,
+                                     preserved=kept, waiting_seats=seats)
+            cancelled = sum(event["event"] == "command_cancelled" for event in log)
+            key = (-score["successful_alerts"], score["t_last_s"], cancelled, -len(kept))
+            if seats is None and (baseline_key is None or key < baseline_key):
+                baseline_key = key
+            if best_key is None or key < best_key:
+                best_key, best_score, best_log, best_kept = key, score, log, kept
     decision = next(e for e in best_log if e["event"] == "reschedule_decision")
-    decision["reason"] = {"trigger_tasks": triggers, "preserved_tasks": sorted(best_kept)}
+    decision["reason"] = {"trigger_tasks": triggers, "preserved_tasks": sorted(best_kept),
+                          "without_ready_reuse": {"starts": -baseline_key[0], "t_last_s": baseline_key[1],
+                                                  "cancellations": baseline_key[2]}}
     return best_score, best_log
 
 
@@ -810,7 +855,7 @@ def run_question4(output_dir=OUT, scenario_id=None, *, plan_dir=ROOT / "results"
             "new_alert_sampling": "four fixed cardinal bearings with ranges spanning 30 to 50 m, H=50 m",
             "rescheduler_scope": "enumerate task orders; try up to two nearby sites per vehicle and retain up to two joint options per task at each search node",
             "triggered_reschedule": "At the decision time, repair when an alert is new or a failed vehicle has an unstarted assignment. Otherwise continue the frozen instructions.",
-            "local_repair": "At handover enumerate unblocked prefixes common to both assigned vehicles, including the empty prefix. Rank nominal continuations by starts, latest start, cancellations, then preserved jobs.",
+            "local_repair": "At handover enumerate unblocked queue prefixes. Also evaluate continuing a healthy car's previously completed setup at the same site for the same task. Record the comparison without setup reuse.",
             "score": "maximize successful starts within [0,60], then minimize t_last; missing task sets t_last=60",
         },
         "strategies": ["retain_original", "realtime_reschedule", "triggered_reschedule", "local_repair", "skip_failed_task"],

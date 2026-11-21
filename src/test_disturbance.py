@@ -12,7 +12,8 @@ from unittest.mock import patch
 from .assignment import candidate_stations
 from .disturbance import (
     Scenario, _base_policy, _locked_tasks, _reschedule, _score, _skip_failed_task,
-    _local_repair, _preservable_prefixes, _trigger_tasks, _triggered_reschedule, build_scenarios, run_question4,
+    _can_keep_pointing, _local_repair, _preservable_prefixes, _trigger_tasks, _triggered_reschedule,
+    _waiting_seats, build_scenarios, run_question4,
 )
 from .routing import Router
 from .timeline import evaluate_schedule, vehicle_state_at
@@ -21,6 +22,21 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class DisturbanceTests(unittest.TestCase):
+    def test_reuse_requires_completed_setup_before_handover_at_the_same_site(self):
+        scenario = Scenario("boundary", failed_vehicle="V4", recovery_time_s=10)
+        def event(car, action, time):
+            return {"vehicle_id": car, "task_id": "T2", "event": action, "time_s": time, "x_m": 2., "y_m": 3.}
+        prefix = [event("V1", "slew_end", 9.9), event("V2", "slew_end", 10),
+                  event("V3", "slew_end", 3), event("V3", "observation_start", 4),
+                  event("V4", "slew_end", 2), event("V5", "slew_end", 2), event("V5", "departure", 3)]
+        with patch("src.disturbance._policy_plan_events", return_value=prefix):
+            self.assertEqual(_waiting_seats({}, scenario, set(), set()), {"V1": ("T2", (2., 3.))})
+            self.assertEqual(_waiting_seats({}, scenario, {"T2"}, set()), {})
+        state = {"position": (2., 3.), "ready_task": "T2"}
+        self.assertTrue(_can_keep_pointing(state, "T2", (2., 3.)))
+        self.assertFalse(_can_keep_pointing(state, "T2", (3., 2.)))
+        self.assertFalse(_can_keep_pointing(state, "T1", (2., 3.)))
+
     def test_preservation_requires_the_predecessors_of_both_partners(self):
         queues = {"a": ["P", "T"], "b": ["Q", "T"], "c": ["P"], "d": ["Q"]}
         choices = set(_preservable_prefixes(queues, {"P", "Q", "T"}, set()))

@@ -1,10 +1,56 @@
-"""第一问的两张平面图。所有标记使用求解器返回的连续坐标。"""
+"""题一几何图和题二逐车时间线。绘图数据由对应的求解器生成。"""
+from matplotlib import rc_context
+from matplotlib.font_manager import fontManager
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.colors import ListedColormap
 from matplotlib.figure import Figure
 from matplotlib.patches import Patch, Rectangle
 
 from .config import BUILDINGS, CENTER, FIELD_SIZE
+
+
+def save_schedule_figure(path, rows):
+    """两套三告警方案共用时间刻度。横条宽度直接取自逐车任务表。"""
+    names = set(fontManager.get_font_names())
+    family = next((f for f in ("Microsoft YaHei", "Noto Sans CJK SC", "SimHei") if f in names), None)
+    phases = (("departure_s", "arrival_s", "行驶", "Travel", "#387b99"),
+              ("slew_start_s", "slew_end_s", "转向", "Slew", "#b37635"),
+              ("slew_end_s", "observation_start_s", "等搭档", "Wait", "#d6dbe0"),
+              ("observation_start_s", "observation_end_s", "共同观测", "Observe", "#27644e"),
+              ("reset_start_s", "reset_end_s", "复位", "Reset", "#797393"))
+    main = [r for r in rows if r["scenario"] == "main"]
+    vehicles = sorted({r["vehicle_id"] for r in main})
+    with rc_context({"font.family": family or "DejaVu Sans"}):
+        fig = Figure(figsize=(9, 6), dpi=180)
+        canvas = FigureCanvasAgg(fig)
+        axes = fig.subplots(2, 1, sharex=True)
+        fig.subplots_adjust(left=.09, right=.97, top=.90, bottom=.17, hspace=.32)
+        for ax, strategy, cn, en in zip(axes, ("nearest", "optimized"), ("最近分配", "时间优化"),
+                                        ("Nearest assignment", "Time-optimized assignment")):
+            subset = [r for r in main if r["strategy"] == strategy and r["task_id"] != "IDLE"]
+            latest = max(float(r["observation_start_s"]) for r in subset)
+            for r in subset:
+                y = vehicles.index(r["vehicle_id"])
+                for start, end, _, _, color in phases:
+                    a, b = float(r[start]), float(r[end])
+                    if b > a:
+                        ax.barh(y, b-a, left=a, height=.65, color=color, zorder=2)
+                middle = (float(r["observation_start_s"]) + float(r["observation_end_s"])) / 2
+                ax.text(middle, y, r["task_id"], ha="center", va="center", color="white", fontsize=9)
+            ax.axvline(latest, color="#263746", ls=":", lw=1.25, zorder=1)
+            ax.set_title(cn if family else en, loc="left", fontsize=13)
+            ax.set_title((f"最晚启动  {latest:.3f} s" if family else f"Latest start  {latest:.3f} s"),
+                         loc="right", fontsize=10)
+            ax.set_yticks(range(len(vehicles)), vehicles)
+            ax.set_ylim(len(vehicles)-.5, -.5)
+            ax.grid(axis="x", color="#e5e8eb", linewidth=.7, zorder=0)
+            ax.spines[["left", "top", "right"]].set_visible(False)
+            ax.tick_params(axis="y", length=0)
+        axes[-1].set_xlim(left=0)
+        axes[-1].set_xlabel("从同时告警起算的时间（s）" if family else "Time since simultaneous alerts (s)")
+        handles = [Patch(color=color, label=cn if family else en) for _, _, cn, en, color in phases]
+        fig.legend(handles=handles, loc="lower center", ncol=len(handles), frameon=False)
+        canvas.print_figure(path)
 
 
 def save_figures(output_dir, mask, target, station):

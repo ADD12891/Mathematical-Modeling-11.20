@@ -31,6 +31,32 @@ def station_pose(target, x, y):
 
 
 class PublishedTimelines(unittest.TestCase):
+    def test_reused_pointing_is_backed_by_the_executed_events(self):
+        latest_setup = {}
+        seen = set()
+        for e in read_rows(OUT / "event_log.csv"):
+            if e["strategy"] != "local_repair":
+                continue
+            key = e["scenario_id"], e["vehicle_id"]
+            action = e["event"]
+            if action == "slew_end":
+                latest_setup[key] = e
+            elif action == "pointing_retained":
+                ready = latest_setup[key]
+                self.assertLess(float(ready["time_s"]), float(e["time_s"]))
+                self.assertEqual(ready["task_id"], e["task_id"])
+                for field in ("x_m", "y_m", "pan_deg", "tilt_deg"):
+                    self.assertAlmostEqual(float(ready[field]), float(e[field]), places=9)
+                seen.add((key, e["task_id"]))
+            elif action in ("departure", "slew_start", "observation_start", "command_cancelled", "failure"):
+                latest_setup.pop(key, None)
+        sid = "failure-V4-outage-rec-10"
+        self.assertIn(((sid, "V1"), "T2"), seen)
+        row, = [r for r in read_rows(OUT / "scenario_scores.csv")
+                if r["scenario_id"] == sid and r["strategy"] == "local_repair"]
+        self.assertEqual(int(row["successful_alerts"]), 3)
+        self.assertAlmostEqual(float(row["t_last_s"]), 15.075142415806278, places=8)
+
     def test_local_repair_preserves_both_timelines_and_individual_releases(self):
         plan = json.loads((ROOT / "results/question2/original_plan.json").read_text(encoding="utf-8"))
         scores = {(r["scenario_id"], r["strategy"]): r for r in read_rows(OUT / "scenario_scores.csv")}
