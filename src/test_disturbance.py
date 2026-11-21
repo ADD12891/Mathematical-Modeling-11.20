@@ -12,7 +12,7 @@ from unittest.mock import patch
 from .assignment import candidate_stations
 from .disturbance import (
     Scenario, _base_policy, _locked_tasks, _reschedule, _score, _skip_failed_task,
-    _trigger_tasks, _triggered_reschedule, build_scenarios, run_question4,
+    _local_repair, _preservable_prefixes, _trigger_tasks, _triggered_reschedule, build_scenarios, run_question4,
 )
 from .routing import Router
 from .timeline import evaluate_schedule, vehicle_state_at
@@ -21,6 +21,26 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class DisturbanceTests(unittest.TestCase):
+    def test_preservation_requires_the_predecessors_of_both_partners(self):
+        queues = {"a": ["P", "T"], "b": ["Q", "T"], "c": ["P"], "d": ["Q"]}
+        choices = set(_preservable_prefixes(queues, {"P", "Q", "T"}, set()))
+        self.assertEqual(choices, set(map(frozenset, [(), ("P",), ("Q",), ("P", "Q"), ("P", "Q", "T")])))
+        # P has started; Q is blocked. T still depends on Q.
+        self.assertEqual(list(_preservable_prefixes(queues, {"T"}, {"P"})), [frozenset()])
+
+    def test_local_repair_at_extra_recovery_times(self):
+        router, pools = Router(), candidate_stations()
+        for t in (6.5, 9.25, 12.5, 27.5):
+            for car in self.plan["orders"]:
+                with self.subTest(recovery=t, failed=car):
+                    scenario = Scenario("extra", failed_vehicle=car, recovery_time_s=t)
+                    base, _ = _triggered_reschedule(self.plan, scenario, router, pools)
+                    local, log = _local_repair(self.plan, scenario, router, pools)
+                    self.assertLessEqual((-local["successful_alerts"], local["t_last_s"]),
+                                         (-base["successful_alerts"], base["t_last_s"]))
+                    self.assertEqual([e["time_s"] for e in log if e["event"] == "reschedule_decision"], [t])
+                    self.assertFalse(any(e["event"] == "command_cancelled" and e["time_s"] < t for e in log))
+
     def test_trigger_uses_the_failed_queue_and_strictly_prior_start_events(self):
         scenario = Scenario("boundary", failed_vehicle="V2", recovery_time_s=14)
         events = [{"vehicle_id": "V2", "event": "observation_start", "task_id": task, "time_s": at}
@@ -194,7 +214,7 @@ class DisturbanceTests(unittest.TestCase):
             output_dir = Path(directory)
             manifest = run_question4(output_dir)
             self.assertEqual(manifest["scenario_count"], 209)
-            self.assertEqual(manifest["strategy_rows"], 802)
+            self.assertEqual(manifest["strategy_rows"], 1011)
             for name, expected_hash in manifest["output_sha256"].items():
                 actual_hash = hashlib.sha256((output_dir / name).read_bytes()).hexdigest()
                 self.assertEqual(actual_hash, expected_hash)
@@ -205,7 +225,7 @@ class DisturbanceTests(unittest.TestCase):
             with (output_dir / "scenario_scores.csv").open(encoding="utf-8", newline="") as stream:
                 scores = list(csv.DictReader(stream))
 
-            for strategy in ("retain_original", "realtime_reschedule", "skip_failed_task", "triggered_reschedule"):
+            for strategy in ("retain_original", "realtime_reschedule", "skip_failed_task", "triggered_reschedule", "local_repair"):
                 failed_vehicle_events = [event for event in events
                                          if event["scenario_id"] == "failure-V3"
                                          and event["strategy"] == strategy

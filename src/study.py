@@ -123,6 +123,34 @@ def compare_scenarios(scores, *, baseline="retain_original", candidate="realtime
     return rows
 
 
+def local_repair_rows(scores, event_log):
+    local_rows = compare_scenarios(scores, baseline="triggered_reschedule", candidate="local_repair")
+    local_vs_original = {r["scenario_id"]: r["outcome"] for r in
+                         compare_scenarios(scores, candidate="local_repair")}
+    cancellations = Counter()
+    decisions = {}
+    with event_log.open(encoding="utf-8", newline="") as stream:
+        for event in csv.DictReader(stream):
+            scenario_id = event["scenario_id"]
+            if event["event"] == "command_cancelled":
+                cancellations[scenario_id, event["strategy"]] += 1
+            if event["strategy"] == "local_repair" and event["event"] == "reschedule_decision":
+                kept = json.loads(event["reason"])["preserved_tasks"] if event["decision"] == "repair" else []
+                decisions[scenario_id] = (event["decision"], kept)
+    local_results = []
+    for r in local_rows:
+        sid = r["scenario_id"]
+        action, kept = decisions[sid]
+        local_results.append({"scenario_id": sid, "group": r["group"], "alerts": r["alerts"],
+                              "triggered_starts": r["retained_starts"], "local_starts": r["rescheduled_starts"],
+                              "triggered_t_last_s": r["retained_t_last_s"], "local_t_last_s": r["rescheduled_t_last_s"],
+                              "vs_triggered": r["outcome"], "vs_original": local_vs_original[sid],
+                              "triggered_cancellations": cancellations[sid, "triggered_reschedule"],
+                              "local_cancellations": cancellations[sid, "local_repair"],
+                              "decision": action, "preserved_by_search": kept})
+    return local_results
+
+
 def write_study(root):
     q2 = root / "question2"
     digest = text_hash(q2 / "original_plan.json")
@@ -153,6 +181,8 @@ def write_study(root):
     write_csv(out / "accuracy_changes.csv", changes)
     write_csv(out / "paired_scenarios.csv", paired)
     write_csv(out / "triggered_comparison.csv", trigger_results)
+    local_results = local_repair_rows(scores, root / "question4/event_log.csv")
+    write_csv(out / "local_repair_comparison.csv", local_results)
     lines = ["# 四问联算与论文对照", "",
              "## 单站、站对与三告警调度", "",
              "先用第一问的可观测判定逐站复核，再用第二问（1）的独立 1° 测角模型评价实际站对。表中的最晚启动取全部三个告警，RMS 只取 T2。", "",
@@ -214,6 +244,22 @@ def write_study(root):
             lines.append(f"- `{r['scenario_id']}` 从 {r['previous_t_last_s']:.6f} s 变为 {r['triggered_t_last_s']:.6f} s，"
                          f"启动数为 {r['triggered_starts']}/{r['alerts']}。")
     lines += ["", "[逐场景三策略配对表](triggered_comparison.csv)", ""]
+    lines += ["## 局部改派能保留多少原有进度", "",
+              "决策时逐一试算可以继续执行的任务组合。保留某项任务时，两辆搭档的未完成前序任务都须一并保留。各车在自己的复位结束后才能接新任务。保留集合可为空，因此上一版触发策略也是候选。", "",
+              "|实验组|样本数|启动数增加|同完成率提前|持平|同完成率推迟|启动数减少|原触发策略取消指令数|局部改派取消指令数|",
+              "|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
+    for group, label in (("main", "主实验"), ("duration", "时长敏感性")):
+        cohort = [r for r in local_results if r["group"] == group]
+        outcomes = Counter(r["vs_triggered"] for r in cohort)
+        lines.append(f"|{label}|{len(cohort)}|{outcomes['more_starts']}|{outcomes['earlier']}|{outcomes['tie']}|"
+                     f"{outcomes['later']}|{outcomes['fewer_starts']}|{sum(r['triggered_cancellations'] for r in cohort)}|"
+                     f"{sum(r['local_cancellations'] for r in cohort)}|")
+    earlier = [r for r in local_results if r["group"] == "main" and r["vs_triggered"] == "earlier"]
+    if earlier:
+        best = max(earlier, key=lambda r: r["triggered_t_last_s"] - r["local_t_last_s"])
+        lines += ["", f"主实验中同完成率下提前最多的是 `{best['scenario_id']}`。在启动 {best['local_starts']}/{best['alerts']} 项的条件下，"
+                  f"最晚启动由 {best['triggered_t_last_s']:.6f} s 提前到 {best['local_t_last_s']:.6f} s。"]
+    lines += ["", "取消次数统计车辆日志中的显式撤销命令。它只在两项题定指标均相同时用于选解。候选站和站对搜索仍有限，因此该比较只给出相对于上一版的改进。[逐场景末次启动、保留任务及取消次数](local_repair_comparison.csv)", ""]
     lines += ["", "场景计数描述所选样本。新增告警和恢复时刻的概率分布需有额外依据，不能由胜负次数推出。",
               "[逐场景配对成绩](paired_scenarios.csv) · [车辆事件日志](../question4/event_log.csv)", ""]
     (out / "研究结果.md").write_text("\n".join(lines), encoding="utf-8")

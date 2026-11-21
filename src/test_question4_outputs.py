@@ -31,6 +31,53 @@ def station_pose(target, x, y):
 
 
 class PublishedTimelines(unittest.TestCase):
+    def test_local_repair_preserves_both_timelines_and_individual_releases(self):
+        plan = json.loads((ROOT / "results/question2/original_plan.json").read_text(encoding="utf-8"))
+        scores = {(r["scenario_id"], r["strategy"]): r for r in read_rows(OUT / "scenario_scores.csv")}
+        logs = defaultdict(list)
+        for row in read_rows(OUT / "event_log.csv"):
+            if row["strategy"] == "local_repair":
+                logs[row["scenario_id"]].append(row)
+        relevant = {"departure", "arrival", "slew_start", "slew_end",
+                    "observation_start", "observation_end", "reset_start", "reset_end"}
+
+        def signature(e):
+            return (e["event"], float(e["time_s"]), float(e["x_m"]), float(e["y_m"]), e["partner_id"])
+
+        selected = 0
+        for sid, events in logs.items():
+            with self.subTest(scenario=sid):
+                local, previous = (scores[sid, name] for name in ("local_repair", "triggered_reschedule"))
+                self.assertLessEqual((-int(local["successful_alerts"]), float(local["t_last_s"])),
+                                     (-int(previous["successful_alerts"]), float(previous["t_last_s"])))
+                decision, = [e for e in events if e["event"] == "reschedule_decision"]
+                self.assertEqual(float(decision["time_s"]), float(local["recovery_time_s"] or 5))
+                if decision["decision"] == "continue":
+                    continue
+                kept = set(json.loads(decision["reason"])["preserved_tasks"])
+                selected += bool(kept)
+                for car, queue in plan["orders"].items():
+                    protected = [t for t in queue if t in kept]
+                    if not protected:
+                        continue
+                    self.assertNotEqual(car, local["failed_vehicle"])
+                    trace = [e for e in events if e["vehicle_id"] == car]
+                    for task in protected:
+                        actual = [signature(e) for e in trace if e["task_id"] == task and e["event"] in relevant]
+                        original = [signature(e) for e in plan["vehicle_events"] if e["vehicle_id"] == car
+                                    and e["task_id"] == task and e["event"] in relevant]
+                        self.assertEqual(actual, original)
+                    release, = [e for e in trace if e["event"] == "reset_end" and e["task_id"] == protected[-1]]
+                    pending = set(json.loads(local["task_start_times_s"])) - kept
+                    later = [e for e in trace if e["task_id"] in pending and e["event"] == "departure"
+                             and float(e["time_s"]) >= float(decision["time_s"])]
+                    self.assertFalse(any(e["event"] == "command_cancelled" and float(e["time_s"]) < float(release["time_s"])
+                                         for e in trace))
+                    if later:
+                        self.assertGreaterEqual(float(later[0]["time_s"]), float(release["time_s"]))
+                        self.assertEqual((later[0]["x_m"], later[0]["y_m"]), (release["x_m"], release["y_m"]))
+        self.assertGreater(selected, 0)
+
     def test_trigger_decisions_match_the_information_available_at_handover(self):
         plan = json.loads((ROOT / "results/question2/original_plan.json").read_text(encoding="utf-8"))
         scores = {(r["scenario_id"], r["strategy"]): r for r in read_rows(OUT / "scenario_scores.csv")}
@@ -65,12 +112,12 @@ class PublishedTimelines(unittest.TestCase):
             grouped[event["scenario_id"], event["strategy"]].append(event)
         scores = read_rows(OUT / "scenario_scores.csv")
         policies = {(s["scenario_id"], strategy) for s in scenarios.values()
-                    for strategy in (["retain_original", "realtime_reschedule", "triggered_reschedule"] +
+                    for strategy in (["retain_original", "realtime_reschedule", "triggered_reschedule", "local_repair"] +
                                      (["skip_failed_task"] if s["failed_vehicle"] else []))}
         self.assertEqual(Counter((r["scenario_id"], r["strategy"]) for r in scores),
                          Counter({key: 1 for key in policies}))
         self.assertEqual(set(grouped), policies)
-        self.assertEqual(len(policies), 802)
+        self.assertEqual(len(policies), 1011)
         reference = json.loads((ROOT / "results/question2/original_plan.json").read_text(encoding="utf-8"))
         def signature(e):
             return e["vehicle_id"], e["task_id"], e["event"], float(e["time_s"])
@@ -178,7 +225,7 @@ class PublishedTimelines(unittest.TestCase):
         with tempfile.TemporaryDirectory() as name:
             out = Path(name)
             manifest = run_question4(out, scenario)
-            self.assertEqual((manifest["scenario_count"], manifest["strategy_rows"]), (1, 4))
+            self.assertEqual((manifest["scenario_count"], manifest["strategy_rows"]), (1, 5))
             for filename in ("scenario_scores.csv", "event_log.csv"):
                 published = [row for row in read_rows(OUT / filename)
                              if row["scenario_id"] == scenario]

@@ -10,6 +10,8 @@ python -m unittest discover -v -s src -t .
 
 ## 四问怎样连起来
 
+第四问还可以在同一次重排中保留部分健康车辆的原任务。运行联算入口后，可从[局部改派对照表](results/integration/local_repair_comparison.csv)查看每个场景保留的任务、两版的最晚启动时刻和取消次数。
+
 第四问新增有条件重调度。在出现新增任务或故障车有未启动任务时重排，其余情况保留已执行的进度。每个场景同时输出原策略和改进策略的车辆日志。[算法与原题约束](src/QUESTION4.md) · [三策略配对结果](results/integration/triggered_comparison.csv)
 
 | 论文要回答的问题 | 代码如何产生证据 |
