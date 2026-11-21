@@ -29,12 +29,12 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results" / "question4"
 WINDOW_END_S = 60.0
 DISTURBANCE_TIME_S = 5.0
-NEW_ALERTS = (
-    ("N1", (0.0, 30.0, 50.0)),
-    ("N2", (90.0, 40.0, 50.0)),
-    ("N3", (180.0, 50.0, 50.0)),
-    ("N4", (270.0, 40.0, 50.0)),
-)
+NEW_ALERT_BEARINGS_DEG = (0.0, 90.0, 180.0, 270.0)
+NEW_ALERT_RANGES_M = (30.0, 40.0, 50.0)
+NEW_ALERTS = tuple(
+    (f"N{index}", (bearing, radius, 50.0))
+    for index, (bearing, radius) in enumerate(
+        itertools.product(NEW_ALERT_BEARINGS_DEG, NEW_ALERT_RANGES_M), start=1))
 RECOVERY_TIMES_S = (10.0, 20.0, 30.0)
 OUTAGE_DURATIONS_S = (5.0, 17.5, 30.0)
 SOURCE_FILES = ("disturbance.py", "disturbance_reporting.py", "config.py", "geometry.py", "routing.py", "timeline.py",
@@ -852,7 +852,7 @@ def run_question4(output_dir=OUT, scenario_id=None, *, plan_dir=ROOT / "results"
             "same_time_rule": "advance to t=5; lock observations with start < t=5; apply disturbances; reconsider starts at t=5",
             "outage_main_interpretation": "recovery time t_rec in (5,30], duration t_rec-5",
             "outage_sensitivity_interpretation": "duration d in [5,30] s, recovery t_rec=5+d; reported separately",
-            "new_alert_sampling": "four fixed cardinal bearings with ranges spanning 30 to 50 m, H=50 m",
+            "new_alert_sampling": "12 deterministic factorial representatives from four cardinal bearings and three ranges (30, 40, 50 m), H=50 m; no probability weights are assigned to these alert settings",
             "rescheduler_scope": "enumerate task orders; try up to two nearby sites per vehicle and retain up to two joint options per task at each search node",
             "triggered_reschedule": "At the decision time, repair when an alert is new or a failed vehicle has an unstarted assignment. Otherwise continue the frozen instructions.",
             "local_repair": "At handover enumerate unblocked queue prefixes. Also evaluate continuing a healthy car's previously completed setup at the same site for the same task. Record the comparison without setup reuse.",

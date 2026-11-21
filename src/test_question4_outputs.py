@@ -143,7 +143,7 @@ class PublishedTimelines(unittest.TestCase):
         self.assertEqual(Counter((r["scenario_id"], r["strategy"]) for r in scores),
                          Counter({key: 1 for key in policies}))
         self.assertEqual(set(grouped), policies)
-        self.assertEqual(len(policies), 1011)
+        self.assertEqual(len(policies), 2635)
         reference = json.loads((ROOT / "results/question2/original_plan.json").read_text(encoding="utf-8"))
         def signature(e):
             return e["vehicle_id"], e["task_id"], e["event"], float(e["time_s"])

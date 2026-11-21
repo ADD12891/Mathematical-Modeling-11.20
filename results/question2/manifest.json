@@ -1,5 +1,5 @@
 {
-  "source_revision": "ad275bbb84125a75aa1ff2dbf9964be6bbdded8a",
+  "source_revision": null,
   "source_sha256": {
     "config.py": "1a890140ee8d23e0d41b8273df67a55d1faecd5a35f193f4051bb45c530913f7",
     "geometry.py": "ad21a390d765e25f4137932f5a770b99777d0a6ec7da784877052c8fc9175562",
@@ -7,13 +7,14 @@
     "localization.py": "0543e4477e3ec4e66bcd14d56b97376e3168ce263d1e22b296f9189d3c97c3a4",
     "timeline.py": "2a2db639281bb5813f19445a979855720f29f21b787b46bb9d1c9a6c693a63be",
     "assignment.py": "092e2716fc1ca2267b42c1cd224104904434bfe9e9acfe869acbf9f38aed7cb9",
-    "question2.py": "cee2004680a88dcf95ae1c11c0c914f6f81641759a373da1f4a24379a77234f7"
+    "question2.py": "52fd29062a5e3c65ad8921e574188ddf3f71c35bdb9fe8e0126e0b342a02d681"
   },
   "output_sha256": {
     "candidates.json": "ee64f718176f882320a2d017e5c6c942bce55f36cac901dbaa4d089100c02478",
     "main_nearest_events.csv": "d56f9287f4f486efbbb7c92ad4135b5508aaac8e0c2a5378048ce35cb0ff8c73",
     "main_optimized_events.csv": "aa80786d921bb5500e547e0191e9f4738ac9f90577a046be1208a3aed57470ff",
     "original_plan.json": "0d40c5cbeb118ee228e5dde072b1e8733adc16897e6a1e4449e4f8c56a8bc1fe",
+    "continuous_refinement.json": "2680e4b248af4850df3e6f71856f3391cec29ad9a27f675e8f33014b8404a9b4",
     "limited_nearest_events.csv": "d56f9287f4f486efbbb7c92ad4135b5508aaac8e0c2a5378048ce35cb0ff8c73",
     "limited_optimized_events.csv": "aa80786d921bb5500e547e0191e9f4738ac9f90577a046be1208a3aed57470ff",
     "comparison.csv": "535224217a4fc7b8a6358ae3ed2684553c1cd3f3d260609faa8d7d96458f3196",

@@ -23,7 +23,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -41,7 +41,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -59,8 +59,152 @@
     "new_alert": [
       "N4",
       [
+        90.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5",
+    "disturbance_set": "new_alert",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6",
+    "disturbance_set": "new_alert",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7",
+    "disturbance_set": "new_alert",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8",
+    "disturbance_set": "new_alert",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9",
+    "disturbance_set": "new_alert",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10",
+    "disturbance_set": "new_alert",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11",
+    "disturbance_set": "new_alert",
+    "new_alert": [
+      "N11",
+      [
         270.0,
         40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12",
+    "disturbance_set": "new_alert",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
         50.0
       ]
     ],
@@ -255,7 +399,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -273,7 +417,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -291,7 +435,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -309,7 +453,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -327,7 +471,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -345,7 +489,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -363,7 +507,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -381,7 +525,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -399,7 +543,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -417,7 +561,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -435,8 +579,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -453,8 +597,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -471,8 +615,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -489,8 +633,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -507,8 +651,728 @@
     "new_alert": [
       "N4",
       [
+        90.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V1",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V2",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V3",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V4",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V5",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V1",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V2",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V3",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V4",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V5",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V1",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V2",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V3",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V4",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V5",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V1",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V2",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V3",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V4",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V5",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V1",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V2",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V3",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V4",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V5",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V1",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V2",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V3",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V4",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V5",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V1",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N11",
+      [
         270.0,
         40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V2",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V3",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V4",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V5",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V1",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V2",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V3",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V4",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": null,
+    "outage_duration_s": null,
+    "outage_interpretation": "not_applicable",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V5",
+    "disturbance_set": "new_alert+failure",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
         50.0
       ]
     ],
@@ -579,7 +1443,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -597,7 +1461,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -615,7 +1479,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -633,7 +1497,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -651,7 +1515,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -669,7 +1533,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -687,8 +1551,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -705,8 +1569,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -723,8 +1587,440 @@
     "new_alert": [
       "N4",
       [
+        90.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-outage-rec-10",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-outage-rec-20",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-outage-rec-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-outage-rec-10",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-outage-rec-20",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-outage-rec-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-outage-rec-10",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-outage-rec-20",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-outage-rec-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-outage-rec-10",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-outage-rec-20",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-outage-rec-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-outage-rec-10",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-outage-rec-20",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-outage-rec-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-outage-rec-10",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-outage-rec-20",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-outage-rec-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-outage-rec-10",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N11",
+      [
         270.0,
         40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-outage-rec-20",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-outage-rec-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-outage-rec-10",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-outage-rec-20",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-outage-rec-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
         50.0
       ]
     ],
@@ -1176,7 +2472,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1194,7 +2490,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1212,7 +2508,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1230,7 +2526,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1248,7 +2544,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1266,7 +2562,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1284,7 +2580,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1302,7 +2598,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1320,7 +2616,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1338,7 +2634,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1356,7 +2652,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1374,7 +2670,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1392,7 +2688,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1410,7 +2706,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1428,7 +2724,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -1446,7 +2742,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1464,7 +2760,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1482,7 +2778,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1500,7 +2796,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1518,7 +2814,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1536,7 +2832,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1554,7 +2850,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1572,7 +2868,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1590,7 +2886,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1608,7 +2904,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1626,7 +2922,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1644,7 +2940,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1662,7 +2958,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1680,7 +2976,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1698,7 +2994,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -1716,8 +3012,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1734,8 +3030,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1752,8 +3048,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1770,8 +3066,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1788,8 +3084,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1806,8 +3102,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1824,8 +3120,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1842,8 +3138,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1860,8 +3156,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1878,8 +3174,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1896,8 +3192,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1914,8 +3210,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1932,8 +3228,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1950,8 +3246,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -1968,8 +3264,2168 @@
     "new_alert": [
       "N4",
       [
+        90.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V1-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V1-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V1-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V2-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V2-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V2-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V3-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V3-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V3-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V4-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V4-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V4-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V5-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V5-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V5-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V1-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V1-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V1-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V2-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V2-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V2-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V3-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V3-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V3-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V4-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V4-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V4-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V5-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V5-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V5-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V1-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V1-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V1-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V2-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V2-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V2-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V3-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V3-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V3-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V4-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V4-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V4-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V5-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V5-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V5-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V1-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V1-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V1-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V2-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V2-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V2-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V3-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V3-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V3-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V4-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V4-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V4-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V5-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V5-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V5-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V1-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V1-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V1-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V2-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V2-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V2-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V3-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V3-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V3-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V4-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V4-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V4-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V5-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V5-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V5-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V1-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V1-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V1-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V2-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V2-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V2-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V3-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V3-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V3-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V4-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V4-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V4-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V5-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V5-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V5-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V1-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
         270.0,
         40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V1-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V1-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V2-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V2-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V2-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V3-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V3-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V3-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V4-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V4-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V4-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V5-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V5-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V5-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V1-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V1-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V1-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V2-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V2-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V2-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V3-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V3-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V3-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V4-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V4-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V4-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 30.0,
+    "outage_duration_s": 25.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V5-outage-rec-10",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V5-outage-rec-20",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 20.0,
+    "outage_duration_s": 15.0,
+    "outage_interpretation": "recovery_time",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V5-outage-rec-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
         50.0
       ]
     ],
@@ -2073,7 +5529,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2091,7 +5547,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2109,7 +5565,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2127,7 +5583,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -2145,7 +5601,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -2163,7 +5619,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -2181,8 +5637,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -2199,8 +5655,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -2217,8 +5673,440 @@
     "new_alert": [
       "N4",
       [
+        90.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-outage-duration-5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-outage-duration-17.5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-outage-duration-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-outage-duration-5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-outage-duration-17.5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-outage-duration-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-outage-duration-5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-outage-duration-17.5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-outage-duration-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-outage-duration-5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-outage-duration-17.5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-outage-duration-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-outage-duration-5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-outage-duration-17.5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-outage-duration-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-outage-duration-5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-outage-duration-17.5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-outage-duration-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-outage-duration-5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N11",
+      [
         270.0,
         40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-outage-duration-17.5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-outage-duration-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-outage-duration-5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-outage-duration-17.5",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": null,
+    "failure_time_s": null,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-outage-duration-30",
+    "disturbance_set": "new_alert+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
         50.0
       ]
     ],
@@ -2670,7 +6558,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2688,7 +6576,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2706,7 +6594,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2724,7 +6612,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2742,7 +6630,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2760,7 +6648,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2778,7 +6666,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2796,7 +6684,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2814,7 +6702,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2832,7 +6720,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2850,7 +6738,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2868,7 +6756,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2886,7 +6774,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2904,7 +6792,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2922,7 +6810,7 @@
     "new_alert": [
       "N2",
       [
-        90.0,
+        0.0,
         40.0,
         50.0
       ]
@@ -2940,7 +6828,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -2958,7 +6846,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -2976,7 +6864,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -2994,7 +6882,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3012,7 +6900,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3030,7 +6918,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3048,7 +6936,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3066,7 +6954,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3084,7 +6972,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3102,7 +6990,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3120,7 +7008,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3138,7 +7026,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3156,7 +7044,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3174,7 +7062,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3192,7 +7080,7 @@
     "new_alert": [
       "N3",
       [
-        180.0,
+        0.0,
         50.0,
         50.0
       ]
@@ -3210,8 +7098,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3228,8 +7116,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3246,8 +7134,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3264,8 +7152,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3282,8 +7170,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3300,8 +7188,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3318,8 +7206,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3336,8 +7224,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3354,8 +7242,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3372,8 +7260,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3390,8 +7278,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3408,8 +7296,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3426,8 +7314,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3444,8 +7332,8 @@
     "new_alert": [
       "N4",
       [
-        270.0,
-        40.0,
+        90.0,
+        30.0,
         50.0
       ]
     ],
@@ -3462,8 +7350,2168 @@
     "new_alert": [
       "N4",
       [
+        90.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V1-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V1-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V1-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V2-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V2-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V2-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V3-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V3-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V3-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V4-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V4-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V4-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V5-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V5-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N5-failure-V5-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N5",
+      [
+        90.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V1-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V1-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V1-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V2-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V2-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V2-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V3-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V3-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V3-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V4-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V4-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V4-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V5-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V5-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N6-failure-V5-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N6",
+      [
+        90.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V1-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V1-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V1-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V2-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V2-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V2-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V3-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V3-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V3-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V4-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V4-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V4-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V5-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V5-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N7-failure-V5-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N7",
+      [
+        180.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V1-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V1-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V1-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V2-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V2-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V2-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V3-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V3-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V3-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V4-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V4-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V4-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V5-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V5-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N8-failure-V5-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N8",
+      [
+        180.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V1-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V1-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V1-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V2-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V2-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V2-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V3-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V3-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V3-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V4-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V4-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V4-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V5-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V5-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N9-failure-V5-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N9",
+      [
+        180.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V1-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V1-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V1-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V2-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V2-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V2-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V3-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V3-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V3-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V4-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V4-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V4-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V5-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V5-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N10-failure-V5-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N10",
+      [
+        270.0,
+        30.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V1-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
         270.0,
         40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V1-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V1-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V2-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V2-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V2-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V3-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V3-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V3-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V4-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V4-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V4-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V5-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V5-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N11-failure-V5-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N11",
+      [
+        270.0,
+        40.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V1-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V1-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V1-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V1",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V2-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V2-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V2-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V2",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V3-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V3-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V3-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V3",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V4-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V4-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V4-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V4",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 35.0,
+    "outage_duration_s": 30.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V5-outage-duration-5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 10.0,
+    "outage_duration_s": 5.0,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V5-outage-duration-17.5",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
+        50.0
+      ]
+    ],
+    "failed_vehicle": "V5",
+    "failure_time_s": 5.0,
+    "recovery_time_s": 22.5,
+    "outage_duration_s": 17.5,
+    "outage_interpretation": "duration",
+    "denominator": 4
+  },
+  {
+    "scenario_id": "new-N12-failure-V5-outage-duration-30",
+    "disturbance_set": "new_alert+failure+communication_outage",
+    "new_alert": [
+      "N12",
+      [
+        270.0,
+        50.0,
         50.0
       ]
     ],

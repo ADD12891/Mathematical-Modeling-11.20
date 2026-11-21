@@ -6,6 +6,7 @@ import csv
 import json
 import tempfile
 import unittest
+from itertools import product
 from pathlib import Path
 from unittest.mock import patch
 
@@ -13,6 +14,7 @@ from .assignment import candidate_stations
 from .disturbance import (
     Scenario, _base_policy, _locked_tasks, _reschedule, _score, _skip_failed_task,
     _can_keep_pointing, _local_repair, _preservable_prefixes, _trigger_tasks, _triggered_reschedule,
+    NEW_ALERTS, NEW_ALERT_BEARINGS_DEG, NEW_ALERT_RANGES_M,
     _waiting_seats, build_scenarios, run_question4,
 )
 from .routing import Router
@@ -101,7 +103,12 @@ class DisturbanceTests(unittest.TestCase):
                     ("new_alert", scenario.has_new_alert), ("failure", bool(scenario.failed_vehicle)),
                     ("communication_outage", scenario.has_outage)) if present))
                 for scenario in scenarios}
-        self.assertEqual(len(scenarios), 209)
+        self.assertEqual(len(scenarios), 545)
+        self.assertEqual(len(NEW_ALERTS), 12)
+        self.assertEqual(
+            {(alert[1][0], alert[1][1]) for alert in NEW_ALERTS},
+            set(product(NEW_ALERT_BEARINGS_DEG, NEW_ALERT_RANGES_M)))
+        self.assertTrue(all(alert[1][2] == 50.0 for alert in NEW_ALERTS))
         self.assertIn("new_alert", sets)
         self.assertIn("failure", sets)
         self.assertIn("communication_outage", sets)
@@ -229,8 +236,8 @@ class DisturbanceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             output_dir = Path(directory)
             manifest = run_question4(output_dir)
-            self.assertEqual(manifest["scenario_count"], 209)
-            self.assertEqual(manifest["strategy_rows"], 1011)
+            self.assertEqual(manifest["scenario_count"], 545)
+            self.assertEqual(manifest["strategy_rows"], 2635)
             for name, expected_hash in manifest["output_sha256"].items():
                 actual_hash = hashlib.sha256((output_dir / name).read_bytes()).hexdigest()
                 self.assertEqual(actual_hash, expected_hash)

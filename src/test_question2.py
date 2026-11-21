@@ -10,6 +10,7 @@ from pathlib import Path
 from . import config
 from .geometry import is_station_observable
 from .question2 import run_assignment, text_hash
+from .timeline import evaluate_schedule
 from .routing import Router, segment_clearance
 
 
@@ -95,6 +96,21 @@ class Question2OutputTests(unittest.TestCase):
         manifest = json.loads((self.out / "manifest.json").read_text(encoding="utf8"))
         for name, digest in manifest["output_sha256"].items():
             self.assertEqual(text_hash(self.out / name), digest)
+
+    def test_continuous_local_audit_is_feasible_and_preserves_queues(self):
+        plan = json.loads((self.out / "original_plan.json").read_text(encoding="utf8"))
+        audit = json.loads((self.out / "continuous_refinement.json").read_text(encoding="utf8"))
+        refined = audit["plan"]
+        self.assertEqual(refined["orders"], plan["orders"])
+        self.assertTrue(refined["feasible"], refined.get("reason"))
+        self.assertLessEqual(refined["latest_start_s"], plan["latest_start_s"])
+        independently_checked = evaluate_schedule(
+            refined["orders"], refined["stations"], Router())
+        self.assertTrue(independently_checked["feasible"], independently_checked.get("reason"))
+        self.assertAlmostEqual(independently_checked["latest_start_s"],
+                               refined["latest_start_s"], places=10)
+        self.assertEqual(audit["optimality_note"],
+                         "This is a local grid audit, not a continuous global optimality proof.")
 
     def test_finite_pool_deadline_with_optimistic_travel(self):
         # 独立的标量枚举，把所有路线放宽为直线。在放宽模型亦不可行的截止时刻，

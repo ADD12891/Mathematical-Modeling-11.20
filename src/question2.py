@@ -11,7 +11,7 @@ from .assignment import AssignmentSearch, GRID_SPACING_M, candidate_stations
 from .geometry import SEGMENT_T_TOL
 from .localization import SINE_ROUNDOFF_TOL, solve_localization
 from .routing import Router
-from .timeline import LEG_TOL_M
+from .timeline import LEG_TOL_M, evaluate_schedule
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_FILES = ("config.py", "geometry.py", "routing.py", "localization.py",
@@ -76,6 +76,65 @@ def vehicle_rows(scenario, strategy, plan):
     return rows
 
 
+def refine_fixed_schedule(plan, router, radius_m=0.10, spacing_m=0.01):
+    """Audit nearby continuous stations while preserving vehicle queues."""
+    if radius_m <= 0 or spacing_m <= 0:
+        raise ValueError("连续复核半径和步长必须为正数")
+    intervals = round(radius_m / spacing_m)
+    if abs(intervals * spacing_m - radius_m) > 1e-12:
+        raise ValueError("复核半径必须是网格步长的整数倍")
+    orders = {car: list(tasks) for car, tasks in plan["orders"].items()}
+    stations = {task: dict(crew) for task, crew in plan["stations"].items()}
+    groups = []
+    for car, tasks in orders.items():
+        locations = {}
+        for task in tasks:
+            point = tuple(map(float, stations[task][car]))
+            locations.setdefault(point, []).append(task)
+        groups.extend((car, group_tasks) for group_tasks in locations.values())
+
+    best = evaluate_schedule(orders, stations, router)
+    if not best["feasible"]:
+        raise ValueError(f"冻结方案无法通过连续站位复核：{best['reason']}")
+    offsets = [index * spacing_m for index in range(-intervals, intervals + 1)]
+    for car, tasks in groups:
+        center = tuple(map(float, stations[tasks[0]][car]))
+        selected_point = center
+        selected_key = (best["latest_start_s"], best["total_distance_m"])
+        for dx in offsets:
+            for dy in offsets:
+                if dx == 0.0 and dy == 0.0:
+                    continue
+                point = center[0] + float(dx), center[1] + float(dy)
+                for task in tasks:
+                    stations[task][car] = point
+                candidate = evaluate_schedule(orders, stations, router)
+                for task in tasks:
+                    stations[task][car] = center
+                if not candidate["feasible"]:
+                    continue
+                key = (candidate["latest_start_s"], candidate["total_distance_m"])
+                if key < selected_key:
+                    selected_point, selected_key = point, key
+        if selected_point != center:
+            for task in tasks:
+                stations[task][car] = selected_point
+            best = evaluate_schedule(orders, stations, router)
+
+    return {
+        "method": "fixed_assignment_local_grid_audit",
+        "scope": "Vehicle assignments and task queues remain fixed. A coordinate-descent audit tests each distinct station on the stated square grid within the window around its current point.",
+        "radius_m": radius_m,
+        "spacing_m": spacing_m,
+        "candidate_points_per_station": len(offsets) ** 2,
+        "seed_latest_start_s": plan["latest_start_s"],
+        "refined_latest_start_s": best["latest_start_s"],
+        "latest_start_improvement_s": plan["latest_start_s"] - best["latest_start_s"],
+        "plan": best,
+        "optimality_note": "This is a local grid audit, not a continuous global optimality proof.",
+    }
+
+
 def run_assignment(router, out):
     sites = candidate_stations()
     search = AssignmentSearch(router, sites)
@@ -103,6 +162,9 @@ def run_assignment(router, out):
         if scenario == "main":
             write_json(out / "original_plan.json", plans["optimized"])
             outputs.append("original_plan.json")
+            refinement = refine_fixed_schedule(plans["optimized"], router)
+            write_json(out / "continuous_refinement.json", refinement)
+            outputs.append("continuous_refinement.json")
 
     write_csv(out / "comparison.csv", summary)
     write_csv(out / "vehicle_tasks.csv", vehicles)
