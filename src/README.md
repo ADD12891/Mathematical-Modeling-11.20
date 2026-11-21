@@ -4,6 +4,8 @@
 
 第三问请使用[角差概率、80 m 参数条件与手动调试说明](QUESTION3.md)。
 
+第四问请使用[扰动实验与实时重调度说明](QUESTION4.md)。
+
 从仓库根目录运行以下命令。本次验证环境为 Python 3.12.10、NumPy 2.5.4 和 Matplotlib 3.11.2。
 
 ```powershell
