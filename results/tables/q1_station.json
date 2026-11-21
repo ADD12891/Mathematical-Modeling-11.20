@@ -1,0 +1,27 @@
+{
+  "station_xy_m": [
+    92.22307632184156,
+    70.0
+  ],
+  "horizontal_distance_m": 7.582060170464004,
+  "elevation_deg": 79.99999999999999,
+  "center_inside_field_limits": true,
+  "building_clearance_m": 11.72307632184156,
+  "elevation_allowed": true,
+  "line_of_sight_clear": true,
+  "observable": true,
+  "target_xyz_m": [
+    84.64101615137756,
+    70.0,
+    45.0
+  ],
+  "quality_per_m": 0.13189027487483027,
+  "lower_bound_m": 7.582060170463998,
+  "best_refined_xy_m": [
+    91.93718767676418,
+    67.93759424110405
+  ],
+  "best_refined_distance_m": 7.582060171364362,
+  "optimality": "global_lower_bound_attained",
+  "tie_break": "Prefer the feasible due-east station at the analytic lower bound."
+}
