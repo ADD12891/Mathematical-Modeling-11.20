@@ -1,7 +1,7 @@
 {
-  "source_revision": "6d24dd31dd8012370c9914e42ee06099ca3714ba",
+  "source_revision": "a7180a73368aa992dd7d0059fe3d16a0113da113",
   "source_sha256": {
-    "disturbance.py": "40adbb5f18a996084b2682be97c2d19247049cc29ada09f007c3c56dc7771f27",
+    "disturbance.py": "9255afd06e1fd88781133ac5b6fee1c0dfe64d567270dd2908c62be76285dae9",
     "disturbance_reporting.py": "c3f338f09a6dc710f3dce9430d48a42dcf5621fe7a150c0f3bdf98c41a6d8baf",
     "config.py": "1a890140ee8d23e0d41b8273df67a55d1faecd5a35f193f4051bb45c530913f7",
     "geometry.py": "ad21a390d765e25f4137932f5a770b99777d0a6ec7da784877052c8fc9175562",
@@ -13,16 +13,16 @@
   },
   "source_plan_sha256": "0d40c5cbeb118ee228e5dde072b1e8733adc16897e6a1e4449e4f8c56a8bc1fe",
   "output_sha256": {
-    "scenario_scores.csv": "6f798d5db71903fc503952f11123d5171a19d3a68d6655e661d9322e9fea5419",
-    "event_log.csv": "63d8ad0288fea19a55ed67a188c21a80651a04a2b510675ec5eeba150a982b0a",
-    "aggregate_scores.csv": "18846fb10da0a04d9188ef53d8df42953bc47a1746837aaf158399922fd32aeb",
+    "scenario_scores.csv": "a6c19d4f428a266d28843b3298ab16c4aec713fa9b40639102a9604cf974f7bb",
+    "event_log.csv": "10238647806f85514474bfbc512c95d0a14d744b3a2e591010d586ea9ea8437f",
+    "aggregate_scores.csv": "239601257a3e45224494dbbf8fdc0fc99063f0f054da5e69deeccc4e483bc2a6",
     "scenarios.json": "6e54536a96a1dac15241f54be75fe0e7274f6c6d3298448f61abe095a6f3e3cc",
     "snapshots.csv": "d70ebf9b02c56c7abf196889c46672c3561f27896c9a8ba9135d2878554b9bce",
-    "fault_groups.csv": "2acf02ec22cffcb3126cb448e75182672c282b91616274470ecf5d846156e72d"
+    "fault_groups.csv": "bce33d21a479f6750835b0fc5c2211ee278817903ad87ac342293db6094888ae"
   },
   "hash_convention": "Sources and Q2 plan: UTF-8 text normalized to LF. Q4 outputs: exact file bytes.",
   "scenario_count": 209,
-  "strategy_rows": 802,
+  "strategy_rows": 1011,
   "policy_notes": {
     "initial_plan_fully_dispatched_at_t0": true,
     "same_time_rule": "advance to t=5; lock observations with start < t=5; apply disturbances; reconsider starts at t=5",
@@ -31,17 +31,34 @@
     "new_alert_sampling": "four fixed cardinal bearings with ranges spanning 30 to 50 m, H=50 m",
     "rescheduler_scope": "enumerate task orders; try up to two nearby sites per vehicle and retain up to two joint options per task at each search node",
     "triggered_reschedule": "At the decision time, repair when an alert is new or a failed vehicle has an unstarted assignment. Otherwise continue the frozen instructions.",
+    "local_repair": "At handover enumerate unblocked prefixes common to both assigned vehicles, including the empty prefix. Rank nominal continuations by starts, latest start, cancellations, then preserved jobs.",
     "score": "maximize successful starts within [0,60], then minimize t_last; missing task sets t_last=60"
   },
   "strategies": [
     "retain_original",
     "realtime_reschedule",
     "triggered_reschedule",
+    "local_repair",
     "skip_failed_task"
   ],
   "summary": [
     {
       "disturbance_set": "communication_outage",
+      "strategy": "local_repair",
+      "outage_interpretation": "duration",
+      "scenario_count": 3,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 10.387101085490139,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "outage-duration-5",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 10.387101085490139,
+      "worst_scenario_id": "outage-duration-30",
+      "mean_successful_alerts": 3.0
+    },
+    {
+      "disturbance_set": "communication_outage",
       "strategy": "realtime_reschedule",
       "outage_interpretation": "duration",
       "scenario_count": 3,
@@ -87,6 +104,21 @@
     },
     {
       "disturbance_set": "communication_outage",
+      "strategy": "local_repair",
+      "outage_interpretation": "recovery_time",
+      "scenario_count": 3,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 10.387101085490139,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "outage-rec-10",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 10.387101085490139,
+      "worst_scenario_id": "outage-rec-30",
+      "mean_successful_alerts": 3.0
+    },
+    {
+      "disturbance_set": "communication_outage",
       "strategy": "realtime_reschedule",
       "outage_interpretation": "recovery_time",
       "scenario_count": 3,
@@ -128,6 +160,21 @@
       "worst_completion_rate": 1.0,
       "worst_t_last_s": 10.387101085490139,
       "worst_scenario_id": "outage-rec-30",
+      "mean_successful_alerts": 3.0
+    },
+    {
+      "disturbance_set": "failure",
+      "strategy": "local_repair",
+      "outage_interpretation": "",
+      "scenario_count": 5,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 13.339957382463439,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 15.777589353984961,
+      "worst_scenario_id": "failure-V3",
       "mean_successful_alerts": 3.0
     },
     {
@@ -192,6 +239,21 @@
     },
     {
       "disturbance_set": "failure+communication_outage",
+      "strategy": "local_repair",
+      "outage_interpretation": "duration",
+      "scenario_count": 15,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 24.012725056011657,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5-outage-duration-5",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 40.075142415806276,
+      "worst_scenario_id": "failure-V4-outage-duration-30",
+      "mean_successful_alerts": 3.0
+    },
+    {
+      "disturbance_set": "failure+communication_outage",
       "strategy": "realtime_reschedule",
       "outage_interpretation": "duration",
       "scenario_count": 15,
@@ -248,6 +310,21 @@
       "worst_completion_rate": 1.0,
       "worst_t_last_s": 40.075142415806276,
       "worst_scenario_id": "failure-V4-outage-duration-30",
+      "mean_successful_alerts": 3.0
+    },
+    {
+      "disturbance_set": "failure+communication_outage",
+      "strategy": "local_repair",
+      "outage_interpretation": "recovery_time",
+      "scenario_count": 15,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 22.012725056011657,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5-outage-rec-10",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 35.075142415806276,
+      "worst_scenario_id": "failure-V4-outage-rec-30",
       "mean_successful_alerts": 3.0
     },
     {
@@ -312,6 +389,21 @@
     },
     {
       "disturbance_set": "new_alert",
+      "strategy": "local_repair",
+      "outage_interpretation": "",
+      "scenario_count": 4,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 16.737812470817566,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 16.737812470817566,
+      "best_scenario_id": "new-N1",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 16.737812470817566,
+      "worst_scenario_id": "new-N4",
+      "mean_successful_alerts": 4.0
+    },
+    {
+      "disturbance_set": "new_alert",
       "strategy": "realtime_reschedule",
       "outage_interpretation": "",
       "scenario_count": 4,
@@ -353,6 +445,21 @@
       "worst_completion_rate": 1.0,
       "worst_t_last_s": 20.17337931694935,
       "worst_scenario_id": "new-N3",
+      "mean_successful_alerts": 4.0
+    },
+    {
+      "disturbance_set": "new_alert+communication_outage",
+      "strategy": "local_repair",
+      "outage_interpretation": "duration",
+      "scenario_count": 12,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 27.164839123871655,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 16.869728094011567,
+      "best_scenario_id": "new-N4-outage-duration-5",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 38.77867964154354,
+      "worst_scenario_id": "new-N3-outage-duration-30",
       "mean_successful_alerts": 4.0
     },
     {
@@ -402,6 +509,21 @@
     },
     {
       "disturbance_set": "new_alert+communication_outage",
+      "strategy": "local_repair",
+      "outage_interpretation": "recovery_time",
+      "scenario_count": 12,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 24.664839123871655,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 16.869728094011567,
+      "best_scenario_id": "new-N4-outage-rec-10",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 33.77867964154354,
+      "worst_scenario_id": "new-N3-outage-rec-30",
+      "mean_successful_alerts": 4.0
+    },
+    {
+      "disturbance_set": "new_alert+communication_outage",
       "strategy": "realtime_reschedule",
       "outage_interpretation": "recovery_time",
       "scenario_count": 12,
@@ -447,6 +569,21 @@
     },
     {
       "disturbance_set": "new_alert+failure",
+      "strategy": "local_repair",
+      "outage_interpretation": "",
+      "scenario_count": 20,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 21.147395821906073,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 19.15532577435967,
+      "best_scenario_id": "new-N2-failure-V2",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 24.038610975217384,
+      "worst_scenario_id": "new-N3-failure-V1",
+      "mean_successful_alerts": 4.0
+    },
+    {
+      "disturbance_set": "new_alert+failure",
       "strategy": "realtime_reschedule",
       "outage_interpretation": "",
       "scenario_count": 20,
@@ -507,6 +644,21 @@
     },
     {
       "disturbance_set": "new_alert+failure+communication_outage",
+      "strategy": "local_repair",
+      "outage_interpretation": "duration",
+      "scenario_count": 60,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 31.534431420807625,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 19.237222686761324,
+      "best_scenario_id": "new-N2-failure-V5-outage-duration-5",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 46.91571946795481,
+      "worst_scenario_id": "new-N3-failure-V1-outage-duration-30",
+      "mean_successful_alerts": 4.0
+    },
+    {
+      "disturbance_set": "new_alert+failure+communication_outage",
       "strategy": "realtime_reschedule",
       "outage_interpretation": "duration",
       "scenario_count": 60,
@@ -563,6 +715,21 @@
       "worst_completion_rate": 1.0,
       "worst_t_last_s": 46.91571946795481,
       "worst_scenario_id": "new-N3-failure-V1-outage-duration-30",
+      "mean_successful_alerts": 4.0
+    },
+    {
+      "disturbance_set": "new_alert+failure+communication_outage",
+      "strategy": "local_repair",
+      "outage_interpretation": "recovery_time",
+      "scenario_count": 60,
+      "mean_completion_rate": 1.0,
+      "mean_t_last_s": 29.0732544354568,
+      "best_completion_rate": 1.0,
+      "best_t_last_s": 19.237222686761324,
+      "best_scenario_id": "new-N2-failure-V5-outage-rec-10",
+      "worst_completion_rate": 1.0,
+      "worst_t_last_s": 41.91571946795481,
+      "worst_scenario_id": "new-N3-failure-V1-outage-rec-30",
       "mean_successful_alerts": 4.0
     },
     {
