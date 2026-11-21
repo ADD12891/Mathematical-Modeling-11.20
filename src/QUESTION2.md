@@ -45,4 +45,4 @@ python -m unittest discover -v -s src -t .
 
 逐事件原始数据按 `main` / `limited` 和 `nearest` / `optimized` 命名。每套无扰动方案中，事件时刻同时是计划时刻和模拟执行时刻。[主实验基线日志](../results/question2/main_nearest_events.csv) · [主实验优化日志](../results/question2/main_optimized_events.csv)
 
-用于交接的[主实验优化计划](../results/question2/original_plan.json)保存车辆顺序、站点、路点和完整事件。[校验清单](../results/question2/manifest.json)记录代码版本、计算参数、源文件及排程输出的 SHA-256。搜索全程确定性，无随机种子。当前等待第二问手动验收。
+用于交接的[主实验优化计划](../results/question2/original_plan.json)保存车辆顺序、站点、路点和完整事件。[校验清单](../results/question2/manifest.json)记录代码版本、计算参数、源文件及排程输出的 SHA-256。搜索全程确定性，无随机种子。使用者已允许进入第三问。

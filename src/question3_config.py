@@ -1,0 +1,10 @@
+"""第三问的独立误差情景。距离和坐标标准差用 m，角度与角度标准差用度。"""
+
+Q3_RANGE_M = 40.0
+Q3_SIGMA_A_M = 0.3
+Q3_SIGMA_B = 0.02
+Q3_ZERO_STD_DEG = 0.8
+Q3_CONTROL_STD_DEG = 0.6
+Q3_BAND_DEG = 5.0
+Q3_REQUIRED_PROB = 0.95
+QUADRATURE_ORDERS = (24, 48, 80)

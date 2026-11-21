@@ -1,0 +1,62 @@
+{
+  "inputs": {
+    "range_m": 40.0,
+    "nominal_a_m": 0.3,
+    "nominal_b": 0.02,
+    "zero_offset_std_deg": 0.8,
+    "control_std_deg": 0.6,
+    "angle_band_deg": 5.0,
+    "required_probability": 0.95,
+    "quadrature_orders": [
+      24,
+      48,
+      80
+    ]
+  },
+  "limits": {
+    "command": {
+      "critical_distance_m": 73.93606559631735,
+      "max_passing_cm_grid_m": 73.93,
+      "probability_at_max_cm_grid": 0.9500156240736841,
+      "next_cm_grid_m": 73.94,
+      "probability_at_next_cm_grid": 0.9499898645118439,
+      "first_order_critical_distance_m": 74.04904711317475,
+      "nonlinear_probability_at_first_order_limit": 0.949708618199014,
+      "parameter_domain_at_80m": {
+        "condition": "a >= 0, b >= 0, a + 80*b <= sigma_star, where P(sigma_star) = 0.95",
+        "critical_sigma_m": 1.778721311926347,
+        "passing_sigma_m": 1.778721311922709,
+        "failing_sigma_m": 1.778721311929985,
+        "passing_b_if_a_is_zero": 0.022234016399033864,
+        "passing_b_if_a_is_nominal": 0.01848401639903386
+      }
+    },
+    "actual": {
+      "critical_distance_m": 66.83725842809508,
+      "max_passing_cm_grid_m": 66.83,
+      "probability_at_max_cm_grid": 0.9500172064053767,
+      "next_cm_grid_m": 66.84,
+      "probability_at_next_cm_grid": 0.9499935003098872,
+      "first_order_critical_distance_m": 66.92229923908131,
+      "nonlinear_probability_at_first_order_limit": 0.9497982126071862,
+      "parameter_domain_at_80m": {
+        "condition": "a >= 0, b >= 0, a + 80*b <= sigma_star, where P(sigma_star) = 0.95",
+        "critical_sigma_m": 1.6367451685619017,
+        "passing_sigma_m": 1.6367451685582637,
+        "failing_sigma_m": 1.6367451685655396,
+        "passing_b_if_a_is_zero": 0.020459314606978297,
+        "passing_b_if_a_is_nominal": 0.016709314606978297
+      }
+    }
+  },
+  "nominal_at_80m": {
+    "distance_m": 80.0,
+    "a_m": 0.3,
+    "b": 0.02,
+    "coordinate_sigma_m": 1.9000000000000001,
+    "command_probability": 0.9334732296185211,
+    "command_meets_requirement": false,
+    "actual_probability": 0.9150682309557121,
+    "actual_meets_requirement": false
+  }
+}
