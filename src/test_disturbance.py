@@ -12,7 +12,7 @@ from unittest.mock import patch
 from .assignment import candidate_stations
 from .disturbance import (
     Scenario, _base_policy, _locked_tasks, _reschedule, _score, _skip_failed_task,
-    build_scenarios, run_question4,
+    _trigger_tasks, _triggered_reschedule, build_scenarios, run_question4,
 )
 from .routing import Router
 from .timeline import evaluate_schedule, vehicle_state_at
@@ -21,6 +21,38 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class DisturbanceTests(unittest.TestCase):
+    def test_trigger_uses_the_failed_queue_and_strictly_prior_start_events(self):
+        scenario = Scenario("boundary", failed_vehicle="V2", recovery_time_s=14)
+        events = [{"vehicle_id": "V2", "event": "observation_start", "task_id": task, "time_s": at}
+                  for task, at in (("D", 4.99), ("A", 5.0), ("C", 5.01))]
+        plan = {"orders": {"V2": ["D", "A", "C"]}, "vehicle_events": events}
+        self.assertEqual(_trigger_tasks(plan, scenario), ["A", "C"])
+        plan["vehicle_events"] = events[:1]
+        self.assertEqual(_trigger_tasks(plan, scenario), ["A", "C"])
+        both = Scenario("combined", new_alert=("new", (0, 40, 50)), failed_vehicle="V2")
+        self.assertEqual(_trigger_tasks(plan, both), ["A", "C", "new"])
+
+    def test_trigger_at_additional_recovery_times(self):
+        router, pools = Router(), candidate_stations()
+        for t in (6.5, 9.25, 12.5, 27.5):
+            for car in self.plan["orders"]:
+                with self.subTest(recovery=t, failed=car):
+                    s = Scenario("extra", failed_vehicle=car, recovery_time_s=t)
+                    score, log = _triggered_reschedule(self.plan, s, router, pools)
+                    decisions = [e for e in log if e["event"] == "reschedule_decision"]
+                    self.assertEqual(len(decisions), 1)
+                    decision, = decisions
+                    self.assertEqual(decision["time_s"], t)
+                    self.assertFalse(any(e["event"] == "command_cancelled" and e["time_s"] < t for e in log))
+                    pending = {task for task in self.plan["orders"][car]
+                               if self.plan["start_times"][task] >= 5}
+                    self.assertEqual(set(decision["trigger_tasks"]), pending)
+                    self.assertEqual(decision["decision"], "repair" if pending else "continue")
+                    self.assertEqual(score["successful_alerts"], 3)
+                    if not pending:
+                        self.assertEqual(score["task_start_times_s"], self.plan["start_times"])
+                        self.assertFalse(any(e["event"] == "command_cancelled" for e in log))
+
     @classmethod
     def setUpClass(cls):
         cls.plan = json.loads((ROOT / "results" / "question2" / "original_plan.json")
@@ -162,7 +194,7 @@ class DisturbanceTests(unittest.TestCase):
             output_dir = Path(directory)
             manifest = run_question4(output_dir)
             self.assertEqual(manifest["scenario_count"], 209)
-            self.assertEqual(manifest["strategy_rows"], 593)
+            self.assertEqual(manifest["strategy_rows"], 802)
             for name, expected_hash in manifest["output_sha256"].items():
                 actual_hash = hashlib.sha256((output_dir / name).read_bytes()).hexdigest()
                 self.assertEqual(actual_hash, expected_hash)
@@ -173,7 +205,7 @@ class DisturbanceTests(unittest.TestCase):
             with (output_dir / "scenario_scores.csv").open(encoding="utf-8", newline="") as stream:
                 scores = list(csv.DictReader(stream))
 
-            for strategy in ("retain_original", "realtime_reschedule", "skip_failed_task"):
+            for strategy in ("retain_original", "realtime_reschedule", "skip_failed_task", "triggered_reschedule"):
                 failed_vehicle_events = [event for event in events
                                          if event["scenario_id"] == "failure-V3"
                                          and event["strategy"] == strategy

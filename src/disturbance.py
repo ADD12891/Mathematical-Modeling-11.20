@@ -394,7 +394,7 @@ def _mission_options(task, alert, state, available_cars, router, pools):
     return sorted(options, key=lambda option: (option[0], option[1], option[2:6]))[:2]
 
 
-def _reschedule(plan, scenario, strategy, router, pools):
+def _reschedule(plan, scenario, strategy, router, pools, *, trigger_tasks=None):
     decision_time = _decision_time(scenario)
     locked = _locked_tasks(plan, scenario)
     plan_events = _events_by_task(plan)
@@ -458,10 +458,40 @@ def _reschedule(plan, scenario, strategy, router, pools):
         events.append({"scenario_id": scenario.scenario_id, "strategy": strategy,
                        "vehicle_id": "ALL", "task_id": "", "event": "communication_restored",
                        "stage": "COMMUNICATION", "time_s": decision_time})
+    decision = {"scenario_id": scenario.scenario_id, "strategy": strategy,
+                "vehicle_id": "CENTER", "task_id": "", "event": "reschedule_decision",
+                "stage": "DECISION", "time_s": decision_time}
+    if trigger_tasks is not None:
+        decision.update(decision="repair", trigger_tasks=trigger_tasks)
+    events.append(decision)
+    return best[1], events
+
+
+def _trigger_tasks(plan, scenario):
+    """原计划在第一次扰动前照常执行。只使用故障前已经共同启动的记录。"""
+    triggers = set()
+    car = scenario.failed_vehicle
+    if car is not None:
+        started = {e["task_id"] for e in plan["vehicle_events"]
+                   if e["vehicle_id"] == car and e["event"] == "observation_start"
+                   and e["time_s"] < DISTURBANCE_TIME_S}
+        triggers.update(set(plan["orders"][car]) - started)
+    if scenario.has_new_alert:
+        triggers.add(scenario.new_alert[0])
+    return sorted(triggers)
+
+
+def _triggered_reschedule(plan, scenario, router, pools):
+    strategy = "triggered_reschedule"
+    triggers = _trigger_tasks(plan, scenario)
+    if triggers:
+        return _reschedule(plan, scenario, strategy, router, pools, trigger_tasks=triggers)
+    score, events = _base_policy(plan, scenario, strategy)
     events.append({"scenario_id": scenario.scenario_id, "strategy": strategy,
                    "vehicle_id": "CENTER", "task_id": "", "event": "reschedule_decision",
-                   "stage": "DECISION", "time_s": decision_time})
-    return best[1], events
+                   "stage": "DECISION", "time_s": _decision_time(scenario),
+                   "decision": "continue", "trigger_tasks": []})
+    return score, events
 
 
 def _skip_failed_task(plan, scenario, router):
@@ -549,13 +579,16 @@ def _skip_failed_task(plan, scenario, router):
 
 
 def _scenario_rows(scenario, plan, router, pools):
-    strategies = [("retain_original", "retain"), ("realtime_reschedule", "reschedule")]
+    strategies = [("retain_original", "retain"), ("realtime_reschedule", "reschedule"),
+                  ("triggered_reschedule", "triggered")]
     if scenario.failed_vehicle:
         strategies.append(("skip_failed_task", "reschedule"))
     rows, events = [], []
     for name, mode in strategies:
         if mode == "retain":
             score, log = _base_policy(plan, scenario, name)
+        elif mode == "triggered":
+            score, log = _triggered_reschedule(plan, scenario, router, pools)
         elif (name == "realtime_reschedule" and scenario.has_outage
               and not scenario.has_new_alert and not scenario.failed_vehicle):
             score, log = _base_policy(plan, scenario, name)
@@ -727,9 +760,10 @@ def run_question4(output_dir=OUT, scenario_id=None, *, plan_dir=ROOT / "results"
             "outage_sensitivity_interpretation": "duration d in [5,30] s, recovery t_rec=5+d; reported separately",
             "new_alert_sampling": "four fixed cardinal bearings with ranges spanning 30 to 50 m, H=50 m",
             "rescheduler_scope": "enumerate task orders; try up to two nearby sites per vehicle and retain up to two joint options per task at each search node",
+            "triggered_reschedule": "At the decision time, repair when an alert is new or a failed vehicle has an unstarted assignment. Otherwise continue the frozen instructions.",
             "score": "maximize successful starts within [0,60], then minimize t_last; missing task sets t_last=60",
         },
-        "strategies": ["retain_original", "realtime_reschedule", "skip_failed_task"],
+        "strategies": ["retain_original", "realtime_reschedule", "triggered_reschedule", "skip_failed_task"],
         "summary": aggregate,
     }
     _write_json_lf(output_dir / "manifest.json", manifest)

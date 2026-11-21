@@ -95,7 +95,7 @@ def accuracy_changes(observations):
     return rows
 
 
-def compare_scenarios(scores):
+def compare_scenarios(scores, *, baseline="retain_original", candidate="realtime_reschedule"):
     """在相同场景内先比较成功数。达到相同完成率时再比较启动时刻。"""
     pairs = defaultdict(dict)
     for row in scores:
@@ -105,7 +105,7 @@ def compare_scenarios(scores):
         policies[row["strategy"]] = row
     rows = []
     for scenario, policies in pairs.items():
-        old, new = policies["retain_original"], policies["realtime_reschedule"]
+        old, new = policies[baseline], policies[candidate]
         if old["alert_count"] != new["alert_count"]:
             raise ValueError(f"{scenario} 的计分分母不同")
         delta = int(new["successful_alerts"]) - int(old["successful_alerts"])
@@ -131,7 +131,19 @@ def write_study(root):
         raise ValueError("第四问使用的计划与本轮第二问输出不同")
     observations = observation_rows(root)
     changes = accuracy_changes(observations)
-    paired = compare_scenarios(read_rows(root / "question4/scenario_scores.csv"))
+    scores = read_rows(root / "question4/scenario_scores.csv")
+    paired = compare_scenarios(scores)
+    against_original = compare_scenarios(scores, candidate="triggered_reschedule")
+    against_previous = compare_scenarios(scores, baseline="realtime_reschedule", candidate="triggered_reschedule")
+    original = {r["scenario_id"]: r for r in against_original}
+    trigger_results = []
+    for row in against_previous:
+        base = original[row["scenario_id"]]
+        trigger_results.append({"scenario_id": row["scenario_id"], "group": row["group"], "alerts": row["alerts"],
+                                "original_starts": base["retained_starts"], "previous_starts": row["retained_starts"],
+                                "triggered_starts": row["rescheduled_starts"], "original_t_last_s": base["retained_t_last_s"],
+                                "previous_t_last_s": row["retained_t_last_s"], "triggered_t_last_s": row["rescheduled_t_last_s"],
+                                "vs_original": base["outcome"], "vs_previous": row["outcome"]})
     if len(paired) != q4["scenario_count"]:
         raise ValueError("配对场景数与第四问清单不符")
     comparison = {r["strategy"]: r for r in read_rows(q2 / "comparison.csv") if r["scenario"] == "main"}
@@ -140,6 +152,7 @@ def write_study(root):
     write_csv(out / "observations.csv", observations)
     write_csv(out / "accuracy_changes.csv", changes)
     write_csv(out / "paired_scenarios.csv", paired)
+    write_csv(out / "triggered_comparison.csv", trigger_results)
     lines = ["# 四问联算与论文对照", "",
              "## 单站、站对与三告警调度", "",
              "先用第一问的可观测判定逐站复核，再用第二问（1）的独立 1° 测角模型评价实际站对。表中的最晚启动取全部三个告警，RMS 只取 T2。", "",
@@ -186,6 +199,21 @@ def write_study(root):
                      f"最晚时刻由 {r['retained_t_last_s']:.6f} s 变为 {r['rescheduled_t_last_s']:.6f} s。")
     if not losses:
         lines.append("本组无退步场景。")
+    lines += ["", "## 有条件重调度的消融比较", "",
+              "在同一信息时刻检查新增告警及故障车未启动的任务。两者均为空时，健康车辆继续原指令。其余情况使用同一个重排搜索器。下表中的提前和推迟均在启动数相同的条件下统计。", "",
+              "|场景组|参照策略|场景数|启动数增加|提前|持平|推迟|启动数减少|", "|---|---|---:|---:|---:|---:|---:|---:|"]
+    for group, label in (("main", "主实验"), ("duration", "时长敏感性")):
+        for key, reference in (("vs_previous", "原实时重调度"), ("vs_original", "保留原计划")):
+            counts = Counter(r[key] for r in trigger_results if r["group"] == group)
+            lines.append(f"|{label}|{reference}|{counts.total()}|{counts['more_starts']}|{counts['earlier']}|"
+                         f"{counts['tie']}|{counts['later']}|{counts['fewer_starts']}|")
+    lines += ["", "原实时策略曾退步的主实验，在新规则下的最晚启动时刻如下。", ""]
+    prior_losses = {loss["scenario_id"] for loss in losses}
+    for r in trigger_results:
+        if r["scenario_id"] in prior_losses:
+            lines.append(f"- `{r['scenario_id']}` 从 {r['previous_t_last_s']:.6f} s 变为 {r['triggered_t_last_s']:.6f} s，"
+                         f"启动数为 {r['triggered_starts']}/{r['alerts']}。")
+    lines += ["", "[逐场景三策略配对表](triggered_comparison.csv)", ""]
     lines += ["", "场景计数描述所选样本。新增告警和恢复时刻的概率分布需有额外依据，不能由胜负次数推出。",
               "[逐场景配对成绩](paired_scenarios.csv) · [车辆事件日志](../question4/event_log.csv)", ""]
     (out / "研究结果.md").write_text("\n".join(lines), encoding="utf-8")
