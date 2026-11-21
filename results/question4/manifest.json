@@ -1,23 +1,26 @@
 {
-  "source_revision": "b52ab3a5d6afd28778816a2e31586dcb46a232ba",
+  "source_revision": "686cdf55d6754a387c7c2037ee76c14099419fe0",
   "source_sha256": {
-    "disturbance.py": "286347d5fd399e468f13e5f20832a97e8022fe80a4a70a2c04fa8437cb575b86",
-    "config.py": "17998a33686cfb0268c99e9b893f24c9ca8a9ed0f2a9d67d46d3929f76777922",
-    "geometry.py": "763d7876618c2cfbb602cd8346a6242dfc5e16d774cbba953b1afa68caf1b05f",
-    "routing.py": "2136974bef5530f71e51d4429183e785bb4d3351965913144829deb4270dfcad",
-    "timeline.py": "33863194507f54be76775f514c65b845b9717e4af542875c80ddbb53bfe73eed",
-    "assignment.py": "5bd566c46871ad549ca09d9c175e662c3c9c7c27ef7d278cdb201a6fba9079f7",
-    "question2.py": "1612b98099e9ce594a9a1753e70a4d78088e09ec4c7ca8c00aac0010b4e805da",
-    "localization.py": "dd95b0c1e2f0be072f89e93c61c739ff44935e20460ad177ffdcb72e9bdeacd3"
+    "disturbance.py": "3522ca545e0daebaee53d3ef38cfabcde093c4d5be73b4e2fa3b596e25391734",
+    "disturbance_reporting.py": "c3f338f09a6dc710f3dce9430d48a42dcf5621fe7a150c0f3bdf98c41a6d8baf",
+    "config.py": "1a890140ee8d23e0d41b8273df67a55d1faecd5a35f193f4051bb45c530913f7",
+    "geometry.py": "ad21a390d765e25f4137932f5a770b99777d0a6ec7da784877052c8fc9175562",
+    "routing.py": "c1d914df6aa7ee0e5f54b8997635fb0fd10fc663c783acded32978396ca93710",
+    "timeline.py": "2a2db639281bb5813f19445a979855720f29f21b787b46bb9d1c9a6c693a63be",
+    "assignment.py": "092e2716fc1ca2267b42c1cd224104904434bfe9e9acfe869acbf9f38aed7cb9",
+    "question2.py": "cee2004680a88dcf95ae1c11c0c914f6f81641759a373da1f4a24379a77234f7",
+    "localization.py": "0543e4477e3ec4e66bcd14d56b97376e3168ce263d1e22b296f9189d3c97c3a4"
   },
-  "source_plan_sha256": "05037d402b64bacb839e910cedd7106bfaf422563196d51fa2a5c7f9243a8c63",
+  "source_plan_sha256": "0d40c5cbeb118ee228e5dde072b1e8733adc16897e6a1e4449e4f8c56a8bc1fe",
   "output_sha256": {
-    "scenario_scores.csv": "7dda641e84f0d02d06cd7a52b59e5cb9812a1de152f61263d69c25dec9658836",
-    "event_log.csv": "54c0693497ed554ab91e1b70b7079151c79df1cb04b3e5ed0f5701dd0fef07fe",
-    "aggregate_scores.csv": "b56784fdbf93eafefab58da1258186074765e569f47b8427347f4e1d1eb199c4",
-    "scenarios.json": "6e54536a96a1dac15241f54be75fe0e7274f6c6d3298448f61abe095a6f3e3cc"
+    "scenario_scores.csv": "0e695df74f499dd37958e257cbe7fdf723c9479bc8f93dd09e711306728eebf8",
+    "event_log.csv": "3ef0e2607c20b25bf8b5e7d9fda2617765be96cf6b945aaa4f3b5f4b7229eadc",
+    "aggregate_scores.csv": "0b374269816bdb8cb13b552eec2d86a1d74dfbc2664af9ac67fd5b9b06e42cdb",
+    "scenarios.json": "6e54536a96a1dac15241f54be75fe0e7274f6c6d3298448f61abe095a6f3e3cc",
+    "snapshots.csv": "d70ebf9b02c56c7abf196889c46672c3561f27896c9a8ba9135d2878554b9bce",
+    "fault_groups.csv": "ae90028f537185a0d2874892edd7e0ca94baa7d35a19da4db1dd1457589c1b5d"
   },
-  "hash_convention": "SHA-256 of file bytes.",
+  "hash_convention": "Sources and Q2 plan: UTF-8 text normalized to LF. Q4 outputs: exact file bytes.",
   "scenario_count": 209,
   "strategy_rows": 593,
   "policy_notes": {
@@ -26,7 +29,7 @@
     "outage_main_interpretation": "recovery time t_rec in (5,30], duration t_rec-5",
     "outage_sensitivity_interpretation": "duration d in [5,30] s, recovery t_rec=5+d; reported separately",
     "new_alert_sampling": "four fixed cardinal bearings with ranges spanning 30 to 50 m, H=50 m",
-    "rescheduler_scope": "task-order enumeration with nearest-two feasible stations per vehicle; heuristic optimum is limited to this finite pool",
+    "rescheduler_scope": "enumerate task orders; try up to two nearby sites per vehicle and retain up to two joint options per task at each search node",
     "score": "maximize successful starts within [0,60], then minimize t_last; missing task sets t_last=60"
   },
   "strategies": [
@@ -43,7 +46,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 10.387101085490139,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "outage-duration-5",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 10.387101085490139,
+      "worst_scenario_id": "outage-duration-30",
       "mean_successful_alerts": 3.0
     },
     {
@@ -54,7 +61,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 10.387101085490139,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "outage-duration-5",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 10.387101085490139,
+      "worst_scenario_id": "outage-duration-30",
       "mean_successful_alerts": 3.0
     },
     {
@@ -65,7 +76,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 10.387101085490139,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "outage-rec-10",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 10.387101085490139,
+      "worst_scenario_id": "outage-rec-30",
       "mean_successful_alerts": 3.0
     },
     {
@@ -76,7 +91,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 10.387101085490139,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "outage-rec-10",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 10.387101085490139,
+      "worst_scenario_id": "outage-rec-30",
       "mean_successful_alerts": 3.0
     },
     {
@@ -87,7 +106,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 15.192586688726816,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 12.852576027694235,
+      "best_scenario_id": "failure-V2",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 15.777589353984961,
+      "worst_scenario_id": "failure-V5",
       "mean_successful_alerts": 3.0
     },
     {
@@ -98,7 +121,11 @@
       "mean_completion_rate": 0.7333333333333333,
       "mean_t_last_s": 50.07742021709803,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5",
       "worst_completion_rate": 0.6666666666666666,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "failure-V4",
       "mean_successful_alerts": 2.2
     },
     {
@@ -107,9 +134,13 @@
       "outage_interpretation": "",
       "scenario_count": 5,
       "mean_completion_rate": 0.7333333333333333,
-      "mean_t_last_s": 51.15551787079699,
+      "mean_t_last_s": 50.07742021709803,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5",
       "worst_completion_rate": 0.6666666666666666,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "failure-V4",
       "mean_successful_alerts": 2.2
     },
     {
@@ -120,7 +151,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 24.82350521108736,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5-outage-duration-17.5",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 40.075142415806276,
+      "worst_scenario_id": "failure-V4-outage-duration-30",
       "mean_successful_alerts": 3.0
     },
     {
@@ -131,7 +166,11 @@
       "mean_completion_rate": 0.7333333333333333,
       "mean_t_last_s": 50.07742021709803,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5-outage-duration-5",
       "worst_completion_rate": 0.6666666666666666,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "failure-V4-outage-duration-30",
       "mean_successful_alerts": 2.2
     },
     {
@@ -140,9 +179,13 @@
       "outage_interpretation": "duration",
       "scenario_count": 15,
       "mean_completion_rate": 0.7333333333333333,
-      "mean_t_last_s": 50.82195872526335,
+      "mean_t_last_s": 50.07742021709803,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5-outage-duration-5",
       "worst_completion_rate": 0.6666666666666666,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "failure-V4-outage-duration-30",
       "mean_successful_alerts": 2.2
     },
     {
@@ -153,7 +196,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 22.82350521108736,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5-outage-rec-20",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 35.075142415806276,
+      "worst_scenario_id": "failure-V4-outage-rec-30",
       "mean_successful_alerts": 3.0
     },
     {
@@ -164,7 +211,11 @@
       "mean_completion_rate": 0.7333333333333333,
       "mean_t_last_s": 50.07742021709803,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5-outage-rec-10",
       "worst_completion_rate": 0.6666666666666666,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "failure-V4-outage-rec-30",
       "mean_successful_alerts": 2.2
     },
     {
@@ -173,9 +224,13 @@
       "outage_interpretation": "recovery_time",
       "scenario_count": 15,
       "mean_completion_rate": 0.7333333333333333,
-      "mean_t_last_s": 50.82195872526335,
+      "mean_t_last_s": 50.07742021709803,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 10.387101085490139,
+      "best_scenario_id": "failure-V5-outage-rec-10",
       "worst_completion_rate": 0.6666666666666666,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "failure-V4-outage-rec-30",
       "mean_successful_alerts": 2.2
     },
     {
@@ -186,7 +241,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 19.16060119928715,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 18.492338685366427,
+      "best_scenario_id": "new-N1",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 20.17337931694935,
+      "worst_scenario_id": "new-N3",
       "mean_successful_alerts": 4.0
     },
     {
@@ -197,7 +256,11 @@
       "mean_completion_rate": 0.75,
       "mean_t_last_s": 60.0,
       "best_completion_rate": 0.75,
+      "best_t_last_s": 60.0,
+      "best_scenario_id": "new-N1",
       "worst_completion_rate": 0.75,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "new-N4",
       "mean_successful_alerts": 3.0
     },
     {
@@ -208,7 +271,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 28.305438126544544,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 20.96279086130441,
+      "best_scenario_id": "new-N3-outage-duration-5",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 38.77867964154354,
+      "worst_scenario_id": "new-N3-outage-duration-30",
       "mean_successful_alerts": 4.0
     },
     {
@@ -219,7 +286,11 @@
       "mean_completion_rate": 0.75,
       "mean_t_last_s": 60.0,
       "best_completion_rate": 0.75,
+      "best_t_last_s": 60.0,
+      "best_scenario_id": "new-N1-outage-duration-5",
       "worst_completion_rate": 0.75,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "new-N4-outage-duration-30",
       "mean_successful_alerts": 3.0
     },
     {
@@ -230,7 +301,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 25.80543812654454,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 20.96279086130441,
+      "best_scenario_id": "new-N3-outage-rec-10",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 33.77867964154354,
+      "worst_scenario_id": "new-N3-outage-rec-30",
       "mean_successful_alerts": 4.0
     },
     {
@@ -241,7 +316,11 @@
       "mean_completion_rate": 0.75,
       "mean_t_last_s": 60.0,
       "best_completion_rate": 0.75,
+      "best_t_last_s": 60.0,
+      "best_scenario_id": "new-N1-outage-rec-10",
       "worst_completion_rate": 0.75,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "new-N4-outage-rec-30",
       "mean_successful_alerts": 3.0
     },
     {
@@ -252,7 +331,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 21.64718424123298,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 19.15532577435967,
+      "best_scenario_id": "new-N2-failure-V2",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 24.038610975217384,
+      "worst_scenario_id": "new-N3-failure-V3",
       "mean_successful_alerts": 4.0
     },
     {
@@ -263,7 +346,11 @@
       "mean_completion_rate": 0.55,
       "mean_t_last_s": 60.0,
       "best_completion_rate": 0.75,
+      "best_t_last_s": 60.0,
+      "best_scenario_id": "new-N1-failure-V5",
       "worst_completion_rate": 0.5,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "new-N4-failure-V4",
       "mean_successful_alerts": 2.2
     },
     {
@@ -274,7 +361,11 @@
       "mean_completion_rate": 0.55,
       "mean_t_last_s": 60.0,
       "best_completion_rate": 0.75,
+      "best_t_last_s": 60.0,
+      "best_scenario_id": "new-N1-failure-V5",
       "worst_completion_rate": 0.5,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "new-N4-failure-V4",
       "mean_successful_alerts": 2.2
     },
     {
@@ -285,7 +376,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 31.646051830419342,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 21.366011988758544,
+      "best_scenario_id": "new-N1-failure-V2-outage-duration-5",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 46.91571946795481,
+      "worst_scenario_id": "new-N3-failure-V1-outage-duration-30",
       "mean_successful_alerts": 4.0
     },
     {
@@ -296,7 +391,11 @@
       "mean_completion_rate": 0.55,
       "mean_t_last_s": 60.0,
       "best_completion_rate": 0.75,
+      "best_t_last_s": 60.0,
+      "best_scenario_id": "new-N1-failure-V5-outage-duration-5",
       "worst_completion_rate": 0.5,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "new-N4-failure-V4-outage-duration-30",
       "mean_successful_alerts": 2.2
     },
     {
@@ -307,7 +406,11 @@
       "mean_completion_rate": 0.55,
       "mean_t_last_s": 60.0,
       "best_completion_rate": 0.75,
+      "best_t_last_s": 60.0,
+      "best_scenario_id": "new-N1-failure-V5-outage-duration-5",
       "worst_completion_rate": 0.5,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "new-N4-failure-V4-outage-duration-30",
       "mean_successful_alerts": 2.2
     },
     {
@@ -318,7 +421,11 @@
       "mean_completion_rate": 1.0,
       "mean_t_last_s": 29.184874845068514,
       "best_completion_rate": 1.0,
+      "best_t_last_s": 21.366011988758544,
+      "best_scenario_id": "new-N1-failure-V2-outage-rec-10",
       "worst_completion_rate": 1.0,
+      "worst_t_last_s": 41.91571946795481,
+      "worst_scenario_id": "new-N3-failure-V1-outage-rec-30",
       "mean_successful_alerts": 4.0
     },
     {
@@ -329,7 +436,11 @@
       "mean_completion_rate": 0.55,
       "mean_t_last_s": 60.0,
       "best_completion_rate": 0.75,
+      "best_t_last_s": 60.0,
+      "best_scenario_id": "new-N1-failure-V5-outage-rec-10",
       "worst_completion_rate": 0.5,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "new-N4-failure-V4-outage-rec-30",
       "mean_successful_alerts": 2.2
     },
     {
@@ -340,7 +451,11 @@
       "mean_completion_rate": 0.55,
       "mean_t_last_s": 60.0,
       "best_completion_rate": 0.75,
+      "best_t_last_s": 60.0,
+      "best_scenario_id": "new-N1-failure-V5-outage-rec-10",
       "worst_completion_rate": 0.5,
+      "worst_t_last_s": 60.0,
+      "worst_scenario_id": "new-N4-failure-V4-outage-rec-30",
       "mean_successful_alerts": 2.2
     }
   ]
