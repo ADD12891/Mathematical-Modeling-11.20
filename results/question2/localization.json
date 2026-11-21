@@ -1,0 +1,561 @@
+{
+  "target_xyz_m": [
+    11.02885682970026,
+    72.5,
+    35.0
+  ],
+  "bearing_std_deg": 1.0,
+  "travel_limit_s": 30.0,
+  "sine_roundoff_tol": 3.552713678800501e-15,
+  "optimal": {
+    "assignments": [
+      {
+        "vehicle": "V3",
+        "start_xy_m": [
+          14.0,
+          86.0
+        ],
+        "station_xy_m": [
+          5.210066466320913,
+          72.5
+        ],
+        "route_xy_m": [
+          [
+            14.0,
+            86.0
+          ],
+          [
+            5.210066466320913,
+            72.5
+          ]
+        ],
+        "segments": [
+          {
+            "from_xy_m": [
+              14.0,
+              86.0
+            ],
+            "to_xy_m": [
+              5.210066466320913,
+              72.5
+            ],
+            "length_m": 16.109405064324882,
+            "building_clearance_m": 0.6043195078546226,
+            "passable": true
+          }
+        ],
+        "length_m": 16.109405064324882,
+        "travel_time_s": 5.369801688108294,
+        "station_clearance_m": 3.289933533679087,
+        "elevation_deg": 80.0,
+        "sight_clear": true
+      },
+      {
+        "vehicle": "V5",
+        "start_xy_m": [
+          50.0,
+          93.0
+        ],
+        "station_xy_m": [
+          11.02885682970026,
+          78.31879036337935
+        ],
+        "route_xy_m": [
+          [
+            50.0,
+            93.0
+          ],
+          [
+            11.02885682970026,
+            78.31879036337935
+          ]
+        ],
+        "segments": [
+          {
+            "from_xy_m": [
+              50.0,
+              93.0
+            ],
+            "to_xy_m": [
+              11.02885682970026,
+              78.31879036337935
+            ],
+            "length_m": 41.644782583108814,
+            "building_clearance_m": 0.8187903633793496,
+            "passable": true
+          }
+        ],
+        "length_m": 41.644782583108814,
+        "travel_time_s": 13.881594194369605,
+        "station_clearance_m": 0.8187903633793496,
+        "elevation_deg": 80.0,
+        "sight_clear": true
+      }
+    ],
+    "metrics": {
+      "ranges_m": [
+        5.818790363379347,
+        5.81879036337935
+      ],
+      "baseline_m": 8.229012248496945,
+      "angle_deg": 90.0,
+      "abs_sin_angle": 1.0,
+      "condition_number": 1.0,
+      "covariance_m2": [
+        [
+          0.010313834470569747,
+          0.0
+        ],
+        [
+          0.0,
+          0.010313834470569739
+        ]
+      ],
+      "rms_m": 0.14362335792321348,
+      "closed_form_rms_m": 0.14362335792321348
+    }
+  },
+  "margin_example": {
+    "assignments": [
+      {
+        "vehicle": "V3",
+        "start_xy_m": [
+          14.0,
+          86.0
+        ],
+        "station_xy_m": [
+          4.9126683469596255,
+          72.5
+        ],
+        "route_xy_m": [
+          [
+            14.0,
+            86.0
+          ],
+          [
+            4.9126683469596255,
+            72.5
+          ]
+        ],
+        "segments": [
+          {
+            "from_xy_m": [
+              14.0,
+              86.0
+            ],
+            "to_xy_m": [
+              4.9126683469596255,
+              72.5
+            ],
+            "length_m": 16.27358585476322,
+            "building_clearance_m": 0.7658384488512109,
+            "passable": true
+          }
+        ],
+        "length_m": 16.27358585476322,
+        "travel_time_s": 5.424528618254406,
+        "station_clearance_m": 3.5873316530403745,
+        "elevation_deg": 79.5,
+        "sight_clear": true
+      },
+      {
+        "vehicle": "V5",
+        "start_xy_m": [
+          50.0,
+          93.0
+        ],
+        "station_xy_m": [
+          11.02885682970026,
+          78.61618848274064
+        ],
+        "route_xy_m": [
+          [
+            50.0,
+            93.0
+          ],
+          [
+            11.02885682970026,
+            78.61618848274064
+          ]
+        ],
+        "segments": [
+          {
+            "from_xy_m": [
+              50.0,
+              93.0
+            ],
+            "to_xy_m": [
+              11.02885682970026,
+              78.61618848274064
+            ],
+            "length_m": 41.54087184646036,
+            "building_clearance_m": 1.1161884827406396,
+            "passable": true
+          }
+        ],
+        "length_m": 41.54087184646036,
+        "travel_time_s": 13.846957282153454,
+        "station_clearance_m": 1.1161884827406396,
+        "elevation_deg": 79.49999999999999,
+        "sight_clear": true
+      }
+    ],
+    "metrics": {
+      "ranges_m": [
+        6.116188482740634,
+        6.11618848274064
+      ],
+      "baseline_m": 8.649596702321931,
+      "angle_deg": 90.0,
+      "abs_sin_angle": 1.0,
+      "condition_number": 1.0,
+      "covariance_m2": [
+        [
+          0.011395055805309815,
+          0.0
+        ],
+        [
+          0.0,
+          0.011395055805309796
+        ]
+      ],
+      "rms_m": 0.15096394142516156,
+      "closed_form_rms_m": 0.15096394142516156
+    },
+    "elevation_margin_deg": 0.5,
+    "rms_increase_percent": 5.110995598552037
+  },
+  "certificate": {
+    "range_lower_bound_m": 5.818790363379347,
+    "rms_lower_bound_m": 0.14362335792321346,
+    "bound_attained": true,
+    "scope": "continuous first-order horizontal RMS",
+    "derivation": "r1,r2 >= d and abs(sin(gamma)) <= 1, so RMS >= sigma*sqrt(2)*d."
+  },
+  "search": {
+    "grid_spacing_m": 10.0,
+    "observable_grid_points": 66,
+    "last_refinement_step_m": 0.001220703125,
+    "grid": {
+      "assignments": [
+        {
+          "vehicle": "V3",
+          "start_xy_m": [
+            14.0,
+            86.0
+          ],
+          "station_xy_m": [
+            5.0,
+            65.0
+          ],
+          "route_xy_m": [
+            [
+              14.0,
+              86.0
+            ],
+            [
+              8.72836140246614,
+              76.84968174602578
+            ],
+            [
+              8.5,
+              76.29836855106949
+            ],
+            [
+              5.0,
+              65.0
+            ]
+          ],
+          "segments": [
+            {
+              "from_xy_m": [
+                14.0,
+                86.0
+              ],
+              "to_xy_m": [
+                8.72836140246614,
+                76.84968174602578
+              ],
+              "length_m": 10.56023189385643,
+              "building_clearance_m": 0.029386737312476097,
+              "passable": true
+            },
+            {
+              "from_xy_m": [
+                8.72836140246614,
+                76.84968174602578
+              ],
+              "to_xy_m": [
+                8.5,
+                76.29836855106949
+              ],
+              "length_m": 0.5967371021389722,
+              "building_clearance_m": 0.0,
+              "passable": true
+            },
+            {
+              "from_xy_m": [
+                8.5,
+                76.29836855106949
+              ],
+              "to_xy_m": [
+                5.0,
+                65.0
+              ],
+              "length_m": 11.828065434203348,
+              "building_clearance_m": 0.02938673731247743,
+              "passable": true
+            }
+          ],
+          "length_m": 22.985034430198752,
+          "travel_time_s": 7.661678143399584,
+          "station_clearance_m": 3.5,
+          "elevation_deg": 73.74341248542754,
+          "sight_clear": true
+        },
+        {
+          "vehicle": "V5",
+          "start_xy_m": [
+            50.0,
+            93.0
+          ],
+          "station_xy_m": [
+            5.0,
+            75.0
+          ],
+          "route_xy_m": [
+            [
+              50.0,
+              93.0
+            ],
+            [
+              9.701631448930513,
+              77.5
+            ],
+            [
+              9.150318253974218,
+              77.27163859753387
+            ],
+            [
+              5.0,
+              75.0
+            ]
+          ],
+          "segments": [
+            {
+              "from_xy_m": [
+                50.0,
+                93.0
+              ],
+              "to_xy_m": [
+                9.701631448930513,
+                77.5
+              ],
+              "length_m": 43.17648095755172,
+              "building_clearance_m": 0.02938673731247743,
+              "passable": true
+            },
+            {
+              "from_xy_m": [
+                9.701631448930513,
+                77.5
+              ],
+              "to_xy_m": [
+                9.150318253974218,
+                77.27163859753387
+              ],
+              "length_m": 0.5967371021389719,
+              "building_clearance_m": 0.0,
+              "passable": true
+            },
+            {
+              "from_xy_m": [
+                9.150318253974218,
+                77.27163859753387
+              ],
+              "to_xy_m": [
+                5.0,
+                75.0
+              ],
+              "length_m": 4.731329995580231,
+              "building_clearance_m": 0.029386737312481426,
+              "passable": true
+            }
+          ],
+          "length_m": 48.504548055270924,
+          "travel_time_s": 16.168182685090308,
+          "station_clearance_m": 3.5,
+          "elevation_deg": 78.81258023875951,
+          "sight_clear": true
+        }
+      ],
+      "metrics": {
+        "ranges_m": [
+          9.622739457816753,
+          6.526646510500126
+        ],
+        "baseline_m": 10.0,
+        "angle_deg": 73.72845462494733,
+        "abs_sin_angle": 0.9599445602426511,
+        "condition_number": 1.3336082751335199,
+        "covariance_m2": [
+          [
+            0.031645911200941235,
+            -0.003954566504848574
+          ],
+          [
+            -0.003954566504848574,
+            0.013045141626145633
+          ]
+        ],
+        "rms_m": 0.21140258472186868,
+        "closed_form_rms_m": 0.21140258472186868
+      }
+    },
+    "refined": {
+      "assignments": [
+        {
+          "vehicle": "V3",
+          "start_xy_m": [
+            14.0,
+            86.0
+          ],
+          "station_xy_m": [
+            7.149658203125,
+            68.162841796875
+          ],
+          "route_xy_m": [
+            [
+              14.0,
+              86.0
+            ],
+            [
+              8.72836140246614,
+              76.84968174602578
+            ],
+            [
+              8.5,
+              76.29836855106949
+            ],
+            [
+              7.149658203125,
+              68.162841796875
+            ]
+          ],
+          "segments": [
+            {
+              "from_xy_m": [
+                14.0,
+                86.0
+              ],
+              "to_xy_m": [
+                8.72836140246614,
+                76.84968174602578
+              ],
+              "length_m": 10.56023189385643,
+              "building_clearance_m": 0.029386737312476097,
+              "passable": true
+            },
+            {
+              "from_xy_m": [
+                8.72836140246614,
+                76.84968174602578
+              ],
+              "to_xy_m": [
+                8.5,
+                76.29836855106949
+              ],
+              "length_m": 0.5967371021389722,
+              "building_clearance_m": 0.0,
+              "passable": true
+            },
+            {
+              "from_xy_m": [
+                8.5,
+                76.29836855106949
+              ],
+              "to_xy_m": [
+                7.149658203125,
+                68.162841796875
+              ],
+              "length_m": 8.246830817750652,
+              "building_clearance_m": 0.028610194056613247,
+              "passable": true
+            }
+          ],
+          "length_m": 19.403799813746055,
+          "travel_time_s": 6.467933271248685,
+          "station_clearance_m": 1.350341796875,
+          "elevation_deg": 79.99988396085581,
+          "sight_clear": true
+        },
+        {
+          "vehicle": "V5",
+          "start_xy_m": [
+            50.0,
+            93.0
+          ],
+          "station_xy_m": [
+            7.149658203125,
+            76.837158203125
+          ],
+          "route_xy_m": [
+            [
+              50.0,
+              93.0
+            ],
+            [
+              7.149658203125,
+              76.837158203125
+            ]
+          ],
+          "segments": [
+            {
+              "from_xy_m": [
+                50.0,
+                93.0
+              ],
+              "to_xy_m": [
+                7.149658203125,
+                76.837158203125
+              ],
+              "length_m": 45.79726244067239,
+              "building_clearance_m": 0.2892366116430285,
+              "passable": true
+            }
+          ],
+          "length_m": 45.79726244067239,
+          "travel_time_s": 15.265754146890798,
+          "station_clearance_m": 1.4707376552082283,
+          "elevation_deg": 79.99988396085581,
+          "sight_clear": true
+        }
+      ],
+      "metrics": {
+        "ranges_m": [
+          5.818859275094892,
+          5.818859275094892
+        ],
+        "baseline_m": 8.67431640625,
+        "angle_deg": 96.38045056708059,
+        "abs_sin_angle": 0.9938058947326442,
+        "condition_number": 1.118055201765744,
+        "covariance_m2": [
+          [
+            0.009282514337383535,
+            2.3506237826474296e-18
+          ],
+          [
+            2.3506237826474296e-18,
+            0.011603583230328663
+          ]
+        ],
+        "rms_m": 0.1445202323818786,
+        "closed_form_rms_m": 0.1445202323818786
+      }
+    }
+  },
+  "degeneracy": "The sine cutoff covers roundoff only. A small resolved sine increases both condition number and RMS. Reselect a pair with a larger crossing sine.",
+  "boundary": "At the nominal 80-degree limit the perpendicular pair has zero elevation margin and condition number 1. For the margin example move away from the target, then recheck both sight lines and travel paths.",
+  "route_limit_note": "Only verified routes of at most 30 s are used. A longer detour alone does not prove unreachability."
+}

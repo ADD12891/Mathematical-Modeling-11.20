@@ -1,0 +1,134 @@
+{
+  "source_revision": "ad275bbb84125a75aa1ff2dbf9964be6bbdded8a",
+  "source_sha256": {
+    "config.py": "1a890140ee8d23e0d41b8273df67a55d1faecd5a35f193f4051bb45c530913f7",
+    "geometry.py": "ad21a390d765e25f4137932f5a770b99777d0a6ec7da784877052c8fc9175562",
+    "routing.py": "c1d914df6aa7ee0e5f54b8997635fb0fd10fc663c783acded32978396ca93710",
+    "localization.py": "0543e4477e3ec4e66bcd14d56b97376e3168ce263d1e22b296f9189d3c97c3a4",
+    "timeline.py": "2a2db639281bb5813f19445a979855720f29f21b787b46bb9d1c9a6c693a63be",
+    "assignment.py": "092e2716fc1ca2267b42c1cd224104904434bfe9e9acfe869acbf9f38aed7cb9",
+    "question2.py": "cee2004680a88dcf95ae1c11c0c914f6f81641759a373da1f4a24379a77234f7"
+  },
+  "output_sha256": {
+    "candidates.json": "ee64f718176f882320a2d017e5c6c942bce55f36cac901dbaa4d089100c02478",
+    "main_nearest_events.csv": "d56f9287f4f486efbbb7c92ad4135b5508aaac8e0c2a5378048ce35cb0ff8c73",
+    "main_optimized_events.csv": "aa80786d921bb5500e547e0191e9f4738ac9f90577a046be1208a3aed57470ff",
+    "original_plan.json": "0d40c5cbeb118ee228e5dde072b1e8733adc16897e6a1e4449e4f8c56a8bc1fe",
+    "limited_nearest_events.csv": "d56f9287f4f486efbbb7c92ad4135b5508aaac8e0c2a5378048ce35cb0ff8c73",
+    "limited_optimized_events.csv": "aa80786d921bb5500e547e0191e9f4738ac9f90577a046be1208a3aed57470ff",
+    "comparison.csv": "535224217a4fc7b8a6358ae3ed2684553c1cd3f3d260609faa8d7d96458f3196",
+    "vehicle_tasks.csv": "c53aad456c6e0a9bb48794f23ee8dadf6eb74fb4d19bf1a5dd7ab3112e4aeb4f"
+  },
+  "hash_convention": "SHA-256 of UTF-8 text normalized to LF.",
+  "original_plan": "original_plan.json",
+  "inputs": {
+    "field_size_m": 100.0,
+    "dispatch_center_xy_m": [
+      50.0,
+      50.0
+    ],
+    "vehicle_radius_m": 1.5,
+    "camera_height_m": 2.0,
+    "buildings_xy_bounds_height_m": [
+      [
+        22,
+        34,
+        16,
+        26,
+        20
+      ],
+      [
+        63,
+        79,
+        59,
+        71,
+        28
+      ],
+      [
+        10,
+        24,
+        65,
+        76,
+        12
+      ],
+      [
+        72,
+        86,
+        22,
+        34,
+        24
+      ],
+      [
+        41,
+        51,
+        38,
+        46,
+        32
+      ]
+    ],
+    "vehicles_xy_m": {
+      "V1": [
+        15.0,
+        14.0
+      ],
+      "V2": [
+        88.0,
+        10.0
+      ],
+      "V3": [
+        14.0,
+        86.0
+      ],
+      "V4": [
+        88.0,
+        68.0
+      ],
+      "V5": [
+        50.0,
+        93.0
+      ]
+    },
+    "alerts_bearing_deg_range_height_m": {
+      "T1": [
+        30.0,
+        40.0,
+        45.0
+      ],
+      "T2": [
+        150.0,
+        45.0,
+        35.0
+      ],
+      "T3": [
+        285.0,
+        38.0,
+        55.0
+      ]
+    },
+    "speed_m_s": 3.0,
+    "elevation_bounds_deg": [
+      -10.0,
+      80.0
+    ],
+    "slew_rate_deg_s": 30.0,
+    "observe_s": 5.0,
+    "sensitivity_leg_limit_m": 90.0,
+    "body_tol_m": 1e-12,
+    "range_tol_m": 1e-09,
+    "segment_t_tol": 3.552713678800501e-15,
+    "leg_limit_tol_m": 1e-09,
+    "bearing_sine_roundoff_tol": 3.552713678800501e-15,
+    "router_steps_per_quarter_circle": 4
+  },
+  "station_pool": {
+    "grid_spacing_m": 2.0,
+    "points_file": "candidates.json",
+    "points_per_target": {
+      "T1": 18,
+      "T2": 18,
+      "T3": 22
+    }
+  },
+  "optimization_scope": "All feasible assignments and acyclic orders on the saved station sets and the route polylines returned by this router.",
+  "random_seed": null
+}
