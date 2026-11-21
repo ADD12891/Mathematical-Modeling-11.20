@@ -1,6 +1,6 @@
 """从发布的逐车事件重算每个场景的成绩，并校验单场景调试入口。"""
-# OpenAI Codex（GPT-6，OpenAI）辅助编写，使用日期 2026-11-21。
-# 本环境未列出模型发布日期。使用范围见 yyh/B题代码复核.md。
+# OpenAI Codex 0.169.0-alpha.11.1（GPT-6，OpenAI）辅助程序复查与测试。
+# 工具版本发布于 2026-11-11 UTC，使用于 2026-11-21。范围与来源见 yyh/B题代码复核.md。
 import csv
 import hashlib
 import json

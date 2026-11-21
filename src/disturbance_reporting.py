@@ -1,6 +1,6 @@
 """第四问的执行状态快照和给定场景条件下的五车故障统计。"""
-# OpenAI Codex（GPT-6，OpenAI）于 2026-11-21 辅助编写快照、汇总与测试。
-# 模型发布日期未在本次运行环境中列出。使用范围见 yyh/B题代码复核.md。
+# OpenAI Codex 0.169.0-alpha.11.1（GPT-6，OpenAI）辅助程序复查与测试。
+# 工具版本发布于 2026-11-11 UTC，使用于 2026-11-21。范围与来源见 yyh/B题代码复核.md。
 from math import fsum
 
 from .config import VEHICLES

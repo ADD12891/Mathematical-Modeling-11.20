@@ -1,5 +1,6 @@
 """核对时刻边界、断联期间阻塞，以及等概率故障统计。"""
-# OpenAI Codex（GPT-6，OpenAI）于 2026-11-21 辅助编写。使用范围见 yyh/B题代码复核.md。
+# OpenAI Codex 0.169.0-alpha.11.1（GPT-6，OpenAI）辅助程序复查与测试。
+# 工具版本发布于 2026-11-11 UTC，使用于 2026-11-21。范围与来源见 yyh/B题代码复核.md。
 import json
 import unittest
 from pathlib import Path

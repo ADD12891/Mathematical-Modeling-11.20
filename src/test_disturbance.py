@@ -1,5 +1,6 @@
 """Question 4 scenario, event-boundary, and score regression tests."""
-# OpenAI Codex（GPT-6，OpenAI）于 2026-11-21 辅助补充回归用例，详见 yyh/B题代码复核.md。
+# OpenAI Codex 0.169.0-alpha.11.1（GPT-6，OpenAI）辅助程序复查与测试。
+# 工具版本发布于 2026-11-11 UTC，使用于 2026-11-21。范围与来源见 yyh/B题代码复核.md。
 import hashlib
 import csv
 import json

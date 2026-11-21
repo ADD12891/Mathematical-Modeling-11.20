@@ -1,6 +1,6 @@
 """Question 4: paired disturbance scenarios, replay, and reactive rescheduling."""
-# OpenAI Codex（GPT-6，OpenAI）于 2026-11-21 辅助复查事件回放与文件校验。
-# 模型发布日期未在本次运行环境中列出。使用范围见 yyh/B题代码复核.md。
+# OpenAI Codex 0.169.0-alpha.11.1（GPT-6，OpenAI）辅助程序复查与测试。
+# 工具版本发布于 2026-11-11 UTC，使用于 2026-11-21。范围与来源见 yyh/B题代码复核.md。
 from __future__ import annotations
 
 import argparse
